@@ -8,7 +8,6 @@ export default () => (
   <div id="app">
     <Router>
       <Home path="/" />
-
       <Error404 default />
     </Router>
   </div>

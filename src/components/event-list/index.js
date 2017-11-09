@@ -25,7 +25,7 @@ class EventList extends Component {
         <List>
           {events
             .filter(e => e.name.toLowerCase().includes(query.toLowerCase()))
-            .map(e => <li key={e.key}>{e.name}</li>)}
+            .map(e => <li><a href={"event/" + e.id}>{e.name}</a></li>)}
         </List>
       </div>
     )

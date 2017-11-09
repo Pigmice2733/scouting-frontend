@@ -9,7 +9,7 @@ export default () => (
   <div id="app">
     <Router>
       <Home path="/" />
-      <Event path="/events/:eventId" />
+      <Event path="/event/:event_id" />
       <Error404 default />
     </Router>
   </div>

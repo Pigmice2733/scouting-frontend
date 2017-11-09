@@ -1,9 +1,9 @@
 import { h } from 'preact'
+import style from './style'
+import Event from '../../components/event'
 
-const Event = ({ eventId }) => (
-  <div class="event">
-    <h1>Hi</h1>
+export default (props) => (
+  <div>
+    <Event event_id={props.matches.event_id} />
   </div>
 )
-
-export default Event

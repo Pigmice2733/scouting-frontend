@@ -1,6 +1,12 @@
 .event
   height: 100%
+  display: flex
+  flex-direction: column
 
-  & ul a
-    &:hover, &:focus
-      background-color: gray(95%)
+  & ul
+    flex-grow: 1
+    flex-basis: 0
+
+    & a
+      &:hover, &:focus
+        background-color: gray(95%)

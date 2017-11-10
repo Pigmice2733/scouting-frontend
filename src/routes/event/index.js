@@ -27,7 +27,6 @@ const Event = wrap(
             )
           })}
         </List>
-        <pre>{JSON.stringify(event)}</pre>
       </div>
     )
   },

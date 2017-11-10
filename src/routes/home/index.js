@@ -7,7 +7,6 @@ import { getEvents } from '../../api'
 export default wrapData(
   ({ data }) => (
     <div class={style.home}>
-      <h1>Pigmice Scouting</h1>
       {data.events ? <EventList events={data.events} /> : <p>Loading...</p>}
     </div>
   ),

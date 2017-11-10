@@ -16,13 +16,16 @@ const Event = wrap(
         <Header title={event.name || `Event ${eventId}`} back="/" />
         {date && <p>{date.toLocaleDateString()}</p>}
         <List>
-          {matches.map(m => (
-            <li key={m.key}>
-              <a href={`/events/${event.key}/${m.key}`}>
-                {formatMatchName(m.key).toUpperCase()}
-              </a>
-            </li>
-          ))}
+          {matches.map(m => {
+            const matchKey = formatMatchName(m.key)
+            return (
+              <li key={m.key}>
+                <a href={`/events/${event.key}/${matchKey}`}>
+                  {matchKey.toUpperCase()}
+                </a>
+              </li>
+            )
+          })}
         </List>
         <pre>{JSON.stringify(event)}</pre>
       </div>

@@ -81,7 +81,8 @@ module.exports = env => {
         'Access-Control-Allow-Origin': '*',
         'Access-Control-Allow-Headers':
           'Origin, X-Requested-With, Content-Type, Accept'
-      }
+      },
+      host: '0.0.0.0'
     }
   }
   if (production) {

@@ -3,7 +3,7 @@ import { render, h } from 'preact'
 
 render(<App />, document.body, document.getElementById('app'))
 
-const unregiesterSW = async () => {
+const unregisterSW = async () => {
   if ('serviceWorker' in navigator) {
     ;(await navigator.serviceWorker.getRegistrations()).forEach(sw =>
       sw.unregister().then(console.log)
@@ -11,7 +11,7 @@ const unregiesterSW = async () => {
   }
 }
 
-unregiesterSW()
+unregisterSW()
 
 if (module.hot) {
   module.hot.accept()

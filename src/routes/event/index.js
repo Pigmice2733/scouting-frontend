@@ -1,11 +1,9 @@
 import { h } from 'preact'
 import wrap from '../../wrap'
 import Header from '../../components/header'
-import { getEvent } from '../../api'
+import { getEvent, parseMatchKey } from '../../api'
 import style from './style'
 import List from '../../components/list'
-
-const formatMatchName = name => name.replace(/[^_]*_/, '')
 
 const Event = wrap(
   ({ eventId, data: { event = {} } }) => {
@@ -17,7 +15,7 @@ const Event = wrap(
         {date && <p>{date.toLocaleDateString()}</p>}
         <List>
           {matches.map(m => {
-            const matchKey = formatMatchName(m.key)
+            const matchKey = parseMatchKey(m.key)['matchKey']
             return (
               <li key={m.key}>
                 <a href={`/events/${event.key}/${matchKey}`}>

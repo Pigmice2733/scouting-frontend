@@ -4,14 +4,18 @@ import Header from '../../components/header'
 import { getEvent, getMatch } from '../../api'
 import style from './style'
 
+// TODO: Add this back once we get "/assets/*" working
+//          <img src="/assets/imgs/example_robot.png" />
 function teamList (teams) {
   return (
     teams.map(team => {
       return (
         <li>
-          <img src="/assets/imgs/example_robot.png" />
           <a href={`/team/${team}`}>
-            {team}
+            <div class={style.teamImgContainer}>
+              <img src="http://rjwagner49.com/Robotics/Kalani/2012/FRC/SanDiegoRegional/CADModel01.jpg" />
+            </div>
+            <div>{team}</div>
           </a>
         </li>
       );
@@ -41,11 +45,22 @@ const Match = wrap(
       <div class={style.match}>
         <Header title={eventName + " - " + matchId.toUpperCase()} back={"/events/" + eventId} />
         ADD MATCH TIME HERE
-        <div class={style.blueAlliance}>
-          {teamList(match !== undefined ? match.blueAlliance.teams : [])}
-        </div>
+        <br />
         <div class={style.redAlliance}>
-          {teamList(match !== undefined ? match.redAlliance.teams : [])}
+          <h3 style="text-align:center;padding:0;margin:0;">
+            {"Score: " + (match !== undefined ? match.redAlliance.score : "?")}
+          </h3>
+          <div class={style.teamContainer}>
+            {teamList(match !== undefined ? match.redAlliance.teams : [])}
+          </div>
+        </div>
+        <div class={style.blueAlliance}>
+          <h3 style="text-align:center;padding:0;margin:0;">
+            {"Score: " + (match !== undefined ? match.blueAlliance.score : "?")}
+          </h3>
+          <div class={style.teamContainer}>
+            {teamList(match !== undefined ? match.blueAlliance.teams : [])}
+          </div>
         </div>
       </div>
     )

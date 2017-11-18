@@ -65,7 +65,14 @@ module.exports = env => {
     },
     plugins: [
       new ExtractTextPlugin('styles.css'),
-      new CopyWebpackPlugin([{ from: path.join(__dirname, '_redirects') }])
+      new CopyWebpackPlugin([
+        { from: path.join(__dirname, '_redirects') },
+        {
+          from: path.join(__dirname, 'src', 'assets', 'favicon.ico'),
+          to: 'favicon.ico'
+        },
+        { from: path.join(__dirname, 'src', 'assets'), to: 'assets' }
+      ])
     ],
     output: {
       path: path.resolve(__dirname, 'build'),

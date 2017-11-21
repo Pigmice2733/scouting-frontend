@@ -40,7 +40,6 @@ class EventList extends Component {
             .map(e => (
               <li key={e.key}>
                 <a href={`/events/${e.key}`}>{e.name}</a>
-                <span>{e.date.toLocaleDateString()}</span>
               </li>
             ))}
         </List>

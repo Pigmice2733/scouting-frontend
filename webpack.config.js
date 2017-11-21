@@ -3,6 +3,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin')
 const indexHtml = path.join(__dirname, 'src', 'index.html')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = env => {
   const production = env.NODE_ENV === 'production'
@@ -65,24 +66,18 @@ module.exports = env => {
     },
     plugins: [
       new ExtractTextPlugin('styles.css'),
-      new CopyWebpackPlugin([{ from: path.join(__dirname, '_redirects') }])
+      new CopyWebpackPlugin([
+        { from: path.join(__dirname, '_redirects') },
+        {
+          from: path.join(__dirname, 'src', 'assets', 'favicon.ico'),
+          to: 'favicon.ico'
+        },
+        { from: path.join(__dirname, 'src', 'assets'), to: 'assets' }
+      ])
     ],
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: 'scripts.js'
-    },
-    devServer: {
-      contentBase: path.join(__dirname, 'build'),
-      compress: true,
-      port: 9000,
-      historyApiFallback: true,
-      watchOptions: { aggregateTimeout: 300, poll: 1000 },
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers':
-          'Origin, X-Requested-With, Content-Type, Accept'
-      },
-      host: '0.0.0.0'
     }
   }
   if (production) {

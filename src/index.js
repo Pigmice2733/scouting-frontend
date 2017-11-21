@@ -12,7 +12,3 @@ const unregisterSW = async () => {
 }
 
 unregisterSW()
-
-if (module.hot) {
-  module.hot.accept()
-}

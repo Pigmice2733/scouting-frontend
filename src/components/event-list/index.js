@@ -14,30 +14,7 @@ class EventList extends Component {
   }
 
   render({ events }, { query }) {
-    var presentFutureEvents = [];
-    var pastEvents = [];
-    const twoDaysAgo = Date.now() - (2 * 24 * 60 * 60 * 1000);
-    for (var e = 0; e < events.length; ++e) {
-      try {
-        events[e]['timestamp'] = (new Date(events[e]['date'])).getTime();
-        if (events[e]['timestamp'] >= twoDaysAgo) {
-          presentFutureEvents.push(events[e]);
-        } else {
-          pastEvents.push(events[e]);
-        }
-      } catch (err) {
-        console.log("Error event date invalid -" + JSON.stringify(events[e]) + " - ", err);
-      }
-      var date = new Date(events[e]['date']);
-      events[e]['name'] += " - " + (date.getMonth() + 0) + "/" + date.getDate() + "/" + date.getFullYear();
-    }
-    presentFutureEvents.sort(function(a, b) {
-      return a['timestamp'] - b['timestamp'];
-    });
-    pastEvents.sort(function(a, b) {
-      return b['timestamp'] - a['timestamp'];
-    });
-    const catEvents = presentFutureEvents.concat(pastEvents);
+    const twoDaysAgo = Date.now() - 2 * 24 * 60 * 60 * 1000
     return (
       <div class={style['event-list']}>
         <TextInput
@@ -47,11 +24,23 @@ class EventList extends Component {
           value={query}
         />
         <List>
-          {catEvents
+          {events
             .filter(e => e.name.toLowerCase().includes(query.toLowerCase()))
+            .map(e => {
+              e.date = new Date(e.date)
+              return e
+            })
+            .sort((a, b) => {
+              if (a.date > b.date) {
+                return b.date > twoDaysAgo ? 1 : -1
+              } else {
+                return a.date > twoDaysAgo ? -1 : 1
+              }
+            })
             .map(e => (
               <li key={e.key}>
                 <a href={`/events/${e.key}`}>{e.name}</a>
+                <span>{e.date.toLocaleDateString()}</span>
               </li>
             ))}
         </List>

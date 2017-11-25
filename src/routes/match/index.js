@@ -3,69 +3,72 @@ import wrap from '../../wrap'
 import Header from '../../components/header'
 import { getEvent, getMatch } from '../../api'
 import style from './style'
-
-// TODO: Add this back once we get "/assets/*" working
-//          <img src="/assets/imgs/example_robot.png" />
-function teamList (teams) {
-  return (
-    teams.map(team => {
-      return (
-        <li>
-          <a href={`/team/${team}`}>
-            <div class={style.teamImgContainer}>
-              <img src="http://rjwagner49.com/Robotics/Kalani/2012/FRC/SanDiegoRegional/CADModel01.jpg" />
-            </div>
-            <div>{team}</div>
-          </a>
-        </li>
-      );
-    })
-  );
-};
+import RobotImage from '../../components/robot-image'
+import { formatTeamNumber, formatMatchId } from '../../utils'
+import Button from '../../components/button'
 
 const Match = wrap(
-  ({ eventId, matchId, data: { event = undefined, match = undefined } }) => {
-    const eventName = event !== undefined ? event.name : "Loading...";
-    // TODO: Return event name with match, it is currently inefficient
-    // TODO: Currently the API does not return the expected match time
-
-    // TODO: Get Brendan to fix alliance info to have a list for teams
-    // currently it is merely different elements. I am merging them to a list.
-    if (match) {
-      if (match.blueAlliance.teams === undefined) {
-        let alliance = match.blueAlliance;
-        alliance.teams = [alliance.team1, alliance.team2, alliance.team3];
-      }
-      if (match.redAlliance.teams === undefined) {
-        let alliance = match.redAlliance;
-        match.redAlliance.teams = [alliance.team1, alliance.team2, alliance.team3];
-      }
-    }
+  ({ eventId, matchId, data: { event } }) => {
+    const url = `/events/${eventId}/${matchId}`
+    const match = event
+      ? event.matches.find(m => m.key === `${eventId}_${matchId}`)
+      : {}
+    const eventName = event ? event.name : eventId
+    const alliances =
+      match.redAlliance && match.blueAlliance
+        ? [
+            { color: 'red', alliance: match.redAlliance },
+            { color: 'blue', alliance: match.blueAlliance }
+          ]
+        : []
+    const time =
+      match.actualTime || match.predictedTime
+        ? new Date(
+            match.actualTime || match.predictedTime
+          ).toLocaleTimeString(undefined, {
+            hour12: true,
+            hour: '2-digit',
+            minute: '2-digit',
+            timeZoneName: 'short'
+          })
+        : 'Loading...'
     return (
       <div class={style.match}>
-        <Header title={eventName + " - " + matchId.toUpperCase()} back={"/events/" + eventId} />
-        ADD MATCH TIME HERE
-        <br />
-        <div class={style.redAlliance}>
-          <h3 style="text-align:center;padding:0;margin:0;">
-            {"Score: " + (match !== undefined ? match.redAlliance.score : "?")}
-          </h3>
-          <div class={style.teamContainer}>
-            {teamList(match !== undefined ? match.redAlliance.teams : [])}
-          </div>
+        <Header
+          title={matchId.toUpperCase() + ' - ' + eventName}
+          back={'/events/' + eventId}
+        />
+        <div class={style.matchName}>
+          <h2>{formatMatchId(matchId)}</h2>
         </div>
-        <div class={style.blueAlliance}>
-          <h3 style="text-align:center;padding:0;margin:0;">
-            {"Score: " + (match !== undefined ? match.blueAlliance.score : "?")}
-          </h3>
-          <div class={style.teamContainer}>
-            {teamList(match !== undefined ? match.blueAlliance.teams : [])}
-          </div>
+        <div class={style.matchTime}>
+          <h2>{time}</h2>
+          <Button href={`${url}/scout`}>Scout</Button>
         </div>
+        {alliances.map(alliance => (
+          <a
+            href={`${url}/alliance/${alliance.color}`}
+            key={alliance.color}
+            class={`${style.alliance} ${style[alliance.color]}`}
+          >
+            {alliance.alliance.teams.map(team => (
+              <RobotImage
+                team={formatTeamNumber(team.number)}
+                color={alliance.color}
+              />
+            ))}
+            <div class={style.score}>
+              <h2>Score</h2>
+              <span>{alliance.alliance.score}</span>
+            </div>
+          </a>
+        ))}
       </div>
     )
   },
-  ({ eventId, matchId }) => ({ match: getMatch(eventId, matchId), event: getEvent(eventId) })
+  ({ eventId, matchId }) => ({
+    event: getEvent(eventId)
+  })
 )
 
 export default Match

@@ -7,7 +7,10 @@ module.exports = {
         uglify: true,
         targets: {
           browsers: '> 1%'
-        }
+        },
+        "exclude": [
+          "transform-regenerator"
+        ]
       }
     ],
     [require('@babel/preset-stage-1'), {}]

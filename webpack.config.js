@@ -68,6 +68,7 @@ module.exports = env => {
       new ExtractTextPlugin('styles.css'),
       new CopyWebpackPlugin([
         { from: path.join(__dirname, '_redirects') },
+        { from: path.join(__dirname, '_headers') },
         {
           from: path.join(__dirname, 'src', 'assets', 'favicon.ico'),
           to: 'favicon.ico'

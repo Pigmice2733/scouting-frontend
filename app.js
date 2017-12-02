@@ -2,7 +2,9 @@ const browserSync = require('browser-sync').create()
 const webpack = require('webpack')
 const singlePageMiddleware = require('connect-history-api-fallback')
 
-const webpackConfig = require('./webpack.config')('dev')
+const env = { NODE_ENV: process.env.NODE_ENV || 'development' }
+
+const webpackConfig = require('./webpack.config')(env)
 const compiler = webpack(webpackConfig)
 
 compiler.plugin('done', stats => {

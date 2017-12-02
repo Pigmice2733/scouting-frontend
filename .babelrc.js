@@ -4,13 +4,11 @@ module.exports = {
       require('@babel/preset-env'),
       {
         loose: true,
-        uglify: true,
+        modules: false,
         targets: {
           browsers: '> 1%'
         },
-        "exclude": [
-          "transform-regenerator"
-        ]
+        exclude: ['transform-regenerator']
       }
     ],
     [require('@babel/preset-stage-1'), {}]

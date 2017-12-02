@@ -24,7 +24,6 @@ module.exports = env => {
         {
           test: /\.sss$/,
           use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
             use: [
               {
                 loader: 'css-loader',
@@ -65,6 +64,7 @@ module.exports = env => {
       ]
     },
     plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin(),
       new ExtractTextPlugin('styles.css'),
       new CopyWebpackPlugin([
         { from: path.join(__dirname, '_redirects') },
@@ -79,6 +79,10 @@ module.exports = env => {
     output: {
       path: path.resolve(__dirname, 'build'),
       filename: 'scripts.js'
+    },
+    stats: {
+      maxModules: Infinity,
+      optimizationBailout: true
     }
   }
   if (production) {

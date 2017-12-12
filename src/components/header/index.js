@@ -1,9 +1,9 @@
 import { h } from 'preact'
-import style from './style'
+import { header } from './style'
 import Icon from '../icon'
 
 const Header = ({ title, back = '..' }) => (
-  <header class={style.header}>
+  <header class={header}>
     <a href={back}>
       <Icon icon="left" />
     </a>

@@ -2,7 +2,7 @@ import { h } from 'preact'
 import wrap from '../../wrap'
 import Header from '../../components/header'
 import { getEvent, parseMatchKey } from '../../api'
-import style from './style'
+import { event as eventClass } from './style'
 import List from '../../components/list'
 
 const Event = wrap(
@@ -10,7 +10,7 @@ const Event = wrap(
     const date = event.date && new Date(event.date)
     const matches = event.matches || []
     return (
-      <div class={style.event}>
+      <div class={eventClass}>
         <Header title={event.name || `Event ${eventId}`} back="/" />
         {date && <p>{date.toLocaleDateString()}</p>}
         <List>

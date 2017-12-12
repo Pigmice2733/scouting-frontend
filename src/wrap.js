@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 
 const wrap = (Child, dataRequest) =>
-  class extends Component {
+  class Wrap extends Component {
     constructor(props) {
       super()
       this.state = { data: {} }

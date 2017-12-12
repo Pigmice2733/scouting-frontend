@@ -3,11 +3,12 @@ const queryAPI = path =>
 
 const getEvents = () => queryAPI('events')
 const getEvent = eventKey => queryAPI(`events/${eventKey}`)
-const getMatch = (eventKey, matchKey) => queryAPI(`events/${eventKey}/${eventKey}_${matchKey}`)
+const getMatch = (eventKey, matchKey) =>
+  queryAPI(`events/${eventKey}/${eventKey}_${matchKey}`)
 
 const parseMatchKey = name => {
-  const [_, eventKey, matchKey] = name.match(/([^_]*)_(.*)/)
-  return {eventKey, matchKey}
+  const [, eventKey, matchKey] = name.match(/([^_]*)_(.*)/)
+  return { eventKey, matchKey }
 }
 
 export { getEvents, getEvent, getMatch, parseMatchKey }

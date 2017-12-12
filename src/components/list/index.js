@@ -1,6 +1,6 @@
 import { h } from 'preact'
-import style from './style'
+import { list } from './style'
 
-const List = ({ children }) => <ul class={style.list}>{children}</ul>
+const List = ({ children }) => <ul class={list}>{children}</ul>
 
 export default List

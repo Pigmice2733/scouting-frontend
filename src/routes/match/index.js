@@ -1,8 +1,16 @@
 import { h } from 'preact'
 import wrap from '../../wrap'
 import Header from '../../components/header'
-import { getEvent, getMatch } from '../../api'
-import style from './style'
+import { getEvent } from '../../api'
+import {
+  match as matchClass,
+  matchName as matchNameClass,
+  matchTime as matchTimeClass,
+  alliance as allianceClass,
+  blue as blueClass,
+  red as redClass,
+  score as scoreClass
+} from './style'
 import RobotImage from '../../components/robot-image'
 import { formatTeamNumber, formatMatchId } from '../../utils'
 import Button from '../../components/button'
@@ -23,9 +31,7 @@ const Match = wrap(
         : []
     const time =
       match.actualTime || match.predictedTime
-        ? new Date(
-            match.actualTime || match.predictedTime
-          ).toLocaleTimeString(undefined, {
+        ? new Date(match.actualTime || match.predictedTime).toLocaleTimeString({
             hour12: true,
             hour: '2-digit',
             minute: '2-digit',
@@ -33,15 +39,15 @@ const Match = wrap(
           })
         : 'Loading...'
     return (
-      <div class={style.match}>
+      <div class={matchClass}>
         <Header
           title={matchId.toUpperCase() + ' - ' + eventName}
           back={'/events/' + eventId}
         />
-        <div class={style.matchName}>
+        <div class={matchNameClass}>
           <h2>{formatMatchId(matchId)}</h2>
         </div>
-        <div class={style.matchTime}>
+        <div class={matchTimeClass}>
           <h2>{time}</h2>
           <Button href={`${url}/scout`}>Scout</Button>
         </div>
@@ -49,15 +55,18 @@ const Match = wrap(
           <a
             href={`${url}/alliance/${alliance.color}`}
             key={alliance.color}
-            class={`${style.alliance} ${style[alliance.color]}`}
+            class={`${allianceClass} ${
+              alliance.color === 'red' ? redClass : blueClass
+            }`}
           >
             {alliance.alliance.teams.map(team => (
               <RobotImage
                 team={formatTeamNumber(team.number)}
                 color={alliance.color}
+                key={team.number}
               />
             ))}
-            <div class={style.score}>
+            <div class={scoreClass}>
               <h2>Score</h2>
               <span>{alliance.alliance.score}</span>
             </div>
@@ -66,7 +75,7 @@ const Match = wrap(
       </div>
     )
   },
-  ({ eventId, matchId }) => ({
+  ({ eventId }) => ({
     event: getEvent(eventId)
   })
 )

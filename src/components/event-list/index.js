@@ -1,7 +1,7 @@
 import { h, Component } from 'preact'
 import TextInput from '../../components/text-input'
 import List from '../../components/list'
-import style from './style'
+import { eventList as eventListClass } from './style'
 
 class EventList extends Component {
   queryChanged = e => {
@@ -16,7 +16,7 @@ class EventList extends Component {
   render({ events }, { query }) {
     const twoDaysAgo = Date.now() - 2 * 24 * 60 * 60 * 1000
     return (
-      <div class={style['event-list']}>
+      <div class={eventListClass}>
         <TextInput
           onInput={this.queryChanged}
           placeholder="Find an event"

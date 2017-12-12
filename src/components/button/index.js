@@ -1,8 +1,8 @@
 import { h } from 'preact'
-import style from './style'
+import { button } from './style'
 
 const Button = ({ children, ...props }) => (
-  <a class={style.button} {...props}>
+  <a class={button} {...props}>
     {children}
   </a>
 )

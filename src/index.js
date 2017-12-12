@@ -5,9 +5,8 @@ render(<App />, document.body, document.getElementById('app'))
 
 const unregisterSW = async () => {
   if ('serviceWorker' in navigator) {
-    ;(await navigator.serviceWorker.getRegistrations()).forEach(sw =>
-      sw.unregister().then(console.log)
-    )
+    const registrations = await navigator.serviceWorker.getRegistrations()
+    registrations.forEach(sw => sw.unregister().then(console.log))
   }
 }
 

@@ -1,6 +1,6 @@
 import { h } from 'preact'
-import style from './style'
+import { input } from './style'
 
-const TextInput = props => <input class={style.input} {...props} />
+const TextInput = props => <input class={input} {...props} />
 
 export default TextInput

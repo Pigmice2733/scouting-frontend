@@ -1,8 +1,8 @@
 import { h } from 'preact'
-import style from './style'
+import { robotImage, blue, red } from './style'
 
-const RobotImage = ({ team, year, color = 'blue', ...foo }) => (
-  <div class={`${style.robotImage} ${style[color]}`} {...foo}>
+const RobotImage = ({ team, color = 'blue', ...foo }) => (
+  <div class={`${robotImage} ${color === 'blue' ? blue : red}`} {...foo}>
     <span>{team}</span>
   </div>
 )

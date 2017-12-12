@@ -1,8 +1,8 @@
 import { h } from 'preact'
-import style from './style'
+import { selectClass } from './style'
 
 const Select = ({ options, onChange }) => (
-  <select class={style.select} onChange={onChange}>
+  <select class={selectClass} onChange={onChange}>
     {options}
   </select>
 )

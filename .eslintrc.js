@@ -1,9 +1,34 @@
 module.exports = {
-  extends: require('eslint-config-synacor'),
+  parser: 'babel-eslint',
+  parserOptions: {
+    ecmaVersion: 8,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true
+    }
+  },
+  settings: {
+    react: {
+      pragma: 'h'
+    }
+  },
+  env: {
+    node: true
+  },
+  extends: ['eslint:recommended', 'plugin:react/recommended'],
   rules: {
-    indent: ['error', 2],
-    semi: ['error', 'never'],
-    'react/jsx-indent-props': ['error', 2],
-    'lines-around-comment': 'off'
+    'no-use-before-define': 'error',
+    'no-undef': 'error',
+    'no-unused-vars': 'error',
+    'react/no-unknown-property': 'off',
+    'react/prop-types': 'off',
+    'no-console': 'off'
+  },
+  overrides: {
+    files: 'src/**.js',
+    env: {
+      node: false,
+      browser: true
+    }
   }
 }

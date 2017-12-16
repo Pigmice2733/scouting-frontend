@@ -20,7 +20,7 @@
   "dependencies": {
     "preact": "^8.2.6",
     "preact-router": "^2.6.0",
-    "webpack-config-calebeby": "^0.1.1"
+    "webpack-config-calebeby": "^0.1.2"
   },
   "prettier": {
     "semi": false,

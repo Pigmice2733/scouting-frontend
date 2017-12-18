@@ -13,4 +13,4 @@ html
 
   body
     div#app
-    script(src="/main.js")
+    script(src="/scripts.js")

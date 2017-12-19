@@ -41,8 +41,8 @@ const Match = wrap(
     return (
       <div class={matchClass}>
         <Header
-          title={matchId.toUpperCase() + ' - ' + eventName}
-          back={'/events/' + eventId}
+          title={`${matchId.toUpperCase()} - ${eventName}`}
+          back={`/events/${eventId}`}
         />
         <div class={matchNameClass}>
           <h2>{formatMatchId(matchId)}</h2>

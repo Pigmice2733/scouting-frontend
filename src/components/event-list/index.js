@@ -4,13 +4,13 @@ import List from '../../components/list'
 import { eventList as eventListClass } from './style'
 
 class EventList extends Component {
-  queryChanged = e => {
-    this.setState({ query: e.target.value })
-  }
-
   constructor() {
     super()
     this.state = { query: '' }
+  }
+
+  queryChanged = e => {
+    this.setState({ query: e.target.value })
   }
 
   render({ events }, { query }) {
@@ -33,9 +33,8 @@ class EventList extends Component {
             .sort((a, b) => {
               if (a.date > b.date) {
                 return b.date > twoDaysAgo ? 1 : -1
-              } else {
-                return a.date > twoDaysAgo ? -1 : 1
               }
+              return a.date > twoDaysAgo ? -1 : 1
             })
             .map(e => (
               <li key={e.key}>

@@ -15,7 +15,7 @@ const Event = wrap(
         {date && <p>{date.toLocaleDateString()}</p>}
         <List>
           {matches.map(m => {
-            const matchKey = parseMatchKey(m.key)['matchKey']
+            const { matchKey } = parseMatchKey(m.key)
             return (
               <li key={m.key}>
                 <a href={`/events/${event.key}/${matchKey}`}>

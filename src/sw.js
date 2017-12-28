@@ -2,10 +2,11 @@ import Dexie from 'dexie'
 
 const cacheName = 1
 const staticAssets = ['/scripts.js', '/index.html', '/styles.css']
-const ignore = ['/browser-sync']
+const ignore = ['/browser-sync/']
 
-const isPathIgnored = path =>
-  ignore.some(i => path.startsWith(`${self.location.origin}/${i}`))
+const isPathIgnored = path => {
+  return ignore.some(i => path.startsWith(`${self.location.origin}${i}`))
+}
 
 class DB {
   constructor() {

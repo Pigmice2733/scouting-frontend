@@ -1,7 +1,8 @@
 import { h } from 'preact'
 import wrap from '../../wrap'
 import Header from '../../components/header'
-import { getEvent } from '../../api'
+import Spinner from '../../components/spinner'
+import { getEvent, getMatch } from '../../api'
 import {
   match as matchClass,
   matchName as matchNameClass,
@@ -12,70 +13,63 @@ import {
   score as scoreClass
 } from './style'
 import RobotImage from '../../components/robot-image'
-import { formatTeamNumber, formatMatchId } from '../../utils'
+import { formatTeamNumber, formatMatchId, formatTime } from '../../utils'
 import Button from '../../components/button'
 
+const Alliance = (baseUrl, color, alliance) => (
+  <a
+    href={`${baseUrl}/alliance/${color}`}
+    key={alliance.color}
+    class={`${allianceClass} ${
+      alliance.color === 'red' ? redClass : blueClass
+    }`}
+  >
+    {alliance.alliance.teams.map(team => (
+      <RobotImage
+        team={formatTeamNumber(team.number)}
+        color={alliance.color}
+        key={team.number}
+      />
+    ))}
+    <div class={scoreClass}>
+      <h2>Score</h2>
+      <span>{alliance.alliance.score}</span>
+    </div>
+  </a>
+)
 const Match = wrap(
-  ({ eventId, matchId, data: { event } }) => {
+  ({ eventId, matchId, data: { event, match } }) => {
     const url = `/events/${eventId}/${matchId}`
-    const match = event
-      ? event.matches.find(m => m.key === `${eventId}_${matchId}`)
-      : {}
-    const eventName = event ? event.name : eventId
-    const alliances =
-      match.redAlliance && match.blueAlliance
-        ? [
-            { color: 'red', alliance: match.redAlliance },
-            { color: 'blue', alliance: match.blueAlliance }
-          ]
-        : []
-    const time =
-      match.actualTime || match.predictedTime
-        ? new Date(match.actualTime || match.predictedTime).toLocaleTimeString({
-            hour12: true,
-            hour: '2-digit',
-            minute: '2-digit',
-            timeZoneName: 'short'
-          })
-        : 'Loading...'
     return (
       <div class={matchClass}>
         <Header
-          title={`${matchId.toUpperCase()} - ${eventName}`}
+          title={`${matchId.toUpperCase()} - ${(event && event.shortName) ||
+            eventId}`}
           back={`/events/${eventId}`}
         />
         <div class={matchNameClass}>
           <h2>{formatMatchId(matchId)}</h2>
         </div>
         <div class={matchTimeClass}>
-          <h2>{time}</h2>
+          <h2>
+            {match
+              ? formatTime(match.actualTime || match.predictedTime)
+              : 'Loading...'}
+          </h2>
           <Button href={`${url}/scout`}>Scout</Button>
         </div>
-        {alliances.map(alliance => (
-          <a
-            href={`${url}/alliance/${alliance.color}`}
-            key={alliance.color}
-            class={`${allianceClass} ${
-              alliance.color === 'red' ? redClass : blueClass
-            }`}
-          >
-            {alliance.alliance.teams.map(team => (
-              <RobotImage
-                team={formatTeamNumber(team.number)}
-                color={alliance.color}
-                key={team.number}
-              />
-            ))}
-            <div class={scoreClass}>
-              <h2>Score</h2>
-              <span>{alliance.alliance.score}</span>
-            </div>
-          </a>
-        ))}
+        {match && (
+          <Alliance color="red" alliance={match.redAlliance} baseUrl={url} />
+        )}
+        {match && (
+          <Alliance color="blue" alliance={match.blueAlliance} baseUrl={url} />
+        )}
+        {!match || <Spinner />}
       </div>
     )
   },
-  ({ eventId }) => ({
+  ({ eventId, matchId }) => ({
+    match: getMatch(eventId, matchId),
     event: getEvent(eventId)
   })
 )

@@ -1,0 +1,3 @@
+# Spinner
+
+Loading animation

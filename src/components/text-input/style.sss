@@ -1,12 +1,19 @@
 .input
   display: block
   border: none
-  padding: 10px
+  padding: 10px 11px
+  margin: 10px auto
+  max-width: calc(100% - 20px)
+  width: 400px
   border-radius: 2px
-  font-size: 18px
+  font-size: 17px
   box-shadow: 1px 1px 4px rgba(#000, 0.5)
   outline: none
   transition: box-shadow 0.3s ease
+
+  &::placeholder
+    color: gray(60%)
+    opacity: 1
 
   &:focus
     box-shadow: 1px 1px 8px rgba(#000, 0.7)

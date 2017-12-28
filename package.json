@@ -9,16 +9,20 @@
     "dev": "webpack-config-calebeby",
     "lint": "eslint src"
   },
-  "eslintIgnore": ["build/*"],
+  "eslintIgnore": [
+    "build/*"
+  ],
   "devDependencies": {
-    "babel-eslint": "^8.0.3",
-    "eslint": "^4.13.1",
+    "babel-eslint": "^8.1.2",
+    "eslint": "^4.14.0",
+    "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-react": "^7.5.1"
   },
   "dependencies": {
-    "preact": "^8.2.6",
+    "dexie": "^2.0.1",
+    "preact": "^8.2.7",
     "preact-router": "^2.6.0",
-    "webpack-config-calebeby": "^0.1.2"
+    "webpack-config-calebeby": "^0.2.0"
   },
   "prettier": {
     "semi": false,

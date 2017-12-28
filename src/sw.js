@@ -1,8 +1,10 @@
 import Dexie from 'dexie'
 
-const cacheName = 1
-const staticAssets = ['/scripts.js', '/index.html', '/styles.css']
+const cacheName = '2'
+const staticAssets = ['/', '/scripts.js', '/styles.css']
 const ignore = ['/browser-sync/']
+
+const getPath = url => url.replace(self.location.origin, '')
 
 const isPathIgnored = path => {
   return ignore.some(i => path.startsWith(`${self.location.origin}${i}`))
@@ -27,7 +29,6 @@ class DB {
 
   addEvent = event => {
     console.log(`saving event ${event.key}`)
-    console.log(event)
     return this.db.events.update(event.key, event)
   }
 
@@ -40,11 +41,7 @@ class DB {
 const scoutingDB = new DB()
 
 self.addEventListener('install', e => {
-  e.waitUntil(async () => {
-    const cache = await caches.open(cacheName)
-    cache.addAll(staticAssets)
-    console.log('Service Worker Installed')
-  })
+  e.waitUntil(caches.open(cacheName).then(cache => cache.addAll(staticAssets)))
 })
 
 self.addEventListener('fetch', event => {
@@ -59,10 +56,12 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       fetch(event.request)
         .then(res => {
-          res
-            .clone()
-            .json()
-            .then(events => scoutingDB.addEvents(events))
+          event.waitUntil(
+            res
+              .clone()
+              .json()
+              .then(events => scoutingDB.addEvents(events))
+          )
           return res
         })
         .catch(async () => {
@@ -79,10 +78,12 @@ self.addEventListener('fetch', event => {
     event.respondWith(
       fetch(event.request)
         .then(res => {
-          res
-            .clone()
-            .json()
-            .then(e => scoutingDB.addEvent(e))
+          event.waitUntil(
+            res
+              .clone()
+              .json()
+              .then(e => scoutingDB.addEvent(e))
+          )
           return res
         })
         .catch(
@@ -91,26 +92,34 @@ self.addEventListener('fetch', event => {
         )
     )
   } else if (!isPathIgnored(request.url)) {
+    const reqPath = getPath(request.url)
+    const reqUrl =
+      reqPath === '/events' || reqPath.startsWith('/events/')
+        ? `${self.location.origin}/`
+        : request.url
+    console.log('reqPath', reqPath, 'reqUrl', reqUrl)
+
     event.respondWith(
       fetch(request)
         .then(res => {
-          console.log(`saving request to ${request.url}`)
-          res
-            .clone()
-            .then(cloned =>
-              caches
-                .open(cacheName)
-                .then(cache => cache.put(event.request, cloned))
-            )
+          console.log(`saving request to ${reqUrl}`)
+          event.waitUntil(
+            (async () => {
+              const cloned = await res.clone()
+              const cache = await caches.open(cacheName)
+              await cache.put(request, cloned)
+            })()
+          )
           return res
         })
-        .catch(() => {
-          const res = caches.match(event.request)
+        .catch(async () => {
+          const res = await caches.match(event.request)
           if (res) {
-            console.log(`responding from cache for ${request.url}`)
+            console.log(`responding from cache for ${reqUrl}`)
             return res
           }
-          console.log(`${request.url} not found in cache`)
+          console.log(await (await caches.open(cacheName)).keys())
+          throw new Error(`${reqUrl} not found in cache`)
           return false
         })
     )

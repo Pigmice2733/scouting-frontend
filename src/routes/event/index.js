@@ -14,7 +14,7 @@ const Event = wrap(
     return (
       <div class={eventClass}>
         <Header title={event.shortName || `Event ${eventId}`} back="/" />
-        {<DateDisplay date={event.date && new Date(event.date)} />}
+        <DateDisplay date={event.date && new Date(event.date)} />
         {matches === undefined ? (
           <Spinner />
         ) : matches === null || matches.length === 0 ? (

@@ -5,7 +5,7 @@ const staticAssets = ['/scripts.js', '/index.html', '/styles.css']
 const ignore = ['/browser-sync']
 
 const isPathIgnored = path =>
-  ignore.map(i => `${self.location.origin}/${i}`).includes(path)
+  ignore.some(i => path.startsWith(`${self.location.origin}/${i}`))
 
 class DB {
   constructor() {
@@ -14,19 +14,24 @@ class DB {
   }
 
   addEvents = async events => {
+    console.log(`saving events`)
     await this.db.events.clear()
     await this.db.events.bulkAdd(events)
   }
 
   getEvents = () => {
+    console.log(`retrieving events`)
     return this.db.events.toArray()
   }
 
   addEvent = event => {
+    console.log(`saving event ${event.key}`)
+    console.log(event)
     return this.db.events.update(event.key, event)
   }
 
   getEvent = eventId => {
+    console.log(`retrieving event ${eventId}`)
     return this.db.events.get(eventId)
   }
 }
@@ -86,8 +91,9 @@ self.addEventListener('fetch', event => {
     )
   } else if (!isPathIgnored(request.url)) {
     event.respondWith(
-      fetch(event.request)
+      fetch(request)
         .then(res => {
+          console.log(`saving request to ${request.url}`)
           caches
             .open(cacheName)
             .then(cache => cache.put(event.request, res.clone()))
@@ -96,8 +102,10 @@ self.addEventListener('fetch', event => {
         .catch(() => {
           const res = caches.match(event.request)
           if (res) {
+            console.log(`responding from cache for ${request.url}`)
             return res
           }
+          console.log(`${request.url} not found in cache`)
           return false
         })
     )

@@ -94,9 +94,13 @@ self.addEventListener('fetch', event => {
       fetch(request)
         .then(res => {
           console.log(`saving request to ${request.url}`)
-          caches
-            .open(cacheName)
-            .then(cache => cache.put(event.request, res.clone()))
+          res
+            .clone()
+            .then(cloned =>
+              caches
+                .open(cacheName)
+                .then(cache => cache.put(event.request, cloned))
+            )
           return res
         })
         .catch(() => {

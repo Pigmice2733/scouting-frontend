@@ -3,13 +3,21 @@ import wrap from '../../wrap'
 import Header from '../../components/header'
 import { getEvent } from '../../api'
 import { parseMatchKey } from '../../utils'
-import { event as eventClass } from './style'
+import { event as eventClass } from './style.sss'
 import List from '../../components/list'
 import Spinner from '../../components/spinner'
 import DateDisplay from '../../components/date-display'
+import FRCEvent from '../../models/frc-event'
+
+interface EventProps {
+  eventId: string
+  data: {
+    event: FRCEvent
+  }
+}
 
 const Event = wrap(
-  ({ eventId, data: { event = {} } }) => {
+  ({ eventId, data: { event } }: EventProps) => {
     const { matches } = event
     return (
       <div class={eventClass}>
@@ -23,10 +31,10 @@ const Event = wrap(
           <List>
             {matches
               .map(m => {
-                m.time = new DateDisplay(m.actualTime || m.predictedTime)
+                m.time = new Date(m.actualTime || m.predictedTime)
                 return m
               })
-              .sort((a, b) => a.time > b.time)
+              .sort((a, b) => (a.time > b.time ? 1 : -1))
               .map(m => {
                 const { matchKey } = parseMatchKey(m.key)
                 return (
@@ -42,7 +50,7 @@ const Event = wrap(
       </div>
     )
   },
-  ({ eventId }) => ({ event: getEvent(eventId) })
+  ({ eventId }: EventProps) => ({ event: getEvent(eventId) })
 )
 
 export default Event

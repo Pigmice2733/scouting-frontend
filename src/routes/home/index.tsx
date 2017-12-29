@@ -1,24 +1,35 @@
 import { h, Component } from 'preact'
-import { home } from './style'
+import { home } from './style.sss'
 import wrapData from '../../wrap'
-import TextInput from '../../components/text-input'
+import TextInput, { TextInputEvent } from '../../components/text-input'
 import { getEvents } from '../../api'
 import { sortEvents } from '../../utils'
 import Spinner from '../../components/spinner'
 import List from '../../components/list'
 import DateDisplay from '../../components/date-display'
+import FRCEvent from '../../models/frc-event'
 
-class Home extends Component {
+interface HomeProps {
+  data?: {
+    events: FRCEvent[]
+  }
+}
+
+interface HomeState {
+  query: string
+}
+
+class Home extends Component<HomeProps, HomeState> {
   constructor() {
     super()
     this.setState({ query: '' })
   }
 
-  queryChanged = e => {
+  queryChanged = (e: TextInputEvent) => {
     this.setState({ query: e.target.value })
   }
 
-  render({ data }, { query }) {
+  render({ data }: HomeProps, { query }: HomeState) {
     const sortedEvents = sortEvents(data.events || [])
     const matchingEvents = sortedEvents.filter(e =>
       e.name.toLowerCase().includes(query.toLowerCase())
@@ -38,11 +49,11 @@ class Home extends Component {
           'No matching events'
         ) : (
           <List>
-            {matchingEvents.map(e => (
+            {matchingEvents.map((e: FRCEvent) => (
               <li key={e.key}>
                 <a href={`/events/${e.key}`}>
                   {e.shortName}
-                  <DateDisplay date={e.date} />
+                  <DateDisplay date={e.parsedDate} />
                 </a>
               </li>
             ))}

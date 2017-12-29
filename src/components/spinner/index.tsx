@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { spinner } from './style'
+import { spinner } from './style.sss'
 
 const Spinner = () => <div class={spinner} />
 

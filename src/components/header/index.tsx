@@ -1,8 +1,13 @@
 import { h } from 'preact'
-import { header } from './style'
+import { header } from './style.sss'
 import Icon from '../icon'
 
-const Header = ({ title, back = '..' }) => (
+interface HeaderProps {
+  title: string
+  back?: string
+}
+
+const Header = ({ title, back = '..' }: HeaderProps) => (
   <header class={header}>
     <a href={back}>
       <Icon icon="left" />

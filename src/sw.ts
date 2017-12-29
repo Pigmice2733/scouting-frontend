@@ -1,50 +1,53 @@
+/// <reference path="./sw.d.ts" />
 import Dexie from 'dexie'
+import FRCEvent from './models/frc-event'
 
 const cacheName = '2'
 const staticAssets = ['/', '/scripts.js', '/styles.css']
 const ignore = ['/browser-sync/']
 
-const getPath = url => url.replace(self.location.origin, '')
+const getPath = (url: string) => url.replace(self.location.origin, '')
 
-const isPathIgnored = path => {
+const isPathIgnored = (path: string) => {
   return ignore.some(i => path.startsWith(`${self.location.origin}${i}`))
 }
 
 class DB {
+  db: Dexie
   constructor() {
     this.db = new Dexie('scouting')
     this.db.version(1).stores({ events: '&key' })
   }
 
-  addEvents = async events => {
+  addEvents = async (events: FRCEvent[]) => {
     console.log(`saving events`)
-    await this.db.events.clear()
-    await this.db.events.bulkAdd(events)
+    await this.db.table('events').clear()
+    await this.db.table('events').bulkAdd(events)
   }
 
   getEvents = () => {
     console.log(`retrieving events`)
-    return this.db.events.toArray()
+    return this.db.table('events').toArray()
   }
 
-  addEvent = event => {
+  addEvent = (event: FRCEvent) => {
     console.log(`saving event ${event.key}`)
-    return this.db.events.update(event.key, event)
+    return this.db.table('events').update(event.key, event)
   }
 
-  getEvent = eventId => {
+  getEvent = (eventId: string) => {
     console.log(`retrieving event ${eventId}`)
-    return this.db.events.get(eventId)
+    return this.db.table('events').get(eventId)
   }
 }
 
 const scoutingDB = new DB()
 
-self.addEventListener('install', e => {
+self.addEventListener('install', (e: InstallEvent) => {
   e.waitUntil(caches.open(cacheName).then(cache => cache.addAll(staticAssets)))
 })
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event: FetchEvent) => {
   // don't worry about non-GET requests
   // @TODO hold these somewhere until reconnection
   const { request } = event
@@ -120,7 +123,6 @@ self.addEventListener('fetch', event => {
           }
           console.log(await (await caches.open(cacheName)).keys())
           throw new Error(`${reqUrl} not found in cache`)
-          return false
         })
     )
   }

@@ -11,34 +11,47 @@ import {
   blue as blueClass,
   red as redClass,
   score as scoreClass
-} from './style'
+} from './style.sss'
 import RobotImage from '../../components/robot-image'
 import { formatTeamNumber, formatMatchId, formatTime } from '../../utils'
 import Button from '../../components/button'
+import FRCEvent from '../../models/frc-event'
+import Match from '../../models/match'
 
-const Alliance = (baseUrl, color, alliance) => (
+interface AllianceProps {
+  baseUrl: string
+  color: string
+  alliance: string[]
+  score: number
+}
+
+const Alliance = ({ baseUrl, color, alliance, score }: AllianceProps) => (
   <a
     href={`${baseUrl}/alliance/${color}`}
-    key={alliance.color}
-    class={`${allianceClass} ${
-      alliance.color === 'red' ? redClass : blueClass
-    }`}
+    key={color}
+    class={`${allianceClass} ${color === 'red' ? redClass : blueClass}`}
   >
-    {alliance.alliance.teams.map(team => (
-      <RobotImage
-        team={formatTeamNumber(team.number)}
-        color={alliance.color}
-        key={team.number}
-      />
+    {alliance.map(team => (
+      <RobotImage team={formatTeamNumber(team)} color={color} key={team} />
     ))}
     <div class={scoreClass}>
       <h2>Score</h2>
-      <span>{alliance.alliance.score}</span>
+      <span>{score}</span>
     </div>
   </a>
 )
+
+interface MatchProps {
+  eventId: string
+  matchId?: string
+  data: {
+    event: FRCEvent
+    match: Match
+  }
+}
+
 const Match = wrap(
-  ({ eventId, matchId, data: { event, match } }) => {
+  ({ eventId, matchId, data: { event, match } }: MatchProps) => {
     const url = `/events/${eventId}/${matchId}`
     return (
       <div class={matchClass}>
@@ -53,16 +66,26 @@ const Match = wrap(
         <div class={matchTimeClass}>
           <h2>
             {match
-              ? formatTime(match.actualTime || match.predictedTime)
+              ? formatTime(new Date(match.actualTime || match.predictedTime))
               : 'Loading...'}
           </h2>
           <Button href={`${url}/scout`}>Scout</Button>
         </div>
         {match && (
-          <Alliance color="red" alliance={match.redAlliance} baseUrl={url} />
+          <Alliance
+            score={match.redScore}
+            color="red"
+            alliance={match.redAlliance}
+            baseUrl={url}
+          />
         )}
         {match && (
-          <Alliance color="blue" alliance={match.blueAlliance} baseUrl={url} />
+          <Alliance
+            score={match.blueScore}
+            color="blue"
+            alliance={match.blueAlliance}
+            baseUrl={url}
+          />
         )}
         {!match || <Spinner />}
       </div>

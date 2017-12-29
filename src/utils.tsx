@@ -1,14 +1,17 @@
-const formatTime = date =>
-  date.toLocaleTimeString({
+import FRCEvent from './models/frc-event'
+
+const formatTime = (date: Date): string =>
+  date.toLocaleTimeString(null, {
     hour12: true,
     hour: '2-digit',
     minute: '2-digit',
     timeZoneName: 'short'
   })
 
-const formatTeamNumber = teamId => teamId.replace('frc', '')
+const formatTeamNumber = (teamId: string): number =>
+  Number(teamId.replace('frc', ''))
 
-const formatMatchId = matchId => {
+const formatMatchId = (matchId: string): string => {
   const id = matchId.toUpperCase()
   const endNumber = /[\D]*([\d]*)$/.exec(id)[1]
   const group = /^[\D]*([\d]*)/.exec(id)[1]
@@ -26,20 +29,20 @@ const formatMatchId = matchId => {
 
 const twoDaysAgo = Date.now() - 2 * 24 * 60 * 60 * 1000
 
-const sortEvents = events =>
+const sortEvents = (events: FRCEvent[]) =>
   events
     .map(e => {
-      e.date = new Date(e.date)
+      e.parsedDate = new Date(e.date)
       return e
     })
     .sort((a, b) => {
-      if (a.date > b.date) {
-        return b.date > twoDaysAgo ? 1 : -1
+      if (a.parsedDate > b.parsedDate) {
+        return Number(b.parsedDate) > twoDaysAgo ? 1 : -1
       }
-      return a.date > twoDaysAgo ? -1 : 1
+      return Number(a.parsedDate) > twoDaysAgo ? -1 : 1
     })
 
-const parseMatchKey = name => {
+const parseMatchKey = (name: string) => {
   const [, eventKey, matchKey] = name.match(/([^_]*)_(.*)/)
   return { eventKey, matchKey }
 }

@@ -1,0 +1,23 @@
+import { h } from 'preact'
+import { input } from './style'
+
+interface TextInputEventTarget extends EventTarget {
+  value: string
+}
+
+export interface TextInputEvent extends Event {
+  target: TextInputEventTarget
+}
+
+interface TextInputEventCallback {
+  (event: TextInputEvent): any
+}
+
+interface TextInputProps {
+  onInput?: TextInputEventCallback
+  placeholder?: string
+}
+
+const TextInput = (props: TextInputProps) => <input class={input} placeholder= />
+
+export default TextInput

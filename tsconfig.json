@@ -3,7 +3,11 @@
     "noImplicitAny": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "lib": ["ESNext", "DOM"]
+    "lib": ["ESNext", "DOM"],
+    "allowSyntheticDefaultImports": true,
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "sourceMap": true
   },
   "files": ["./src/index.tsx", "./src/sw.ts"]
 }

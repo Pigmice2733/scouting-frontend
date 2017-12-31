@@ -4,7 +4,7 @@ import { date as dateClass } from './style.sss'
 import Icon from '../icon'
 
 interface DateDisplayProps {
-  date: Date
+  date: Date | undefined
 }
 
 const DateDisplay = ({ date }: DateDisplayProps) => {

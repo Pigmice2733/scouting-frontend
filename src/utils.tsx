@@ -1,7 +1,7 @@
 import FRCEvent from './models/frc-event'
 
 const formatTime = (date: Date): string =>
-  date.toLocaleTimeString(null, {
+  date.toLocaleTimeString(undefined, {
     hour12: true,
     hour: '2-digit',
     minute: '2-digit',

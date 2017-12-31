@@ -22,7 +22,7 @@
     "dexie": "^2.0.1",
     "preact": "^8.2.7",
     "preact-router": "^2.6.0",
-    "webpack-config-calebeby": "^0.2.1"
+    "webpack-config-calebeby": "^0.3.1"
   },
   "prettier": {
     "semi": false,

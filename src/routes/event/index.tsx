@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import wrap from '../../wrap'
+import Resolver from '../../resolver'
 import Header from '../../components/header'
 import { getEvent } from '../../api'
 import { parseMatchKey } from '../../utils'
@@ -9,27 +9,23 @@ import Spinner from '../../components/spinner'
 import DateDisplay from '../../components/date-display'
 import FRCEvent from '../../models/frc-event'
 
-interface EventProps {
-  eventId: string
-  data: {
-    event: FRCEvent
-  }
-}
-
-const Event = wrap(
-  ({ eventId, data: { event } }: EventProps) => {
-    const { matches } = event
-    return (
+const Event = ({ eventId }: { eventId: string }) => (
+  <Resolver
+    data={{ event: getEvent(eventId) }}
+    render={({ event }) => (
       <div class={eventClass}>
-        <Header title={event.shortName || `Event ${eventId}`} back="/" />
-        <DateDisplay date={event.date && new Date(event.date)} />
-        {matches === undefined ? (
+        <Header
+          title={(event && event.shortName) || `Event ${eventId}`}
+          back="/"
+        />
+        <DateDisplay date={event && event.date && new Date(event.date)} />
+        {event === undefined || event.matches === undefined ? (
           <Spinner />
-        ) : matches === null || matches.length === 0 ? (
+        ) : event.matches === null || event.matches.length === 0 ? (
           <p>No Matches</p>
         ) : (
           <List>
-            {matches
+            {event.matches
               .map(m => {
                 m.time = new Date(m.actualTime || m.predictedTime)
                 return m
@@ -48,9 +44,8 @@ const Event = wrap(
           </List>
         )}
       </div>
-    )
-  },
-  ({ eventId }: EventProps) => ({ event: getEvent(eventId) })
+    )}
+  />
 )
 
 export default Event

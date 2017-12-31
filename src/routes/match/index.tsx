@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import wrap from '../../wrap'
+import Resolver from '../../resolver'
 import Header from '../../components/header'
 import Spinner from '../../components/spinner'
 import { getEvent, getMatch } from '../../api'
@@ -41,60 +41,50 @@ const Alliance = ({ baseUrl, color, alliance, score }: AllianceProps) => (
   </a>
 )
 
-interface MatchProps {
-  eventId: string
-  matchId?: string
-  data: {
-    event: FRCEvent
-    match: Match
-  }
-}
-
-const Match = wrap(
-  ({ eventId, matchId, data: { event, match } }: MatchProps) => {
-    const url = `/events/${eventId}/${matchId}`
-    return (
-      <div class={matchClass}>
-        <Header
-          title={`${matchId.toUpperCase()} - ${(event && event.shortName) ||
-            eventId}`}
-          back={`/events/${eventId}`}
-        />
-        <div class={matchNameClass}>
-          <h2>{formatMatchId(matchId)}</h2>
-        </div>
-        <div class={matchTimeClass}>
-          <h2>
-            {match
-              ? formatTime(new Date(match.actualTime || match.predictedTime))
-              : 'Loading...'}
-          </h2>
-          <Button href={`${url}/scout`}>Scout</Button>
-        </div>
-        {match && (
-          <Alliance
-            score={match.redScore}
-            color="red"
-            alliance={match.redAlliance}
-            baseUrl={url}
+const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
+  <Resolver
+    data={{ match: getMatch(eventId, matchId), event: getEvent(eventId) }}
+    render={({ match, event }) => {
+      const url = `/events/${eventId}/${matchId}`
+      return (
+        <div class={matchClass}>
+          <Header
+            title={`${matchId.toUpperCase()} - ${(event && event.shortName) ||
+              eventId}`}
+            back={`/events/${eventId}`}
           />
-        )}
-        {match && (
-          <Alliance
-            score={match.blueScore}
-            color="blue"
-            alliance={match.blueAlliance}
-            baseUrl={url}
-          />
-        )}
-        {!match || <Spinner />}
-      </div>
-    )
-  },
-  ({ eventId, matchId }) => ({
-    match: getMatch(eventId, matchId),
-    event: getEvent(eventId)
-  })
+          <div class={matchNameClass}>
+            <h2>{formatMatchId(matchId)}</h2>
+          </div>
+          <div class={matchTimeClass}>
+            <h2>
+              {match
+                ? formatTime(new Date(match.actualTime || match.predictedTime))
+                : 'Loading...'}
+            </h2>
+            <Button href={`${url}/scout`}>Scout</Button>
+          </div>
+          {match && (
+            <Alliance
+              score={match.redScore}
+              color="red"
+              alliance={match.redAlliance}
+              baseUrl={url}
+            />
+          )}
+          {match && (
+            <Alliance
+              score={match.blueScore}
+              color="blue"
+              alliance={match.blueAlliance}
+              baseUrl={url}
+            />
+          )}
+          {!match && <Spinner />}
+        </div>
+      )
+    }}
+  />
 )
 
 export default Match

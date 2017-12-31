@@ -19,7 +19,7 @@ const Event = ({ eventId }: { eventId: string }) => (
           back="/"
         />
         <DateDisplay date={event && event.date && new Date(event.date)} />
-        {event === undefined || event.matches === undefined ? (
+        {typeof event === 'undefined' ? (
           <Spinner />
         ) : event.matches === null || event.matches.length === 0 ? (
           <p>No Matches</p>

@@ -6,9 +6,13 @@ import {
   ComponentProps
 } from 'preact'
 
+type MaybeKeys<T> = { [K in keyof T]: T[K] | void }
+
 interface ResolverProps<T> {
   data: { [K in keyof T]: Promise<T[K]> } & { [key: string]: Promise<any> }
-  render: FunctionalComponent<T> | ComponentConstructor<T, any>
+  render:
+    | FunctionalComponent<MaybeKeys<T>>
+    | ComponentConstructor<MaybeKeys<T>, any>
 }
 
 interface ResolverState {
@@ -33,10 +37,7 @@ const Resolver = <T extends {}>(props: ResolverProps<T>) =>
         })
       }
 
-      render(
-        { render }: any,
-        { data }: { data: { match: number; event: number } }
-      ) {
+      render({ render }: any, { data }: any) {
         return h(render, data)
       }
     },

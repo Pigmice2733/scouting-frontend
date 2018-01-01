@@ -27,18 +27,16 @@ const formatMatchId = (matchId: string): string => {
   return id
 }
 
-const twoDaysAgo = Date.now() - 2 * 24 * 60 * 60 * 1000
+const today = Number(new Date())
 
-const sortEvents = (events: FRCEvent[]) => {
-  const today = Number(new Date())
-  return events
+const sortEvents = (events: FRCEvent[]) =>
+  events
     .map(e => {
       e.parsedDate = new Date(e.date)
       e.distanceFromToday = Math.abs(Number(e.parsedDate) - today)
       return e
     })
     .sort((a, b) => (a.distanceFromToday > b.distanceFromToday ? 1 : -1))
-}
 
 const parseMatchKey = (name: string) => {
   const [, eventKey, matchKey] = name.match(/([^_]*)_(.*)/)

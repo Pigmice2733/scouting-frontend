@@ -8,6 +8,7 @@ import Spinner from '../../components/spinner'
 import List from '../../components/list'
 import DateDisplay from '../../components/date-display'
 import FRCEvent from '../../models/frc-event'
+import Header from '../../components/header'
 
 interface HomeProps {
   events: FRCEvent[]
@@ -40,11 +41,15 @@ export default () => (
           )
           return (
             <div class={home}>
-              <TextInput
-                onInput={this.queryChanged}
-                placeholder="Search for events"
-                type="search"
-                value={query}
+              <Header
+                contents={
+                  <TextInput
+                    onInput={this.queryChanged}
+                    placeholder="Search for events"
+                    type="search"
+                    value={query}
+                  />
+                }
               />
               {events === undefined ? (
                 <Spinner />

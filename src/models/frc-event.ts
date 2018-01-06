@@ -7,6 +7,7 @@ interface FRCEvent {
   date: string
   parsedDate?: Date
   matches?: Match[]
+  distanceFromToday?: number
 }
 
 export default FRCEvent

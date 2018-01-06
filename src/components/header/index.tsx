@@ -5,7 +5,7 @@ import Icon from '../icon'
 interface HeaderProps {
   title?: string
   back?: string
-  contents?: JSX.Element[]
+  contents?: any
 }
 
 const Header = ({ title, back, contents }: HeaderProps) => (

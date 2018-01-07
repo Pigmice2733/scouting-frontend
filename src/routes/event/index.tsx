@@ -18,7 +18,6 @@ const Event = ({ eventId }: { eventId: string }) => (
           title={(event && event.shortName) || `Event ${eventId}`}
           back="/"
         />
-        <DateDisplay date={event && event.date && new Date(event.date)} />
         {typeof event === 'undefined' ? (
           <Spinner />
         ) : event.matches === null || event.matches.length === 0 ? (

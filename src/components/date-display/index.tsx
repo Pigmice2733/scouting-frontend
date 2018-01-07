@@ -1,6 +1,4 @@
 import { h } from 'preact'
-import { date as dateClass } from './style.sss'
-
 import Icon from '../icon'
 
 interface DateDisplayProps {
@@ -9,7 +7,7 @@ interface DateDisplayProps {
 
 const DateDisplay = ({ date }: DateDisplayProps) => {
   return (
-    <div class={dateClass}>
+    <div>
       <Icon icon="calendar" />
       {date ? date.toLocaleDateString() : 'Loading...'}
     </div>

@@ -3,7 +3,7 @@ import { home } from './style.sss'
 import Resolver from '../../resolver'
 import SearchInput, { SearchInputEvent } from '../../components/search-input'
 import { getEvents } from '../../api'
-import { sortEvents, hasValidJWT } from '../../utils'
+import { sortEvents, hasValidJWT, eventTypeName, abbreviate } from '../../utils'
 import Spinner from '../../components/spinner'
 import List from '../../components/list'
 import DateDisplay from '../../components/date-display'
@@ -11,6 +11,7 @@ import FRCEvent from '../../models/frc-event'
 import Button from '../../components/button'
 import { route } from 'preact-router'
 import Header from '../../components/header'
+import { info as infoClass } from './style.sss'
 
 interface HomeProps {
   events: FRCEvent[]
@@ -64,7 +65,14 @@ export default () => (
                     <li key={e.key}>
                       <a href={`/events/${e.key}`}>
                         {e.shortName}
-                        <DateDisplay date={e.parsedDate} />
+                        <div class={infoClass}>
+                          <p>
+                            {screen.width <= 768
+                              ? abbreviate(eventTypeName(e.eventType))
+                              : eventTypeName(e.eventType)}
+                          </p>
+                          <DateDisplay date={e.parsedDate} />
+                        </div>
                       </a>
                     </li>
                   ))}

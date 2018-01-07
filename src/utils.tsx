@@ -69,6 +69,27 @@ const toPercentage = (val: number) => Math.round(val * 100) + '%'
 
 const toPrettyNumber = (val: number) => Math.round(val * 10) / 10
 
+const eventTypeNames = new Map<number, string>([
+  [0, 'Regional'],
+  [1, 'District'],
+  [2, 'District Championship Division'],
+  [3, 'District Championship'],
+  [4, 'Championship Division'],
+  [5, 'Championship Finals'],
+  [6, 'Festival of Champions'],
+  [99, 'Offseason'],
+  [100, 'Preseason'],
+  [-1, '--']
+])
+
+const eventTypeName = (eventType: number) => eventTypeNames.get(eventType)
+
+const abbreviate = (str: string) =>
+  str
+    .split(' ')
+    .map(v => v[0].toUpperCase())
+    .join('')
+
 export {
   hasValidJWT,
   getJWT,
@@ -79,5 +100,7 @@ export {
   parseMatchKey,
   camelToTitle,
   toPercentage,
-  toPrettyNumber
+  toPrettyNumber,
+  eventTypeName,
+  abbreviate
 }

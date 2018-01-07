@@ -5,6 +5,7 @@ interface FRCEvent {
   name: string
   shortName: string
   date: string
+  eventType: number
   parsedDate?: Date
   distanceFromToday?: number
   matches?: Match[]

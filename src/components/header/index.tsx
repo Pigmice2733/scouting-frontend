@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { header } from './style.sss'
+import { header, back as backClass } from './style.sss'
 import Icon from '../icon'
 
 interface HeaderProps {
@@ -11,7 +11,7 @@ interface HeaderProps {
 const Header = ({ title, back, contents }: HeaderProps) => (
   <header class={header}>
     {back && (
-      <a href={back}>
+      <a class={backClass} href={back}>
         <Icon icon="left" />
       </a>
     )}

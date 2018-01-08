@@ -26,6 +26,13 @@ const formatTime = (date: Date): string =>
     timeZoneName: 'short'
   })
 
+const formatDate = (date: Date): string =>
+  date.toLocaleDateString(undefined, {
+    year: '2-digit',
+    month: '2-digit',
+    day: '2-digit'
+  })
+
 const formatTeamNumber = (teamId: string): string => teamId.replace('frc', '')
 
 const formatMatchId = (matchId: string): string => {
@@ -96,6 +103,7 @@ export {
   formatTeamNumber,
   formatMatchId,
   sortEvents,
+  formatDate,
   formatTime,
   parseMatchKey,
   camelToTitle,

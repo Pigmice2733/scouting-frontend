@@ -12,6 +12,7 @@ import Button from '../../components/button'
 import { route } from 'preact-router'
 import Header from '../../components/header'
 import { info as infoClass } from './style.sss'
+import { dcmp, cmp, off, pre } from './style.sss'
 
 interface HomeProps {
   events: FRCEvent[]
@@ -20,6 +21,15 @@ interface HomeProps {
 interface HomeState {
   query: string
 }
+
+const eventTypeClassMap = new Map<Number, string>([
+  [5, dcmp],
+  [2, dcmp],
+  [3, cmp],
+  [4, cmp],
+  [99, off],
+  [100, pre]
+])
 
 export default () => (
   <Resolver
@@ -35,6 +45,10 @@ export default () => (
 
         queryChanged = (e: SearchInputEvent) => {
           this.setState({ query: e.target.value })
+        }
+
+        eventTypeClass = (eventType: Number) => {
+          return eventTypeClassMap.get(eventType)
         }
 
         render({ events }: HomeProps, { query }: HomeState) {
@@ -67,7 +81,9 @@ export default () => (
                         {e.shortName}
                         <div class={infoClass}>
                           {eventTypeName(e.eventType) ? (
-                            <p>{eventTypeName(e.eventType)}</p>
+                            <span class={this.eventTypeClass(e.eventType)}>
+                              {eventTypeName(e.eventType)}
+                            </span>
                           ) : null}
                           <DateDisplay date={e.parsedDate} />
                         </div>

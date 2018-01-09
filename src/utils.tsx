@@ -79,14 +79,14 @@ const toPrettyNumber = (val: number) => Math.round(val * 10) / 10
 const eventTypeNames = new Map<number, string>([
   [0, ''],
   [1, ''],
-  [5, 'DCPD'],
-  [2, 'DCP'],
-  [3, 'CPD'],
-  [4, 'CPF'],
+  [5, 'DCMP'],
+  [2, 'DCMP'],
+  [3, 'CMP'],
+  [4, 'CMP'],
   [6, ''],
   [99, 'Off'],
   [100, 'Pre'],
-  [-1, '--']
+  [-1, '']
 ])
 
 const eventTypeName = (eventType: number) => eventTypeNames.get(eventType)

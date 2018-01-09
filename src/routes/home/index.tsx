@@ -11,11 +11,7 @@ import FRCEvent from '../../models/frc-event'
 import Button from '../../components/button'
 import { route } from 'preact-router'
 import Header from '../../components/header'
-import {
-  info as infoClass,
-  mobile as mobileClass,
-  desktop as desktopClass
-} from './style.sss'
+import { info as infoClass } from './style.sss'
 
 interface HomeProps {
   events: FRCEvent[]
@@ -70,12 +66,9 @@ export default () => (
                       <a href={`/events/${e.key}`}>
                         {e.shortName}
                         <div class={infoClass}>
-                          <p class={mobileClass}>
-                            {abbreviate(eventTypeName(e.eventType))}
-                          </p>
-                          <p class={desktopClass}>
-                            {eventTypeName(e.eventType)}
-                          </p>
+                          {eventTypeName(e.eventType) ? (
+                            <p>{eventTypeName(e.eventType)}</p>
+                          ) : null}
                           <DateDisplay date={e.parsedDate} />
                         </div>
                       </a>

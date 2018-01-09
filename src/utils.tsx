@@ -77,15 +77,15 @@ const toPercentage = (val: number) => Math.round(val * 100) + '%'
 const toPrettyNumber = (val: number) => Math.round(val * 10) / 10
 
 const eventTypeNames = new Map<number, string>([
-  [0, 'Regional'],
-  [1, 'District'],
-  [5, 'District Championship Division'],
-  [2, 'District Championship'],
-  [3, 'Championship Division'],
-  [4, 'Championship Finals'],
-  [6, 'Festival of Champions'],
-  [99, 'Offseason'],
-  [100, 'Preseason'],
+  [0, ''],
+  [1, ''],
+  [5, 'DCPD'],
+  [2, 'DCP'],
+  [3, 'CPD'],
+  [4, 'CPF'],
+  [6, ''],
+  [99, 'Off'],
+  [100, 'Pre'],
   [-1, '--']
 ])
 

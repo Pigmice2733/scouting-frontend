@@ -11,8 +11,7 @@ import FRCEvent from '../../models/frc-event'
 import Button from '../../components/button'
 import { route } from 'preact-router'
 import Header from '../../components/header'
-import { info as infoClass } from './style.sss'
-import { dcmp, cmp, off, pre } from './style.sss'
+import { info as infoClass, dcmp, cmp, off, pre } from './style.sss'
 
 interface HomeProps {
   events: FRCEvent[]

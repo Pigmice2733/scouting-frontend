@@ -26,6 +26,7 @@ interface HomeProps {
 
 interface HomeState {
   query: string
+  loggedIn: boolean
 }
 
 const eventTypeClassMap = new Map<Number, string>([
@@ -46,18 +47,27 @@ export default () => (
       class Home extends Component<HomeProps, HomeState> {
         constructor() {
           super()
-          this.state = { query: '' }
+          this.state = { query: '', loggedIn: false }
+        }
+
+        componentWillMount() {
+          this.setState({ loggedIn: hasValidJWT() })
         }
 
         queryChanged = (e: SearchInputEvent) => {
           this.setState({ query: e.target.value })
         }
 
+        logout = () => {
+          localStorage.removeItem('jwt')
+          this.setState({ loggedIn: false })
+        }
+
         eventTypeClass = (eventType: Number) => {
           return eventTypeClassMap.get(eventType)
         }
 
-        render({ events }: HomeProps, { query }: HomeState) {
+        render({ events }: HomeProps, { query, loggedIn }: HomeState) {
           const sortedEvents = sortEvents(events || [])
           const matchingEvents = sortedEvents.filter(e =>
             e.name.toLowerCase().includes(query.toLowerCase())
@@ -73,8 +83,8 @@ export default () => (
                       type="search"
                       value={query}
                     />
-                    {hasValidJWT() ? (
-                      <Button href="/logout">Log Out</Button>
+                    {loggedIn ? (
+                      <Button onClick={this.logout}>Log Out</Button>
                     ) : (
                       <Button href="/login">Login</Button>
                     )}

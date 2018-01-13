@@ -41,14 +41,21 @@ class Table extends Component<TableProps, TableState> {
         <table>
           <tr>
             <th key="teamNumber" onClick={this.sortBy('teamNumber')}>
-              Team
-              {sortBy === 'teamNumber' && (reversed ? ' ▲' : ' ▼')}
+              <div>
+                <span>
+                  {sortBy === 'teamNumber' && (reversed ? ' ▲' : ' ▼')}Team
+                </span>
+              </div>
             </th>
             {schema &&
               Object.keys(schema).map(stat => (
                 <th key={stat} onClick={this.sortBy(stat)}>
-                  {camelToTitle(stat)}
-                  {sortBy === stat && (reversed ? ' ▲' : ' ▼')}
+                  <div>
+                    <span>
+                      {sortBy === stat && (reversed ? ' ▲' : ' ▼')}
+                      {camelToTitle(stat)}
+                    </span>
+                  </div>
                 </th>
               ))}
           </tr>

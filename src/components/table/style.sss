@@ -10,12 +10,26 @@
     table-layout: fixed
     margin: 0 auto
 
+  & td
+    padding: 15px
+
   & th
     cursor: pointer
     user-select: none
 
+    & > div
+      padding: 15px
+      min-width: 50px
+      width: 100%
+
+    & span
+      height: 10em
+      margin-right: auto
+      writing-mode: vertical-rl
+      transform: rotate(-180deg)
+      text-align: left
+
   & td, & th
-    padding: 15px
     white-space: nowrap
 
     &:nth-child(even)

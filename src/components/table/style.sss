@@ -25,9 +25,11 @@
     & span
       height: 10em
       margin-right: auto
-      writing-mode: vertical-rl
-      transform: rotate(-180deg)
-      text-align: left
+
+      @media screen and (max-width: 700px)
+        writing-mode: vertical-rl
+        transform: rotate(-180deg)
+        text-align: left
 
   & td, & th
     white-space: nowrap

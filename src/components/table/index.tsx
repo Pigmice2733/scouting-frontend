@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, Component } from 'preact'
 import Analysis from '../../models/analysis'
 import Schema from '../../models/schema'
 import {
@@ -9,40 +9,77 @@ import {
 } from '../../utils'
 import { table, statColumn } from './style.sss'
 
-const Table = ({ data, schema }: { data: Analysis[]; schema: Schema }) => (
-  <div class={table}>
-    <table>
-      <tr>
-        <th />
-        {data.map(analysis => <th>{formatTeamNumber(analysis.team)}</th>)}
-      </tr>
-      {Object.keys(data[0].stats).map(stat => (
-        <TableRow data={data} stat={stat} schema={schema} />
-      ))}
-    </table>
-  </div>
-)
-
-const TableRow = ({
-  data,
-  stat,
-  schema
-}: {
-  data: Analysis[]
-  stat: string
+interface TableProps {
+  analyses: Analysis[]
   schema: Schema
-}) => (
-  <tr>
-    <td class={statColumn}>{camelToTitle(stat)}</td>
-    {data.map(analysis => {
-      const s = analysis.stats[stat]
-      return (
-        <td>
-          {schema[stat] === 'number' ? toPrettyNumber(s) : toPercentage(s)}
-        </td>
-      )
-    })}
-  </tr>
-)
+}
+
+interface TableState {
+  sortBy: string
+  reversed: boolean
+}
+
+class Table extends Component<TableProps, TableState> {
+  constructor() {
+    super()
+    this.state = {
+      sortBy: 'teamNumber',
+      reversed: false
+    }
+  }
+
+  sortBy = (stat: string) => () =>
+    this.setState((state: TableState) => ({
+      sortBy: stat,
+      reversed: state.sortBy === stat ? !state.reversed : false
+    }))
+
+  render({ analyses, schema }: TableProps, { sortBy, reversed }: TableState) {
+    console.log(sortBy)
+    return (
+      <div class={table}>
+        <table>
+          <tr>
+            <th key="teamNumber" onClick={this.sortBy('teamNumber')}>
+              Team
+              {sortBy === 'teamNumber' && (reversed ? ' ▲' : ' ▼')}
+            </th>
+            {schema &&
+              Object.keys(schema).map(stat => (
+                <th key={stat} onClick={this.sortBy(stat)}>
+                  {camelToTitle(stat)}
+                  {sortBy === stat && (reversed ? ' ▲' : ' ▼')}
+                </th>
+              ))}
+          </tr>
+          {analyses
+            .sort((a, b) => {
+              const v =
+                sortBy === 'teamNumber'
+                  ? a.team > b.team ? 1 : -1
+                  : a.stats[sortBy] > b.stats[sortBy] ? 1 : -1
+              return reversed ? -v : v
+            })
+            .map(analysis => (
+              <tr key={analysis.team}>
+                <td key="teamNumber">{formatTeamNumber(analysis.team)}</td>
+                {schema &&
+                  Object.keys(schema).map(stat => {
+                    const s = analysis.stats[stat]
+                    return (
+                      <td key={stat}>
+                        {schema[stat] === 'number'
+                          ? toPrettyNumber(s)
+                          : toPercentage(s)}
+                      </td>
+                    )
+                  })}
+              </tr>
+            ))}
+        </table>
+      </div>
+    )
+  }
+}
 
 export default Table

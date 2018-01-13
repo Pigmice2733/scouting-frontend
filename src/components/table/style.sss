@@ -5,8 +5,20 @@
   overflow-x: auto
   height: 100%
 
-  & td
+  & table
+    border-collapse: collapse
+    table-layout: fixed
+
+  & th
+    cursor: pointer
+    user-select: none
+
+  & td, & th
     padding: 15px
+    white-space: nowrap
+
+    &:nth-child(even)
+      background: gray(0, 04%)
 
 .statColumn
   font-size: 12px

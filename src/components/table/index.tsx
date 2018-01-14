@@ -35,7 +35,6 @@ class Table extends Component<TableProps, TableState> {
     }))
 
   render({ analyses, schema }: TableProps, { sortBy, reversed }: TableState) {
-    console.log(sortBy)
     return (
       <div class={table}>
         <table>

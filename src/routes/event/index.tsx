@@ -7,6 +7,7 @@ import { event as eventClass } from './style.sss'
 import List from '../../components/list'
 import Spinner from '../../components/spinner'
 import DateDisplay from '../../components/date-display'
+import Button from '../../components/button'
 import FRCEvent from '../../models/frc-event'
 
 const Event = ({ eventId }: { eventId: string }) => (
@@ -18,6 +19,7 @@ const Event = ({ eventId }: { eventId: string }) => (
           title={(event && event.shortName) || `Event ${eventId}`}
           back="/"
         />
+        <Button href={`/events/${eventId}/analysis`}>View Analysis</Button>
         {typeof event === 'undefined' ? (
           <Spinner />
         ) : event.matches === null || event.matches.length === 0 ? (

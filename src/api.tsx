@@ -27,6 +27,9 @@ const getEvents = (): Promise<FRCEvent[]> =>
 const getEvent = (eventKey: string): Promise<FRCEvent> =>
   queryAPI(`events/${eventKey}`).then(d => d.json())
 
+const getEventAnalysis = (eventKey: string): Promise<Analysis[]> =>
+  queryAPI(`analysis/${eventKey}`).then(d => d.json())
+
 const getMatch = (eventKey: string, matchKey: string): Promise<Match> =>
   queryAPI(`events/${eventKey}/${eventKey}_${matchKey}`).then(d => d.json())
 
@@ -66,6 +69,7 @@ const getAllianceAnalysis = (
 export {
   getEvents,
   getEvent,
+  getEventAnalysis,
   getMatch,
   getAllianceAnalysis,
   getSchema,

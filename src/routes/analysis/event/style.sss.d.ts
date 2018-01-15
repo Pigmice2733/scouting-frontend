@@ -1,0 +1,1 @@
+export const eventAnalysis: string;

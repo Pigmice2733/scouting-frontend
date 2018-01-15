@@ -10,16 +10,13 @@ interface ButtonProps {
 }
 
 const Button = ({ children, href, type, value, onClick }: ButtonProps) =>
-  onClick ? (
-    <button class={button} onClick={onClick}>
-      {children}
-    </button>
-  ) : type === 'submit' ? (
-    <input class={button} type="submit" value={value} />
-  ) : (
-    <a class={button} href={href}>
-      {children}
-    </a>
-  )
+  h(href ? 'a' : type === 'submit' ? 'input' : 'button', {
+    class: button,
+    children,
+    href,
+    type,
+    value,
+    onClick
+  })
 
 export default Button

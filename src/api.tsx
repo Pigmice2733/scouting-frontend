@@ -21,19 +21,45 @@ const queryAPI = (
         : undefined
   })
 
-const getEvents = (): Promise<FRCEvent[]> =>
-  queryAPI('events').then(d => d.json())
+const get = async (url: string, useCache: boolean = true) => {
+  if (useCache) {
+    let cached = JSON.parse(localStorage.getItem(url))
+
+    if (!cached || Date.now() / 1000 > cached.expires) {
+      const resp = await queryAPI(url)
+
+      const cacheControl = /.*max-age=(\d+).*/.exec(
+        resp.headers.get('cache-control')
+      )
+
+      const maxAge = cacheControl.length >= 2 ? Number(cacheControl[1]) : 3 * 60 // default to 3 minute cache
+
+      cached = {
+        expires: Math.round(Date.now() / 1000) + maxAge,
+        data: await resp.json()
+      }
+
+      localStorage.setItem(url, JSON.stringify(cached))
+    }
+
+    return cached.data
+  } else {
+    return queryAPI(url).then(d => d.json())
+  }
+}
+
+const getEvents = (): Promise<FRCEvent[]> => get('events')
 
 const getEvent = (eventKey: string): Promise<FRCEvent> =>
-  queryAPI(`events/${eventKey}`).then(d => d.json())
+  get(`events/${eventKey}`)
 
 const getEventAnalysis = (eventKey: string): Promise<Analysis[]> =>
-  queryAPI(`analysis/${eventKey}`).then(d => d.json())
+  get(`analysis/${eventKey}`, false)
 
 const getMatch = (eventKey: string, matchKey: string): Promise<Match> =>
-  queryAPI(`events/${eventKey}/${eventKey}_${matchKey}`).then(d => d.json())
+  get(`events/${eventKey}/${eventKey}_${matchKey}`)
 
-const getSchema = (): Promise<Schema> => queryAPI('schema').then(d => d.json())
+const getSchema = (): Promise<Schema> => get('schema')
 
 const authenticate = (credentials: {
   username: string
@@ -62,9 +88,7 @@ const getAllianceAnalysis = (
   matchKey: string,
   color: string
 ): Promise<Analysis[]> =>
-  queryAPI(`analysis/${eventKey}/${eventKey}_${matchKey}/${color}`).then(d =>
-    d.json()
-  )
+  get(`analysis/${eventKey}/${eventKey}_${matchKey}/${color}`, false)
 
 export {
   getEvents,

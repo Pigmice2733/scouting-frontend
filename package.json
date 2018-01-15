@@ -2,7 +2,6 @@
   "name": "pigmice_scouting_frontend",
   "version": "0.0.0",
   "dependencies": {
-    "dexie": "^2.0.1",
     "linkstate": "^1.1.0",
     "preact": "^8.2.7",
     "preact-router": "^2.6.0",

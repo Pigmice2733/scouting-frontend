@@ -16,9 +16,12 @@
   display: grid
   grid-template-columns: 1fr minmax(auto, 500px) 1fr
 
-  @media (max-width: 700px)
+  @media (width < 670px)
     grid-template-columns: 0 1fr auto
     grid-column-gap: 10px
+
+    & input
+      min-width: 100%!important
 
   & input
     grid-column: 2
@@ -32,7 +35,7 @@
     background: white
     color: black
 
-    @media (max-width: 700px)
+    @media (width < 670px)
       background: color(purple tint(25%))
 
 .info

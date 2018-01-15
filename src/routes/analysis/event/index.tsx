@@ -6,7 +6,7 @@ import { getEvent, getEventAnalysis, getSchema } from '../../../api'
 import Table from '../../../components/table'
 import Header from '../../../components/header'
 
-import { eventAnalysis as eventAnalysisClass } from './style'
+import { eventAnalysis as eventAnalysisClass } from './style.sss'
 
 const EventAnalysis = ({ eventId }: { eventId: string }) => (
   <Resolver

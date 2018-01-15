@@ -6,13 +6,11 @@ import {
   ComponentProps
 } from 'preact'
 
-type MaybeKeys<T> = { [K in keyof T]: T[K] }
-
 interface ResolverProps<T> {
-  data: { [K in keyof T]: Promise<T[K]> } & { [key: string]: Promise<any> }
-  render:
-    | FunctionalComponent<MaybeKeys<T>>
-    | ComponentConstructor<MaybeKeys<T>, any>
+  data: { [K in keyof T]: (d: (d: T[K]) => any) => any } & {
+    [key: string]: any
+  }
+  render: FunctionalComponent<T> | ComponentConstructor<T, any>
 }
 
 interface ResolverState {
@@ -29,7 +27,7 @@ const Resolver = <T extends {}>(props: ResolverProps<T>) =>
         Object.keys(props.data).forEach(prop => {
           if (prop === 'children') return
 
-          props.data[prop].then((d: any) =>
+          props.data[prop]((d: any) =>
             this.setState((state: ResolverState) => {
               state.data[prop] = d
             })

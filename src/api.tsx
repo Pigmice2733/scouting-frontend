@@ -22,7 +22,7 @@ const queryAPI = (
   })
 
 const get = <T extends {}>(url: string) => async (cb: (data: T) => any) => {
-  cb(JSON.parse(localStorage.getItem(url)))
+  cb(JSON.parse(localStorage.getItem(url)) || undefined)
   const data = await queryAPI(url).then(d => d.json())
   cb(data)
   localStorage.setItem(url, JSON.stringify(data))

@@ -16,17 +16,11 @@ interface SearchInputEventCallback {
 interface SearchInputProps {
   onInput?: SearchInputEventCallback
   placeholder?: string
-  type?: string
   value?: string
 }
 
-const SearchInput = ({
-  placeholder,
-  type,
-  value,
-  onInput
-}: SearchInputProps) => (
-  <input class={input} {...{ placeholder, type, value, onInput }} />
+const SearchInput = ({ placeholder, value, onInput }: SearchInputProps) => (
+  <input class={input} type="search" {...{ placeholder, value, onInput }} />
 )
 
 export default SearchInput

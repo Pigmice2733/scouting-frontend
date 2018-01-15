@@ -80,7 +80,6 @@ export default () => (
                     <SearchInput
                       onInput={this.queryChanged}
                       placeholder="Search for events"
-                      type="search"
                       value={query}
                     />
                     {loggedIn ? (

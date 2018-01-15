@@ -33,7 +33,15 @@ const formatDate = (date: Date): string =>
     day: '2-digit'
   })
 
-const formatTeamNumber = (teamId: string): string => teamId.replace('frc', '')
+const formatTeamNumber = (teamId: string) => teamId.replace('frc', '')
+
+const parseTeamNumber = (teamId: string) => {
+  const [, num, letter] = formatTeamNumber(teamId).match(/([0-9]*)(.*)/)
+  return { num: Number(num), letter }
+}
+
+const sortTeams = (a: string, b: string) =>
+  parseTeamNumber(a).num > parseTeamNumber(b).num
 
 const formatMatchId = (matchId: string): string => {
   const id = matchId.toUpperCase()
@@ -110,5 +118,6 @@ export {
   toPercentage,
   toPrettyNumber,
   eventTypeName,
-  abbreviate
+  abbreviate,
+  sortTeams
 }

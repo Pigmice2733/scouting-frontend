@@ -31,7 +31,7 @@ class Login extends Component<LoginProps, LoginState> {
   render({ back }: LoginProps, state: LoginState) {
     return (
       <div class={login}>
-        <Header title="Login" back={back} />
+        <Header title="Login" back={back || '/'} />
         {state.error ? <p>{state.error}</p> : null}
         <form onSubmit={e => this.handleLogin(e, back)}>
           <TextInput

@@ -4,6 +4,7 @@ import { app } from './style.sss'
 
 import Home from '../../routes/home'
 import Login from '../../routes/login'
+import Admin from '../../routes/admin'
 import Event from '../../routes/event'
 import Match from '../../routes/match'
 import AllianceAnalysis from '../../routes/analysis/alliance'
@@ -16,6 +17,7 @@ const App = () => (
     <Router>
       <Route path="/" component={Home} />
       <Route path="/login" component={Login} />
+      <Route path="/admin" component={Admin} />
       <Route path="/events/:eventId" component={Event} />
       <Route path="/events/:eventId/analysis" component={EventAnalysis} />
       <Route path="/events/:eventId/:matchId" component={Match} />

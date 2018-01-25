@@ -3,7 +3,13 @@ import { home } from './style.sss'
 import Resolver from '../../resolver'
 import SearchInput, { SearchInputEvent } from '../../components/search-input'
 import { getEvents } from '../../api'
-import { sortEvents, hasValidJWT, eventTypeName, abbreviate } from '../../utils'
+import {
+  sortEvents,
+  hasValidJWT,
+  getUserInfo,
+  eventTypeName,
+  abbreviate
+} from '../../utils'
 import Spinner from '../../components/spinner'
 import List from '../../components/list'
 import DateDisplay from '../../components/date-display'
@@ -77,6 +83,11 @@ export default () => (
               <Header
                 contents={
                   <div class={headerContents}>
+                    {loggedIn ? (
+                      getUserInfo().isAdmin ? (
+                        <Button href="/admin">Admin Panel</Button>
+                      ) : null
+                    ) : null}
                     <SearchInput
                       onInput={this.queryChanged}
                       placeholder="Search for events"

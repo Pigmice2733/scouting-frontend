@@ -30,9 +30,16 @@
     min-width: 0
     width: 100%
 
-  & a, & button
+  & a
+    grid-column: 1
+    justify-self: start
+    margin-left: 12px
+
+  & button
     grid-column: 3
     justify-self: end
+
+  & a, & button
     align-self: center
     background: white
     color: black
@@ -70,3 +77,6 @@
 
 .off
   background: hsla(40.2, 100%, 50%, 0.3)
+
+.adminPanel
+  max-width: 10px

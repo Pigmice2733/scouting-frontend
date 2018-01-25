@@ -2,9 +2,9 @@ import FRCEvent from './models/frc-event'
 import Match from './models/match'
 import Analysis from './models/analysis'
 import Schema from './models/schema'
+import UserInfo from './models/user-info'
 
 import { hasValidJWT, getJWT } from './utils'
-import UserInfo from './models/user-info'
 
 const endpoint = 'https://api.pigmice.ga'
 

@@ -4,6 +4,8 @@
   padding: 10px 12px
   color: white
   text-decoration: none
+  font-weight: 500
+  text-align: center
   cursor: pointer
   box-shadow: 1px 1px 4px gray(0, 71%)
   transition: all 0.3s ease
@@ -16,3 +18,8 @@
 
   &:active
     background: color(#800080 whiteness(+10%))
+
+  &[disabled]
+    background: gray(0, 10%)
+    box-shadow: unset
+    color: gray(0, 50%)

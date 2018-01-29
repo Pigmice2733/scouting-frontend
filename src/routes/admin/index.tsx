@@ -14,6 +14,7 @@ import Button from '../../components/button'
 import UserInfo from '../../models/user-info'
 import Icon from '../../components/icon'
 import Toggle from '../../components/toggle'
+import TextInput from '../../components/text-input'
 import {
   adminPanel as adminPanelClass,
   del as deleteClass,
@@ -81,7 +82,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
                 return (
                   <tr id={id}>
                     <td>
-                      <input
+                      <TextInput
                         value={user.edit.username}
                         onInput={evt =>
                           this.setState((state: AdminPanelState) => {
@@ -92,7 +93,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
                       />
                     </td>
                     <td>
-                      <input
+                      <TextInput
                         value={user.edit.password}
                         type="password"
                         onInput={evt =>

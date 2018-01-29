@@ -25,8 +25,18 @@
   width: 2em
   height: 2em
 
+@keyframes flash
+  0%
+    background: #43a04780
+
+  50%
+    background: #43a04780
+
+  100%
+    background: transparent
+
 .success
-  background: rgba(152, 251, 152, 0.3)
+  animation: flash 1.2s
 
 .failed
   background: red

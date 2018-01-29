@@ -122,7 +122,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
                           const elem = document.getElementById(id)
                           setTimeout(
                             () => elem.classList.remove(failed, success),
-                            200
+                            1200
                           )
 
                           try {

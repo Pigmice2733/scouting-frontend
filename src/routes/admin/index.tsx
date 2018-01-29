@@ -150,7 +150,14 @@ class AdminPanel extends Component<any, AdminPanelState> {
                     <td>
                       <Button
                         class={deleteClass}
-                        onClick={() => deleteUser(user.username)}
+                        onClick={() => {
+                          deleteUser(user.username).then(() =>
+                            this.setState((state: AdminPanelState) => {
+                              state.users.splice(i, 1)
+                              return state
+                            })
+                          )
+                        }}
                       >
                         <Icon icon="delete" />
                       </Button>

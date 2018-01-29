@@ -7,11 +7,19 @@ interface ButtonProps {
   type?: 'submit' | null
   value?: string
   onClick?: () => any
+  class?: string
 }
 
-const Button = ({ children, href, type, value, onClick }: ButtonProps) =>
+const Button = ({
+  children,
+  href,
+  type,
+  value,
+  onClick,
+  class: className
+}: ButtonProps) =>
   h(href ? 'a' : type === 'submit' ? 'input' : 'button', {
-    class: button,
+    class: `${button} ${className}`,
     children,
     href,
     type,

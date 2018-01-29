@@ -3,13 +3,15 @@ import { toggle } from './style.sss'
 
 const Toggle = ({
   onChange,
-  id
+  id,
+  checked
 }: {
   onChange: JSX.GenericEventHandler
   id: string
+  checked?: boolean
 }) => (
   <div class={toggle}>
-    <input id={id} type="checkbox" onChange={onChange} />
+    <input id={id} type="checkbox" onChange={onChange} checked={checked} />
     <label for={id} />
   </div>
 )

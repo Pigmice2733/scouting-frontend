@@ -72,6 +72,12 @@ const getAllianceAnalysis = (
 
 const deleteUser = (username: string) => queryAPI(`users/${username}`, 'DELETE')
 
+const updateUser = (username: string, user: UserInfo & { password?: string }) =>
+  queryAPI(`users/${username}`, 'PUT', user)
+
+const createUser = (user: UserInfo & { password: string }) =>
+  queryAPI(`users`, 'POST', user)
+
 export {
   getEvents,
   getEvent,
@@ -82,5 +88,7 @@ export {
   getUsers,
   deleteUser,
   authenticate,
-  submitReport
+  submitReport,
+  updateUser,
+  createUser
 }

@@ -83,11 +83,6 @@ export default () => (
               <Header
                 contents={
                   <div class={headerContents}>
-                    {loggedIn ? (
-                      getUserInfo().isAdmin ? (
-                        <Button href="/admin">Admin Panel</Button>
-                      ) : null
-                    ) : null}
                     <SearchInput
                       onInput={this.queryChanged}
                       placeholder="Search for events"

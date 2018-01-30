@@ -19,7 +19,7 @@ const Button = ({
   class: className
 }: ButtonProps) =>
   h(href ? 'a' : type === 'submit' ? 'input' : 'button', {
-    class: `${button} ${className}`,
+    class: `${button} ${className || ''}`,
     children,
     href,
     type,

@@ -18,6 +18,8 @@ import TextInput from '../../components/text-input'
 import {
   adminPanel as adminPanelClass,
   del as deleteClass,
+  save as saveClass,
+  admin as adminClass,
   failed,
   success
 } from './style.sss'
@@ -83,6 +85,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
                   <tr id={id}>
                     <td>
                       <TextInput
+                        placeholder="Username"
                         value={user.edit.username}
                         onInput={evt =>
                           this.setState((state: AdminPanelState) => {
@@ -96,6 +99,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
                       <TextInput
                         value={user.edit.password}
                         type="password"
+                        placeholder="Password"
                         onInput={evt =>
                           this.setState((state: AdminPanelState) => {
                             state.users[i].edit.password = evt.target.value
@@ -104,7 +108,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
                         }
                       />
                     </td>
-                    <td>
+                    <td class={adminClass}>
                       <Toggle
                         id={`toggle-${i}`}
                         checked={user.edit.isAdmin}
@@ -116,7 +120,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
                         }
                       />
                     </td>
-                    <td>
+                    <td class={saveClass}>
                       <Button
                         onClick={() => {
                           const elem = document.getElementById(id)
@@ -147,9 +151,8 @@ class AdminPanel extends Component<any, AdminPanelState> {
                         Save
                       </Button>
                     </td>
-                    <td>
+                    <td class={deleteClass}>
                       <Button
-                        class={deleteClass}
                         onClick={() => {
                           deleteUser(user.username).then(() =>
                             this.setState((state: AdminPanelState) => {

@@ -40,12 +40,13 @@
     justify-self: end
 
   & a, & button
-    align-self: center
     background: white
     color: black
 
     @media (width < 670px)
       background: color(purple tint(25%))
+      align-self: stretch
+      margin: 10px auto
 
 .info
   display: flex

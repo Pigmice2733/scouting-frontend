@@ -20,6 +20,7 @@ import {
   del as deleteClass,
   save as saveClass,
   admin as adminClass,
+  adminInner as adminPanelInnerClass,
   failed,
   success
 } from './style.sss'
@@ -67,12 +68,12 @@ class AdminPanel extends Component<any, AdminPanelState> {
     return !userInfo.isAdmin ? (
       <p>You are not an admin.</p>
     ) : (
-      <div>
+      <div class={adminPanelClass}>
         <Header title={`Admin Panel: ${userInfo.username}`} back="/" />
         {!users ? (
           <Spinner />
         ) : (
-          <div class={adminPanelClass}>
+          <div class={adminPanelInnerClass}>
             <table>
               <tr>
                 <th>Username</th>

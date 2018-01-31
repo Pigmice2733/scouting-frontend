@@ -1,6 +1,7 @@
 import FRCEvent from './models/frc-event'
+import UserInfo from './models/user-info'
 
-const hasValidJWT = () => {
+const hasValidJWT = (): boolean => {
   const jwt = getJWT()
   if (!jwt) {
     return false
@@ -14,8 +15,17 @@ const hasValidJWT = () => {
   return JSON.parse(atob(parts[1])).exp > Number(new Date()) / 1000
 }
 
-const getJWT = () => {
+const getJWT = (): string => {
   return localStorage.getItem('jwt')
+}
+
+const getUserInfo = (): UserInfo => {
+  const body = JSON.parse(atob(getJWT().split('.')[1]))
+
+  return {
+    username: body.sub,
+    isAdmin: body.pigmice_is_admin
+  }
 }
 
 const formatTime = (date: Date): string =>
@@ -108,6 +118,7 @@ const abbreviate = (str: string) =>
 export {
   hasValidJWT,
   getJWT,
+  getUserInfo,
   formatTeamNumber,
   formatMatchId,
   sortEvents,

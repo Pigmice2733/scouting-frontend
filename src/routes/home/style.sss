@@ -30,15 +30,24 @@
     min-width: 0
     width: 100%
 
-  & a, & button
+  & a
+    grid-column: 1
+    justify-self: start
+    margin-left: 12px
+
+  & button
     grid-column: 3
     justify-self: end
-    align-self: center
+
+  & a, & button
     background: white
     color: black
+    align-self: stretch
+    margin: 10px 0
 
     @media (width < 670px)
       background: color(purple tint(25%))
+      margin: 10px 0
 
 .info
   display: flex
@@ -70,3 +79,6 @@
 
 .off
   background: hsla(40.2, 100%, 50%, 0.3)
+
+.adminPanel
+  max-width: 10px

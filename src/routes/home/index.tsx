@@ -3,7 +3,13 @@ import { home } from './style.sss'
 import Resolver from '../../resolver'
 import SearchInput, { SearchInputEvent } from '../../components/search-input'
 import { getEvents } from '../../api'
-import { sortEvents, hasValidJWT, eventTypeName, abbreviate } from '../../utils'
+import {
+  sortEvents,
+  hasValidJWT,
+  getUserInfo,
+  eventTypeName,
+  abbreviate
+} from '../../utils'
 import Spinner from '../../components/spinner'
 import List from '../../components/list'
 import DateDisplay from '../../components/date-display'

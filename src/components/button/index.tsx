@@ -8,6 +8,7 @@ interface ButtonProps {
   value?: string
   onClick?: () => any
   disabled?: boolean
+  class?: string
 }
 
 const Button = ({
@@ -16,10 +17,11 @@ const Button = ({
   type,
   value,
   onClick,
-  disabled
+  disabled,
+  class: className
 }: ButtonProps) =>
   h(href ? 'a' : type === 'submit' ? 'input' : 'button', {
-    class: button,
+    class: `${button} ${className || ''}`,
     children,
     href,
     type,

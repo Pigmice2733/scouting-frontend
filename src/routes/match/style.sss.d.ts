@@ -5,3 +5,4 @@ export const blue: string;
 export const score: string;
 export const matchName: string;
 export const matchTime: string;
+export const navigation: string;

@@ -10,7 +10,8 @@ import {
   alliance as allianceClass,
   blue as blueClass,
   red as redClass,
-  score as scoreClass
+  score as scoreClass,
+  navigation as navigationClass
 } from './style.sss'
 import RobotImage from '../../components/robot-image'
 import {
@@ -22,6 +23,7 @@ import {
 import Button from '../../components/button'
 import FRCEvent from '../../models/frc-event'
 import Match from '../../models/match'
+import Icon from '../../components/icon'
 
 interface AllianceProps {
   baseUrl: string
@@ -67,16 +69,28 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             back={`/events/${eventId}`}
           />
           {previousMatchKey ? (
-            <Button href={`/events/${eventId}/${previousMatchKey}`}>
-              Back
+            <Button
+              class={navigationClass}
+              href={`/events/${eventId}/${previousMatchKey}`}
+            >
+              <Icon icon="left" /> Previous Match
             </Button>
           ) : (
-            <Button disabled>Back</Button>
+            <Button class={navigationClass} disabled>
+              <Icon icon="left" /> Previous Match
+            </Button>
           )}
           {nextMatchKey ? (
-            <Button href={`/events/${eventId}/${nextMatchKey}`}>Forward</Button>
+            <Button
+              class={navigationClass}
+              href={`/events/${eventId}/${nextMatchKey}`}
+            >
+              Next Match <Icon icon="right" />
+            </Button>
           ) : (
-            <Button disabled>Forward</Button>
+            <Button class={navigationClass} disabled>
+              Next Match <Icon icon="right" />
+            </Button>
           )}
           <div class={matchNameClass}>
             <h2>{formatMatchId(matchId)}</h2>

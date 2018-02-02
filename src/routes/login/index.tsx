@@ -35,11 +35,13 @@ class Login extends Component<LoginProps, LoginState> {
         {state.error ? <p>{state.error}</p> : null}
         <form onSubmit={e => this.handleLogin(e, back)}>
           <TextInput
+            placeholder="Username"
             onInput={linkState(this, 'username')}
             value={state.username}
           />
           <TextInput
             type="password"
+            placeholder="Password"
             onInput={linkState(this, 'password')}
             value={state.password}
           />

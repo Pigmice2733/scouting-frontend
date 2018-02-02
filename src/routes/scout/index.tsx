@@ -40,26 +40,25 @@ const Field = ({
   fieldType: string
   fieldName: string
   self: any
-}) => {
-  return (
-    <label for={fieldName}>
-      <span>{camelToTitle(fieldName)}</span>
-      {fieldType === 'bool' ? (
-        <Toggle
-          onChange={linkState(self, `report.${fieldName}`, 'target.checked')}
-          id={fieldName}
-        />
-      ) : fieldType === 'number' ? (
-        <NumberPicker
-          onChange={linkState(self, `report.${fieldName}`)}
-          id={fieldName}
-        />
-      ) : (
-        <div>Hiya</div>
-      )}
-    </label>
-  )
-}
+}) => (
+  <label for={fieldName}>
+    <span>{camelToTitle(fieldName)}</span>
+    {fieldType === 'bool' ? (
+      <Toggle
+        onChange={linkState(self, `report.${fieldName}`, 'target.checked')}
+        checked={self.state.report[fieldName]}
+        id={fieldName}
+      />
+    ) : fieldType === 'number' ? (
+      <NumberPicker
+        onChange={linkState(self, `report.${fieldName}`)}
+        id={fieldName}
+      />
+    ) : (
+      <div>Hiya</div>
+    )}
+  </label>
+)
 
 const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
   if (!hasValidJWT()) {

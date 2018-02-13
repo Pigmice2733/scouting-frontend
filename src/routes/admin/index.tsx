@@ -47,7 +47,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
 
   componentWillMount() {
     getUsers()(
-      users =>
+      ({}, users) =>
         users
           ? this.setState((state: AdminPanelState) => {
               state.users = users.map(

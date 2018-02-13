@@ -5,9 +5,12 @@ import {
   FunctionalComponent,
   ComponentProps
 } from 'preact'
+import { err as errClass } from './error.sss'
 
 interface ResolverProps<T> {
-  data: { [K in keyof T]: (d: (d: T[K]) => any) => any } & {
+  data: {
+    [K in keyof T]: (d: (error: Error | null, d: T[K]) => any) => any
+  } & {
     [key: string]: any
   }
   render: FunctionalComponent<T> | ComponentConstructor<T, any>
@@ -15,6 +18,7 @@ interface ResolverProps<T> {
 
 interface ResolverState {
   data: any
+  error: Error | null
 }
 
 const Resolver = <T extends {}>(props: ResolverProps<T>) =>
@@ -22,21 +26,37 @@ const Resolver = <T extends {}>(props: ResolverProps<T>) =>
     class extends Component<ResolverProps<T>, ResolverState> {
       constructor(props: ResolverProps<T>) {
         super()
-        this.state = { data: {} }
+        this.state = { data: {}, error: null }
 
         Object.keys(props.data).forEach(prop => {
-          if (prop === 'children') return
+          if (prop === 'children') {
+            return
+          }
 
-          props.data[prop]((d: any) =>
+          props.data[prop]((err: Error, d: any) =>
             this.setState((state: ResolverState) => {
+              if (err !== null) {
+                return this.setState({ error: err })
+              }
               state.data[prop] = d
+              return state
             })
           )
         })
       }
 
-      render({ render }: any, { data }: any) {
-        return h(render, data)
+      render({ render }: ResolverProps<T>, { error, data }: ResolverState) {
+        const Render = render
+        return (
+          <div>
+            {error !== null ? (
+              <p class={errClass}>
+                Network Connection Problem: {error.toString()}
+              </p>
+            ) : null}
+            <Render {...data} />
+          </div>
+        )
       }
     },
     props

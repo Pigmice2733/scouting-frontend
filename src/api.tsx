@@ -21,11 +21,17 @@ const queryAPI = (
       : undefined
   })
 
-const get = <T extends {}>(url: string) => async (cb: (data: T) => any) => {
-  cb(JSON.parse(localStorage.getItem(url)) || undefined)
-  const data = await queryAPI(url).then(d => d.json())
-  cb(data)
-  localStorage.setItem(url, JSON.stringify(data))
+const get = <T extends {}>(url: string) => async (
+  cb: (err: Error | null, data: T | null) => any
+) => {
+  cb(null, JSON.parse(localStorage.getItem(url)) || undefined)
+  try {
+    const data = await queryAPI(url).then(d => d.json())
+    cb(null, data)
+    localStorage.setItem(url, JSON.stringify(data))
+  } catch (ex) {
+    cb(ex, undefined)
+  }
 }
 
 const getEvents = () => get<FRCEvent[]>('events')

@@ -29,8 +29,8 @@ const Leaderboard = () => (
               {sortedStats.map((stat, i) => (
                 <tr>
                   <td class={emojiClass}>
-                    {i == 0 ? '👑' : ''}
-                    {i == stats.length - 1 ? '💩' : ''}
+                    {i === 0 ? '👑' : ''}
+                    {i === stats.length - 1 ? '💩' : ''}
                   </td>
                   <td>{stat.reporter}</td>
                   <td>{stat.reports}</td>

@@ -99,21 +99,28 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
           )}
           {!match && <Spinner />}
           <div class={navbar}>
-            <a
-              class={navigationClass}
-              href={`/events/${eventId}/${previousMatchKey}`}
-              data-disabled={Boolean(previousMatchKey)}
-            >
-              <Icon icon="left" /> Previous Match
-            </a>
-
-            <a
-              class={navigationClass}
-              href={`/events/${eventId}/${nextMatchKey}`}
-              disabled={Boolean(previousMatchKey)}
-            >
-              Next Match <Icon icon="right" />
-            </a>
+            {previousMatchKey !== undefined ? (
+              <a
+                class={navigationClass}
+                href={`/events/${eventId}/${previousMatchKey}`}
+                data-disabled={previousMatchKey === undefined}
+              >
+                <Icon icon="left" /> Previous Match
+              </a>
+            ) : (
+              <div />
+            )}
+            {nextMatchKey !== undefined ? (
+              <a
+                class={navigationClass}
+                href={`/events/${eventId}/${nextMatchKey}`}
+                data-disabled={nextMatchKey === undefined}
+              >
+                Next Match <Icon icon="right" />
+              </a>
+            ) : (
+              <div />
+            )}
           </div>
         </div>
       )

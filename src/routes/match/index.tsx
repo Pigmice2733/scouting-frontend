@@ -11,7 +11,8 @@ import {
   blue as blueClass,
   red as redClass,
   score as scoreClass,
-  navigation as navigationClass
+  navigation as navigationClass,
+  navbar
 } from './style.sss'
 import RobotImage from '../../components/robot-image'
 import {
@@ -68,30 +69,7 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             title={`${matchId.toUpperCase()} - ${eventName}`}
             back={`/events/${eventId}`}
           />
-          {previousMatchKey ? (
-            <Button
-              class={navigationClass}
-              href={`/events/${eventId}/${previousMatchKey}`}
-            >
-              <Icon icon="left" /> Previous Match
-            </Button>
-          ) : (
-            <Button class={navigationClass} disabled>
-              <Icon icon="left" /> Previous Match
-            </Button>
-          )}
-          {nextMatchKey ? (
-            <Button
-              class={navigationClass}
-              href={`/events/${eventId}/${nextMatchKey}`}
-            >
-              Next Match <Icon icon="right" />
-            </Button>
-          ) : (
-            <Button class={navigationClass} disabled>
-              Next Match <Icon icon="right" />
-            </Button>
-          )}
+
           <div class={matchNameClass}>
             <h2>{formatMatchId(matchId)}</h2>
           </div>
@@ -120,6 +98,23 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             />
           )}
           {!match && <Spinner />}
+          <div class={navbar}>
+            <a
+              class={navigationClass}
+              href={`/events/${eventId}/${previousMatchKey}`}
+              data-disabled={Boolean(previousMatchKey)}
+            >
+              <Icon icon="left" /> Previous Match
+            </a>
+
+            <a
+              class={navigationClass}
+              href={`/events/${eventId}/${nextMatchKey}`}
+              disabled={Boolean(previousMatchKey)}
+            >
+              Next Match <Icon icon="right" />
+            </a>
+          </div>
         </div>
       )
     }}

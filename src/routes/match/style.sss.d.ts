@@ -6,3 +6,4 @@ export const score: string;
 export const matchName: string;
 export const matchTime: string;
 export const navigation: string;
+export const navbar: string;

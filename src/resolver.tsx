@@ -5,7 +5,7 @@ import {
   FunctionalComponent,
   ComponentProps
 } from 'preact'
-import { err as errClass } from './error.sss'
+import { err as errClass, wrapper as wrapperClass } from './error.sss'
 
 interface ResolverProps<T> {
   data: {
@@ -48,7 +48,7 @@ const Resolver = <T extends {}>(props: ResolverProps<T>) =>
       render({ render }: ResolverProps<T>, { error, data }: ResolverState) {
         const Render = render
         return (
-          <div>
+          <div class={wrapperClass}>
             {error !== null ? (
               <p class={errClass}>
                 Network Connection Problem: {error.toString()}

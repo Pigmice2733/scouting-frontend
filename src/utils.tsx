@@ -73,15 +73,17 @@ const today = Number(new Date())
 
 const sortEvents = (events: FRCEvent[]) =>
   events
-    .map(e => {
-      e.parsedDate = new Date(e.date)
-      e.distanceFromToday = Math.abs(Number(e.parsedDate) - today)
-      return e
-    })
-    .sort((a, b) => (a.distanceFromToday > b.distanceFromToday ? 1 : -1))
+    ? events
+        .map(e => {
+          e.parsedDate = new Date(e.date)
+          e.distanceFromToday = Math.abs(Number(e.parsedDate) - today)
+          return e
+        })
+        .sort((a, b) => (a.distanceFromToday > b.distanceFromToday ? 1 : -1))
+    : []
 
 const sortReporterStats = (stats: { reporter: string; reports: Number }[]) =>
-  stats.sort((a, b) => (a.reports < b.reports ? 1 : -1))
+  stats ? stats.sort((a, b) => (a.reports < b.reports ? 1 : -1)) : []
 
 const parseMatchKey = (name: string) => {
   const [, eventKey, matchKey] = name.match(/([^_]*)_(.*)/)

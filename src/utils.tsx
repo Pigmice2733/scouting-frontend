@@ -72,7 +72,7 @@ const formatMatchId = (matchId: string): string => {
 const today = Number(new Date())
 
 const sortEvents = (events: FRCEvent[]) =>
-  events
+  events !== undefined && events !== null
     ? events
         .map(e => {
           e.parsedDate = new Date(e.date)
@@ -83,7 +83,9 @@ const sortEvents = (events: FRCEvent[]) =>
     : []
 
 const sortReporterStats = (stats: { reporter: string; reports: Number }[]) =>
-  stats ? stats.sort((a, b) => (a.reports < b.reports ? 1 : -1)) : []
+  stats !== undefined && stats !== null
+    ? stats.sort((a, b) => (a.reports < b.reports ? 1 : -1))
+    : []
 
 const parseMatchKey = (name: string) => {
   const [, eventKey, matchKey] = name.match(/([^_]*)_(.*)/)

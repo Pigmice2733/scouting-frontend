@@ -47,7 +47,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
 
   componentWillMount() {
     getUsers()(
-      ({}, users) =>
+      (err, users) =>
         users
           ? this.setState((state: AdminPanelState) => {
               state.users = users.map(
@@ -59,9 +59,10 @@ class AdminPanel extends Component<any, AdminPanelState> {
     )
   }
 
-  render({}, { users }: AdminPanelState) {
+  render(props, { users }: AdminPanelState) {
     if (!hasValidJWT()) {
       route('/login')
+      return
     }
 
     const userInfo = getUserInfo()

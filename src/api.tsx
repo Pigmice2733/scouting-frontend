@@ -57,7 +57,7 @@ const authenticate = (credentials: {
 }): Promise<string> =>
   queryAPI('authenticate', 'POST', credentials).then(async resp => {
     if (resp.status < 200 || resp.status >= 300) {
-      throw new Error(resp.statusText)
+      throw new Error(resp.status)
     }
     return (await resp.json()).jwt
   })

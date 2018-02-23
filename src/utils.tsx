@@ -53,13 +53,23 @@ const parseTeamNumber = (teamId: string) => {
 const sortTeams = (a: string, b: string) =>
   parseTeamNumber(a).num > parseTeamNumber(b).num
 
-const sortSchemaKeys = (keys: string[]) => {
-  keys.sort((a, b) => (a.startsWith('auto') ? -1 : 1))
-  keys.sort(
-    (a, b) => (!a.startsWith('auto') && !a.startsWith('teleop') ? 1 : -1)
-  )
-  return keys
-}
+const sortSchemaKeys = (keys: string[]) =>
+  keys.sort((a, b) => {
+    a = a.toLowerCase()
+    b = b.toLowerCase()
+
+    if (a.startsWith('auto')) {
+      return -1
+    } else if (b.startsWith('auto')) {
+      return 1
+    } else if (a.startsWith('teleop')) {
+      return -1
+    } else if (b.startsWith('teleop')) {
+      return 1
+    }
+
+    return -1
+  })
 
 const formatMatchId = (matchId: string): string => {
   const id = matchId.toUpperCase()

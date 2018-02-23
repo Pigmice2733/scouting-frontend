@@ -53,6 +53,9 @@ const parseTeamNumber = (teamId: string) => {
 const sortTeams = (a: string, b: string) =>
   parseTeamNumber(a).num > parseTeamNumber(b).num
 
+const sortSchemaKeys = (keys: string[]) =>
+  keys.sort((a, b) => (a.toLowerCase().includes('auto') ? -1 : 1))
+
 const formatMatchId = (matchId: string): string => {
   const id = matchId.toUpperCase()
   const endNumber = /[\D]*([\d]*)$/.exec(id)[1]
@@ -136,6 +139,7 @@ export {
   toPercentage,
   toPrettyNumber,
   sortReporterStats,
+  sortSchemaKeys,
   eventTypeName,
   abbreviate,
   sortTeams

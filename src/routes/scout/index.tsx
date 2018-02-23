@@ -7,7 +7,7 @@ import Match from '../../models/match'
 import Schema from '../../models/schema'
 
 import { getEvent, getMatch, getSchema, submitReport } from '../../api'
-import { camelToTitle, hasValidJWT } from '../../utils'
+import { camelToTitle, hasValidJWT, sortSchemaKeys } from '../../utils'
 
 import Resolver from '../../resolver'
 
@@ -106,6 +106,9 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                 return state
               })
             }
+
+            const sortedKeys = sortSchemaKeys(Object.keys(schema || []))
+            console.log(sortedKeys)
             return (
               <div class={scout}>
                 <Header
@@ -121,7 +124,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                     />
                   )}
                   <div class={fields}>
-                    {Object.keys(schema || {}).map(fieldName => (
+                    {sortedKeys.map(fieldName => (
                       <Field
                         fieldName={fieldName}
                         fieldType={schema[fieldName]}

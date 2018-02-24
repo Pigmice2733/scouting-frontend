@@ -43,18 +43,18 @@ const getEvent = (eventKey: string) => async (
     if (err) {
       cb(err, data)
     } else {
-      if (data != null && data.matches != null) {
+      if (data !== undefined && data.matches != undefined) {
         data.matches = data.matches
-          .map((value: Match) => {
+          .map(value => {
             if (!(value.time instanceof Date)) {
               value.time = new Date(value.actualTime || value.predictedTime)
             }
             return value
           })
-          .sort((a: Match, b: Match) => {
+          .sort((a, b) => {
             return (
-              (a.time == null ? 0 : a.time.getTime()) -
-              (b.time == null ? 0 : b.time.getTime())
+              (a.time === null ? 0 : a.time.getTime()) -
+              (b.time === null ? 0 : b.time.getTime())
             )
           })
       }

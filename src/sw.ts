@@ -15,8 +15,6 @@ self.addEventListener('install', (e: InstallEvent) => {
 })
 
 self.addEventListener('fetch', (event: FetchEvent) => {
-  // don't worry about non-GET requests
-  // @TODO hold these somewhere until reconnection
   const { request } = event
   if (request.method !== 'GET') {
     return

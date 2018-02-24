@@ -3,10 +3,27 @@ import Match from './models/match'
 import Analysis from './models/analysis'
 import Schema from './models/schema'
 import UserInfo from './models/user-info'
+import idbKeyval from 'idb-keyval'
 
 import { hasValidJWT, getJWT } from './utils'
 
 const endpoint = 'https://api.pigmice.ga'
+
+interface req {
+  path: string
+  method: string
+  body?: string
+}
+
+const addRequestToIdb = async (request: req) => {
+  const currentRequests = (await idbKeyval.get('cachedRequests')) as
+    | req[]
+    | undefined
+  if (currentRequests === undefined) {
+    return idbKeyval.set('cachedRequests', [request])
+  }
+  return idbKeyval.set('cachedRequests', currentRequests.concat(request))
+}
 
 const queryAPI = (
   path: string,
@@ -19,6 +36,11 @@ const queryAPI = (
     headers: hasValidJWT()
       ? new Headers({ Authentication: `Bearer ${getJWT()}` })
       : undefined
+  }).catch((err: Error) => {
+    if (method !== 'GET') {
+      return addRequestToIdb({ path, method, body })
+    }
+    throw err
   })
 
 const get = <T extends {}>(url: string) => async (
@@ -100,5 +122,7 @@ export {
   authenticate,
   submitReport,
   updateUser,
-  createUser
+  createUser,
+  queryAPI,
+  req
 }

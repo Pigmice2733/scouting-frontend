@@ -2,7 +2,7 @@ import { h } from 'preact'
 import Resolver from '../../resolver'
 import Header from '../../components/header'
 import { getEvent } from '../../api'
-import { parseMatchKey } from '../../utils'
+import { parseMatchKey, formatMatchId } from '../../utils'
 import { event as eventClass } from './style.sss'
 import List from '../../components/list'
 import Spinner from '../../components/spinner'
@@ -37,7 +37,7 @@ const Event = ({ eventId }: { eventId: string }) => (
                 return (
                   <li key={m.key}>
                     <a href={`/events/${event.key}/${matchKey}`}>
-                      {matchKey.toUpperCase()}
+                      {formatMatchId(matchKey)}
                     </a>
                   </li>
                 )

@@ -36,8 +36,6 @@ const get = <T extends {}>(url: string) => async (
 
 const getEvents = () => get<FRCEvent[]>('events')
 
-const getEventOld = (eventKey: string) => get<FRCEvent>(`events/${eventKey}`)
-
 const getEvent = (eventKey: string) => async (
   cb: (err: Error | null, data: FRCEvent | null) => any
 ) => {
@@ -45,19 +43,20 @@ const getEvent = (eventKey: string) => async (
     if (err) {
       cb(err, data)
     } else {
-      if (data.matches != null) {
-        data.matches.forEach((value: Match) => {
-          // For some reason .time is sometimes a String
-          if (value.time == null || !(value.time instanceof Date)) {
-            value.time = new Date(value.actualTime || value.predictedTime)
-          }
-        })
-        data.matches.map(() => {}).sort(function(a: Match, b: Match) {
-          return (
-            (a.time == null ? 0 : a.time.getTime()) -
-            (b.time == null ? 0 : b.time.getTime())
-          )
-        })
+      if (data != null && data.matches != null) {
+        data.matches = data.matches
+          .map((value: Match) => {
+            if (!(value.time instanceof Date)) {
+              value.time = new Date(value.actualTime || value.predictedTime)
+            }
+            return value
+          })
+          .sort((a: Match, b: Match) => {
+            return (
+              (a.time == null ? 0 : a.time.getTime()) -
+              (b.time == null ? 0 : b.time.getTime())
+            )
+          })
       }
       cb(null, data)
     }

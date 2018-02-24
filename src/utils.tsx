@@ -32,8 +32,7 @@ const formatTime = (date: Date): string =>
   date.toLocaleTimeString(undefined, {
     hour12: true,
     hour: '2-digit',
-    minute: '2-digit',
-    timeZoneName: 'short'
+    minute: '2-digit'
   })
 
 const formatDate = (date: Date): string =>

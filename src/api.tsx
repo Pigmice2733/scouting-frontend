@@ -20,9 +20,11 @@ const addRequestToIdb = async (request: req) => {
     | req[]
     | undefined
   if (currentRequests === undefined) {
-    return idbKeyval.set('cachedRequests', [request])
+    await idbKeyval.set('cachedRequests', [request])
+    return 1
   }
-  return idbKeyval.set('cachedRequests', currentRequests.concat(request))
+  await idbKeyval.set('cachedRequests', currentRequests.concat(request))
+  return currentRequests.length + 1
 }
 
 const queryAPI = (
@@ -36,9 +38,19 @@ const queryAPI = (
     headers: hasValidJWT()
       ? new Headers({ Authentication: `Bearer ${getJWT()}` })
       : undefined
-  }).catch((err: Error) => {
+  }).catch(async (err: Error) => {
     if (method !== 'GET') {
-      return addRequestToIdb({ path, method, body })
+      const numRequests = await addRequestToIdb({ path, method, body })
+      if (
+        'Notification' in window &&
+        (await Notification.requestPermission())
+      ) {
+        new Notification(
+          `Will sync ${numRequests} ${
+            numRequests === 1 ? 'report' : 'reports'
+          } when online`
+        )
+      }
     }
     throw err
   })

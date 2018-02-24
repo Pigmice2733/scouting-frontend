@@ -9,14 +9,19 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(console.error)
 }
 
-if (navigator.onLine) {
-  idbKeyval
-    .get('cachedRequests')
-    .then((requests: req[]) =>
-      Promise.all(requests.map(re => queryAPI(re.path, re.method, re.body)))
+const syncRequests = async () => {
+  const requests = (await idbKeyval.get('cachedRequests')) as req[]
+  await Promise.all(requests.map(re => queryAPI(re.path, re.method, re.body)))
+  await idbKeyval.set('cachedRequests', [])
+  if ('Notification' in window && (await Notification.requestPermission())) {
+    new Notification(
+      `Synced ${requests.length} ${
+        requests.length === 1 ? 'report' : 'reports'
+      }`
     )
-    .then(() => idbKeyval.set('cachedRequests', []))
-    .then(() => {
-      console.log('synced them all')
-    })
+  }
+}
+
+if (navigator.onLine) {
+  syncRequests()
 }

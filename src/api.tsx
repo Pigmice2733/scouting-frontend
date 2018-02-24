@@ -51,12 +51,11 @@ const getEvent = (eventKey: string) => async (
             }
             return value
           })
-          .sort((a, b) => {
-            return (
+          .sort(
+            (a, b) =>
               (a.time === null ? 0 : a.time.getTime()) -
               (b.time === null ? 0 : b.time.getTime())
-            )
-          })
+          )
       }
       cb(null, data)
     }

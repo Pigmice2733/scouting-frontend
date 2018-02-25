@@ -71,13 +71,20 @@ const formatMatchId = (matchId: string): string => {
 
 const toRadians = (deg: number) => deg * (Math.PI / 180)
 
-const getDistanceFromLatLongInKm = (
+/**
+ * @param lat1 Latitude of point 1
+ * @param lon1 Longitude of point 1
+ * @param lat2 Latitude of point 2
+ * @param lon2 Longitude of point 2
+ * @returns Distance between the 2 points in km
+ */
+const distanceBetween = (
   lat1: number,
   lon1: number,
   lat2: number,
   lon2: number
 ) => {
-  const R = 6371 // radius of the earth in km
+  const earthRadius = 6371
   const dLat = toRadians(lat2 - lat1)
   const dLon = toRadians(lon2 - lon1)
   const a =
@@ -86,9 +93,8 @@ const getDistanceFromLatLongInKm = (
       Math.cos(toRadians(lat2)) *
       Math.sin(dLon / 2) *
       Math.sin(dLon / 2)
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
-  const d = R * c // distance in km
-  return d
+  const angularDistance = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  return earthRadius * angularDistance
 }
 
 const today = Number(new Date())
@@ -103,7 +109,7 @@ const sortEvents = (events: FRCEvent[], coords?: Coordinates) =>
           )
 
           if (coords !== undefined) {
-            e.distance = getDistanceFromLatLongInKm(
+            e.distance = distanceBetween(
               coords.latitude,
               coords.longitude,
               e.lat,

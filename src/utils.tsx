@@ -69,17 +69,61 @@ const formatMatchId = (matchId: string): string => {
   return id
 }
 
+const toRadians = (deg: number) => deg * (Math.PI / 180)
+
+const getDistanceFromLatLongInKm = (
+  lat1: number,
+  lon1: number,
+  lat2: number,
+  lon2: number
+) => {
+  var R = 6371 // radius of the earth in km
+  var dLat = toRadians(lat2 - lat1)
+  var dLon = toRadians(lon2 - lon1)
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(toRadians(lat1)) *
+      Math.cos(toRadians(lat2)) *
+      Math.sin(dLon / 2) *
+      Math.sin(dLon / 2)
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a))
+  var d = R * c // distance in km
+  return d
+}
+
 const today = Number(new Date())
 
-const sortEvents = (events: FRCEvent[]) =>
+const sortEvents = (events: FRCEvent[], coords?: Coordinates) =>
   events !== undefined && events !== null
     ? events
         .map(e => {
           e.parsedDate = new Date(e.date)
-          e.distanceFromToday = Math.abs(Number(e.parsedDate) - today)
+          e.distanceFromToday = Math.round(
+            Math.abs(Number(e.parsedDate) - today) / 1000 / 60 / 60 / 24 / 7
+          )
+
+          if (coords !== undefined) {
+            e.distance = getDistanceFromLatLongInKm(
+              coords.latitude,
+              coords.longitude,
+              e.lat,
+              e.long
+            )
+          }
+
           return e
         })
-        .sort((a, b) => (a.distanceFromToday > b.distanceFromToday ? 1 : -1))
+        .sort((a, b) => {
+          if (a.distanceFromToday > b.distanceFromToday) {
+            return 1
+          } else if (b.distanceFromToday > a.distanceFromToday) {
+            return -1
+          } else if (a.distance > b.distance) {
+            return 1
+          }
+
+          return -1
+        })
     : []
 
 const sortReporterStats = (stats: { reporter: string; reports: Number }[]) =>

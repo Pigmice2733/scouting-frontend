@@ -33,6 +33,7 @@ interface HomeProps {
 interface HomeState {
   query: string
   loggedIn: boolean
+  coords?: Coordinates
 }
 
 const eventTypeClassMap = new Map<Number, string>([
@@ -58,6 +59,12 @@ export default () => (
 
         componentWillMount() {
           this.setState({ loggedIn: hasValidJWT() })
+
+          if ('geolocation' in navigator) {
+            navigator.geolocation.getCurrentPosition(pos =>
+              this.setState({ coords: pos.coords })
+            )
+          }
         }
 
         queryChanged = (e: SearchInputEvent) => {
@@ -73,11 +80,13 @@ export default () => (
           return eventTypeClassMap.get(eventType)
         }
 
-        render({ events }: HomeProps, { query, loggedIn }: HomeState) {
-          const sortedEvents = sortEvents(events || [])
-          const matchingEvents = sortedEvents.filter(e =>
+        render({ events }: HomeProps, { query, loggedIn, coords }: HomeState) {
+          const matchingEvents = events.filter(e =>
             e.name.toLowerCase().includes(query.toLowerCase())
           )
+
+          const sortedEvents = sortEvents(matchingEvents, coords)
+
           return (
             <div class={home}>
               <Header
@@ -102,7 +111,7 @@ export default () => (
                 'No matching events'
               ) : (
                 <List>
-                  {matchingEvents.map((e: FRCEvent) => (
+                  {sortedEvents.map((e: FRCEvent) => (
                     <li key={e.key}>
                       <a href={`/events/${e.key}`}>
                         {e.shortName || e.name}

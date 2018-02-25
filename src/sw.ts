@@ -27,7 +27,6 @@ self.addEventListener('fetch', (event: FetchEvent) => {
     event.respondWith(
       fetch(request)
         .then(res => {
-          console.log(`saving request to ${reqPath}`)
           event.waitUntil(
             (async () => {
               const cloned = await res.clone()
@@ -40,10 +39,8 @@ self.addEventListener('fetch', (event: FetchEvent) => {
         .catch(async () => {
           const res = await caches.match(event.request)
           if (res) {
-            console.log(`responding from cache for ${reqPath}`)
             return res
           }
-          console.log(await (await caches.open(cacheName)).keys())
           throw new Error(`${reqPath} not found in cache`)
         })
     )

@@ -94,7 +94,6 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
           }
           render({ event, match, schema }: ScoutProps, { report }: ScoutState) {
             const eventName = (event && event.shortName) || eventId
-            console.log(this.state)
             if (schema && Object.keys(report).length === 0) {
               this.setState((state: ScoutState) => {
                 Object.keys(schema).map(fieldName => {
@@ -108,7 +107,6 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
             }
 
             const sortedKeys = sortSchemaKeys(Object.keys(schema || []))
-            console.log(sortedKeys)
             return (
               <div class={scout}>
                 <Header

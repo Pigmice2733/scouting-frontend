@@ -81,8 +81,8 @@ export default () => (
         }
 
         render({ events }: HomeProps, { query, loggedIn, coords }: HomeState) {
-          const matchingEvents = events.filter(e =>
-            e.name.toLowerCase().includes(query.toLowerCase())
+          const matchingEvents = (events !== undefined ? events : []).filter(
+            e => e.name.toLowerCase().includes(query.toLowerCase())
           )
 
           const sortedEvents = sortEvents(matchingEvents, coords)

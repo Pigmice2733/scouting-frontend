@@ -72,10 +72,6 @@ const formatMatchId = (matchId: string): string => {
 const toRadians = (deg: number) => deg * (Math.PI / 180)
 
 /**
- * @param lat1 Latitude of point 1
- * @param lon1 Longitude of point 1
- * @param lat2 Latitude of point 2
- * @param lon2 Longitude of point 2
  * @returns Distance between the 2 points in km
  */
 const distanceBetween = (

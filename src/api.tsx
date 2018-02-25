@@ -41,16 +41,6 @@ const queryAPI = (
   }).catch(async (err: Error) => {
     if (method !== 'GET') {
       const numRequests = await addRequestToIdb({ path, method, body })
-      if (
-        'Notification' in window &&
-        (await Notification.requestPermission())
-      ) {
-        new Notification(
-          `Will sync ${numRequests} ${
-            numRequests === 1 ? 'report' : 'reports'
-          } when online`
-        )
-      }
     }
     throw err
   })

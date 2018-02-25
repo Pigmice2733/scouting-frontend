@@ -73,6 +73,7 @@ const toRadians = (deg: number) => deg * (Math.PI / 180)
 
 /**
  * @returns Distance between the 2 points in km
+ * More info at https://www.movable-type.co.uk/scripts/latlong.html
  */
 const distanceBetween = (
   lat1: number,

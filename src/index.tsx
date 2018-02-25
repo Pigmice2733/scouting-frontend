@@ -11,7 +11,9 @@ if ('serviceWorker' in navigator) {
 
 const syncRequests = async () => {
   const requests = (await idbKeyval.get('cachedRequests')) as req[]
-  await Promise.all(requests.map(re => queryAPI(re.path, re.method, re.body)))
+  if (requests !== undefined) {
+    await Promise.all(requests.map(re => queryAPI(re.path, re.method, re.body)))
+  }
   await idbKeyval.set('cachedRequests', [])
 }
 

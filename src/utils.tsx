@@ -118,8 +118,9 @@ const sortEvents = (events: FRCEvent[], coords?: Coordinates) =>
     ? events
         .map(e => {
           e.parsedDate = new Date(e.date)
+          e.parsedEndDate = new Date(e.endDate)
           e.distanceFromToday = Math.round(
-            Math.abs(Number(e.parsedDate) - today) / 1000 / 60 / 60 / 24 / 7
+            (Number(e.parsedDate) - today) / 1000 / 60 / 60 / 24 / 7
           )
 
           if (coords !== undefined) {
@@ -134,7 +135,11 @@ const sortEvents = (events: FRCEvent[], coords?: Coordinates) =>
           return e
         })
         .sort((a, b) => {
-          if (a.distanceFromToday > b.distanceFromToday) {
+          if (today > Number(a.parsedEndDate)) {
+            return 1
+          } else if (today > Number(b.parsedEndDate)) {
+            return -1
+          } else if (a.distanceFromToday > b.distanceFromToday) {
             return 1
           } else if (b.distanceFromToday > a.distanceFromToday) {
             return -1

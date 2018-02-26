@@ -67,7 +67,11 @@ const getEvent = (eventKey: string) => async (
     if (err) {
       cb(err, data)
     } else {
-      if (data !== undefined && data.matches !== undefined) {
+      if (
+        data !== undefined &&
+        data.matches !== undefined &&
+        data.matches !== null
+      ) {
         data.matches = data.matches
           .map(value => {
             if (!(value.time instanceof Date)) {

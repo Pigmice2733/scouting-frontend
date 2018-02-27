@@ -8,7 +8,8 @@ import {
   hasValidJWT,
   getUserInfo,
   eventTypeName,
-  abbreviate
+  abbreviate,
+  getLocation
 } from '../../utils'
 import Spinner from '../../components/spinner'
 import List from '../../components/list'
@@ -61,9 +62,9 @@ export default () => (
           this.setState({ loggedIn: hasValidJWT() })
 
           if ('geolocation' in navigator) {
-            navigator.geolocation.getCurrentPosition(pos =>
+            getLocation((pos: Position) => {
               this.setState({ coords: pos.coords })
-            )
+            })
           }
         }
 

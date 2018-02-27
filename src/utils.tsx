@@ -111,6 +111,30 @@ const distanceBetween = (
   return earthRadius * angularDistance
 }
 
+const cloneAsObject = (obj: Object) => {
+  if (obj === null || !(obj instanceof Object)) {
+    return obj
+  }
+
+  let temp = obj instanceof Array ? [] : {}
+  for (let key in obj) {
+    temp[key] = cloneAsObject(obj[key])
+  }
+  return temp
+}
+
+const getLocation = (cb: (pos: Position) => any) => {
+  const cachedLocation = localStorage.getItem('position')
+  if (cachedLocation !== null) {
+    cb(JSON.parse(cachedLocation))
+  }
+
+  navigator.geolocation.getCurrentPosition(pos => {
+    localStorage.setItem('position', JSON.stringify(cloneAsObject(pos)))
+    cb(pos)
+  })
+}
+
 const today = Number(new Date())
 
 const sortEvents = (events: FRCEvent[], coords?: Coordinates) =>
@@ -201,5 +225,6 @@ export {
   sortSchemaKeys,
   eventTypeName,
   abbreviate,
-  sortTeams
+  sortTeams,
+  getLocation
 }

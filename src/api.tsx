@@ -118,11 +118,13 @@ const submitReport = (
   team: string,
   eventKey: string,
   matchKey: string,
-  stats: { [key: string]: boolean | number }
+  stats: { [key: string]: boolean | number },
+  notes?: string
 ) =>
   queryAPI(`reports/${eventKey}/${eventKey}_${matchKey}`, 'PUT', {
     team,
-    stats
+    stats,
+    notes
   })
 
 const getAllianceAnalysis = (

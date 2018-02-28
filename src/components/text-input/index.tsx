@@ -18,10 +18,20 @@ interface TextInputProps {
   placeholder?: string
   type?: string
   value?: string
+  className?: string
 }
 
-const TextInput = ({ placeholder, type, value, onInput }: TextInputProps) => (
-  <input class={input} {...{ placeholder, type, value, onInput }} />
+const TextInput = ({
+  placeholder,
+  type,
+  value,
+  onInput,
+  className
+}: TextInputProps) => (
+  <input
+    class={`${input} ${className}`}
+    {...{ placeholder, type, value, onInput }}
+  />
 )
 
 export default TextInput

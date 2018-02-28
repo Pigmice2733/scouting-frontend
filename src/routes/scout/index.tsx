@@ -14,10 +14,11 @@ import Resolver from '../../resolver'
 import Header from '../../components/header'
 import Toggle from '../../components/toggle'
 import NumberPicker from '../../components/number-picker'
+import TextInput from '../../components/text-input'
 import Button from '../../components/button'
 import TeamPicker from '../../components/team-picker'
 
-import { scout, fields, scoutMain } from './style.sss'
+import { scout, fields, scoutMain, notes } from './style.sss'
 
 interface ScoutProps {
   event: FRCEvent
@@ -30,6 +31,7 @@ interface ScoutState {
   report: {
     [key: string]: number | boolean
   }
+  notes: string
 }
 
 const Field = ({
@@ -78,15 +80,18 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
             super()
             this.state = {
               report: {},
-              team: ''
+              team: '',
+              notes: ''
             }
           }
           submit = () => {
+            console.log(this.state.names, this.state.notes !== '')
             submitReport(
               this.state.team || this.props.match.redAlliance[0],
               eventId,
               matchId,
-              this.state.report
+              this.state.report,
+              this.state.notes !== '' ? this.state.notes : undefined
             ).then(() => route(`/events/${eventId}/${matchId}`))
           }
           changeTeam = (team: string) => {
@@ -130,6 +135,17 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                       />
                     ))}
                   </div>
+                  <TextInput
+                    placeholder="Notes"
+                    value={this.state.notes}
+                    onInput={e =>
+                      this.setState((state: ScoutState) => {
+                        state.notes = e.target.value
+                        return state
+                      })
+                    }
+                    className={notes}
+                  />
                   <Button onClick={this.submit}>Submit Report</Button>
                 </div>
               </div>

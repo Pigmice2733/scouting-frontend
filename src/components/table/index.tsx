@@ -8,7 +8,7 @@ import {
   formatTeamNumber,
   sortTeams
 } from '../../utils'
-import { table, statColumn } from './style.sss'
+import { table, statColumn, note } from './style.sss'
 
 interface TableProps {
   analyses: Analysis[]
@@ -58,6 +58,7 @@ class Table extends Component<TableProps, TableState> {
                   </div>
                 </th>
               ))}
+            <th key="notes">Notes</th>
           </tr>
           {analyses
             .sort((a, b) => {
@@ -81,6 +82,11 @@ class Table extends Component<TableProps, TableState> {
                       </td>
                     )
                   })}
+                <td key="notes">
+                  {Object.keys(analysis.notes).map(key => (
+                    <span class={note}>{analysis.notes[key]}</span>
+                  ))}
+                </td>
               </tr>
             ))}
         </table>

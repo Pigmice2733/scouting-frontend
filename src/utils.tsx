@@ -111,33 +111,25 @@ const distanceBetween = (
   return earthRadius * angularDistance
 }
 
-const cloneAsObject = (obj: Object) => {
-  if (obj === null || !(obj instanceof Object)) {
-    return obj
-  }
-
-  let temp = obj instanceof Array ? [] : {}
-  for (let key in obj) {
-    temp[key] = cloneAsObject(obj[key])
-  }
-  return temp
-}
-
-const getLocation = (cb: (pos: Position) => any) => {
-  const cachedLocation = localStorage.getItem('position')
-  if (cachedLocation !== null) {
-    cb(JSON.parse(cachedLocation))
+const getCoords = (cb: (pos: { lat: number; long: number }) => any) => {
+  const cachedCoords = localStorage.getItem('coords')
+  if (cachedCoords !== null) {
+    cb(JSON.parse(cachedCoords))
   }
 
   navigator.geolocation.getCurrentPosition(pos => {
-    localStorage.setItem('position', JSON.stringify(cloneAsObject(pos)))
-    cb(pos)
+    const coords = { lat: pos.coords.latitude, long: pos.coords.longitude }
+    localStorage.setItem('coords', JSON.stringify(coords))
+    cb(coords)
   })
 }
 
 const today = Number(new Date())
 
-const sortEvents = (events: FRCEvent[], coords?: Coordinates) =>
+const sortEvents = (
+  events: FRCEvent[],
+  coords?: { lat: number; long: number }
+) =>
   events !== undefined && events !== null
     ? events
         .map(e => {
@@ -148,12 +140,7 @@ const sortEvents = (events: FRCEvent[], coords?: Coordinates) =>
           )
 
           if (coords !== undefined) {
-            e.distance = distanceBetween(
-              coords.latitude,
-              coords.longitude,
-              e.lat,
-              e.long
-            )
+            e.distance = distanceBetween(coords.lat, coords.long, e.lat, e.long)
           }
 
           return e
@@ -226,5 +213,5 @@ export {
   eventTypeName,
   abbreviate,
   sortTeams,
-  getLocation
+  getCoords
 }

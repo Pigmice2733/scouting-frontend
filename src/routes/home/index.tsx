@@ -9,7 +9,7 @@ import {
   getUserInfo,
   eventTypeName,
   abbreviate,
-  getLocation
+  getCoords
 } from '../../utils'
 import Spinner from '../../components/spinner'
 import List from '../../components/list'
@@ -34,7 +34,7 @@ interface HomeProps {
 interface HomeState {
   query: string
   loggedIn: boolean
-  coords?: Coordinates
+  coords?: { lat: number; long: number }
 }
 
 const eventTypeClassMap = new Map<Number, string>([
@@ -62,8 +62,8 @@ export default () => (
           this.setState({ loggedIn: hasValidJWT() })
 
           if ('geolocation' in navigator) {
-            getLocation((pos: Position) => {
-              this.setState({ coords: pos.coords })
+            getCoords((coords: { lat: number; long: number }) => {
+              this.setState({ coords })
             })
           }
         }

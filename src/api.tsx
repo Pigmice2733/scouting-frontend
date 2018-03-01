@@ -99,7 +99,7 @@ const getMatch = (eventKey: string, matchKey: string) =>
 const getSchema = () => get<Schema>('schema')
 
 const getReporterStats = () =>
-  get<{ reporter: string; reports: Number }[]>('leaderboard')
+  get<{ reporter: string; reports: number }[]>('leaderboard')
 
 const getUsers = () => get<UserInfo[]>('users')
 

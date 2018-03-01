@@ -23,7 +23,9 @@ import {
   dcmp,
   cmp,
   off,
-  pre
+  pre,
+  navigationDrawerButtonContainer,
+  navigationDrawerButton
 } from './style.sss'
 import Icon from '../../components/icon'
 
@@ -93,9 +95,11 @@ export default () => (
               <Header
                 contents={
                   <div class={headerContents}>
-                    <a href="/leaderboard">
-                      <Icon icon="trophy" />
-                    </a>
+                    <span class={navigationDrawerButtonContainer}>
+                      <a class={navigationDrawerButton} href="/leaderboard">
+                        <Icon fill="#FFF" icon="trophy" />
+                      </a>
+                    </span>
                     <SearchInput
                       onInput={this.queryChanged}
                       placeholder="Search for events"

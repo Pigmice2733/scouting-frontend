@@ -6,3 +6,4 @@ export const cmp: string;
 export const pre: string;
 export const off: string;
 export const adminPanel: string;
+export const navigationDrawerButton: string;

@@ -25,6 +25,7 @@ import {
   off,
   pre
 } from './style.sss'
+import Icon from '../../components/icon'
 
 interface HomeProps {
   events: FRCEvent[]
@@ -92,6 +93,9 @@ export default () => (
               <Header
                 contents={
                   <div class={headerContents}>
+                    <a href="/leaderboard">
+                      <Icon icon="trophy" />
+                    </a>
                     <SearchInput
                       onInput={this.queryChanged}
                       placeholder="Search for events"

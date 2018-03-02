@@ -7,7 +7,12 @@ import Match from '../../models/match'
 import Schema from '../../models/schema'
 
 import { getEvent, getMatch, getSchema, submitReport } from '../../api'
-import { camelToTitle, hasValidJWT, sortSchemaKeys } from '../../utils'
+import {
+  camelToTitle,
+  hasValidJWT,
+  sortSchemaKeys,
+  capitalize
+} from '../../utils'
 
 import Resolver from '../../resolver'
 
@@ -44,7 +49,9 @@ const Field = ({
   self: any
 }) => (
   <label for={fieldName}>
-    <span>{camelToTitle(fieldName)}</span>
+    <span>
+      {camelToTitle(fieldName.replace('auto', '').replace('teleop', ''))}
+    </span>
     {fieldType === 'bool' ? (
       <Toggle
         onChange={linkState(self, `report.${fieldName}`, 'target.checked')}
@@ -57,7 +64,7 @@ const Field = ({
         id={fieldName}
       />
     ) : (
-      <div>Hiya</div>
+      <div>Unrecognized Field Type for {fieldName}</div>
     )}
   </label>
 )
@@ -126,15 +133,18 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                       blueAlliance={match.blueAlliance}
                     />
                   )}
-                  <div class={fields}>
-                    {sortedKeys.map(fieldName => (
-                      <Field
-                        fieldName={fieldName}
-                        fieldType={schema[fieldName]}
-                        self={this}
-                      />
-                    ))}
-                  </div>
+                  {['auto', 'teleop', 'general'].map(sectionName => (
+                    <div class={fields}>
+                      <h2>{capitalize(sectionName)}</h2>
+                      {sortedKeys[sectionName].map(fieldName => (
+                        <Field
+                          fieldName={fieldName}
+                          fieldType={schema[fieldName]}
+                          self={this}
+                        />
+                      ))}
+                    </div>
+                  ))}
                   <TextInput
                     placeholder="Notes"
                     value={this.state.notes}

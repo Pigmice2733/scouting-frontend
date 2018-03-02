@@ -52,23 +52,27 @@ const parseTeamNumber = (teamId: string) => {
 const sortTeams = (a: string, b: string) =>
   parseTeamNumber(a).num > parseTeamNumber(b).num
 
-const sortSchemaKeys = (keys: string[]) =>
-  keys.sort((a, b) => {
-    a = a.toLowerCase()
-    b = b.toLowerCase()
+interface SortedSchemaKeys {
+  auto: string[]
+  teleop: string[]
+  general: string[]
+  [key: string]: string[]
+}
 
-    if (a.startsWith('auto')) {
-      return -1
-    } else if (b.startsWith('auto')) {
-      return 1
-    } else if (a.startsWith('teleop')) {
-      return -1
-    } else if (b.startsWith('teleop')) {
-      return 1
-    }
-
-    return -1
-  })
+const sortSchemaKeys = (keys: string[]): SortedSchemaKeys =>
+  keys.reduce(
+    (acc, val) => {
+      if (val.startsWith('auto')) {
+        acc.auto.push(val)
+      } else if (val.startsWith('teleop')) {
+        acc.teleop.push(val)
+      } else {
+        acc.general.push(val)
+      }
+      return acc
+    },
+    { auto: [], teleop: [], general: [] }
+  )
 
 const formatMatchId = (matchId: string): string => {
   const id = matchId.toUpperCase()
@@ -195,6 +199,8 @@ const abbreviate = (str: string) =>
     .map(v => v[0].toUpperCase())
     .join('')
 
+const capitalize = (str: string) => str[0].toUpperCase() + str.slice(1)
+
 export {
   hasValidJWT,
   getJWT,
@@ -213,5 +219,6 @@ export {
   eventTypeName,
   abbreviate,
   sortTeams,
-  getCoords
+  getCoords,
+  capitalize
 }

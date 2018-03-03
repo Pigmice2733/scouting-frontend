@@ -20,6 +20,7 @@ const Header = ({ title, back, contents, verify }: HeaderProps) => (
             ? route(back)
             : null
         }
+        href="#"
       >
         <Icon icon="left" />
       </a>

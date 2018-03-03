@@ -92,7 +92,6 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
             }
           }
           submit = () => {
-            console.log(this.state.names, this.state.notes !== '')
             submitReport(
               this.state.team || this.props.match.redAlliance[0],
               eventId,
@@ -124,6 +123,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                 <Header
                   title={`Scout - ${matchId.toUpperCase()} - ${eventName}`}
                   back={`/events/${eventId}/${matchId}`}
+                  verify
                 />
                 <div class={scoutMain}>
                   {match && (

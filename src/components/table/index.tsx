@@ -70,7 +70,15 @@ class Table extends Component<TableProps, TableState> {
             })
             .map(analysis => (
               <tr key={analysis.team}>
-                <td key="teamNumber">{formatTeamNumber(analysis.team)}</td>
+                <td key="teamNumber">
+                  <a
+                    href={`https://www.thebluealliance.com/team/${formatTeamNumber(
+                      analysis.team
+                    )}/${new Date().getFullYear()}`}
+                  >
+                    {formatTeamNumber(analysis.team)}
+                  </a>
+                </td>
                 {schema &&
                   Object.keys(schema).map(stat => {
                     const s = analysis.stats[stat]

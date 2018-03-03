@@ -14,7 +14,7 @@ const TeamPicker = ({
   blueAlliance
 }: TeamPickerProps) => (
   <label class={teamPicker}>
-    <span>Team</span>
+    <h2>Team</h2>
     <select onChange={e => onChange(e.target.value)}>
       {redAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}
       {blueAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}

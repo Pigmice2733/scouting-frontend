@@ -15,12 +15,16 @@ const Header = ({ title, back, contents, verify }: HeaderProps) => (
     {back && (
       <a
         class={backClass}
-        onClick={() =>
-          !verify || confirm('Are you sure you want to leave?')
-            ? route(back)
-            : null
-        }
-        href="#"
+        onClick={e => {
+          if (verify === true) {
+            e.stopImmediatePropagation()
+            e.preventDefault()
+            if (confirm('Are you sure you want to leave?')) {
+              route(back)
+            }
+          }
+        }}
+        href={back}
       >
         <Icon icon="left" />
       </a>

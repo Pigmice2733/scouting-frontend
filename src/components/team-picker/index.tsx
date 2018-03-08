@@ -6,16 +6,18 @@ interface TeamPickerProps {
   onChange: (team: string) => any
   redAlliance: string[]
   blueAlliance: string[]
+  inputRef: (input: HTMLInputElement) => any
 }
 
 const TeamPicker = ({
   onChange,
   redAlliance,
-  blueAlliance
+  blueAlliance,
+  inputRef
 }: TeamPickerProps) => (
   <label class={teamPicker}>
-    <h2>Team</h2>
-    <select onChange={e => onChange(e.target.value)}>
+    <span>Team</span>
+    <select ref={inputRef} onChange={e => onChange(e.target.value)}>
       {redAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}
       {blueAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}
     </select>

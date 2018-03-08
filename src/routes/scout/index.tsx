@@ -83,6 +83,8 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
       }}
       render={
         class extends Component<ScoutProps, ScoutState> {
+          teamPicker: string = null
+
           constructor() {
             super()
             this.state = {
@@ -93,7 +95,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
           }
           submit = () => {
             submitReport(
-              this.state.team || this.props.match.redAlliance[0],
+              this.state.team || this.teamPicker.value,
               eventId,
               matchId,
               this.state.report,
@@ -131,6 +133,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                       onChange={this.changeTeam}
                       redAlliance={match.redAlliance}
                       blueAlliance={match.blueAlliance}
+                      inputRef={e => (this.teamPicker = e)}
                     />
                   )}
                   {['auto', 'teleop', 'general'].map(sectionName => (

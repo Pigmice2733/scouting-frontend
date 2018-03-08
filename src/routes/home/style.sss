@@ -16,20 +16,24 @@
   display: grid
   grid-template-columns: 1fr minmax(auto, 500px) 1fr
 
-  @media (width < 670px)
-    grid-template-columns: auto 1fr auto
-    grid-column-gap: 10px
-
-    & input
-      min-width: 100%!important
-      width: auto!important
-
   & > input
     grid-column: 2
     flex-start: 1
     min-width: 0
     width: 100%
     color: #222
+
+  // Needs to be after '& > input' to override it
+  @media (width < 670px)
+    grid-template-columns: auto 1fr auto
+    grid-column-gap: 10px
+
+    // This fixes an iOS grid bug
+    & > input
+      min-width: 100%
+      max-width: 100%
+      width: auto
+      max-height: 100%
 
   & > a, & > button
     background: white

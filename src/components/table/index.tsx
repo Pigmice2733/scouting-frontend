@@ -72,9 +72,10 @@ class Table extends Component<TableProps, TableState> {
               <tr key={analysis.team}>
                 <td key="teamNumber">
                   <a
-                    href={`https://www.thebluealliance.com/team/${formatTeamNumber(
-                      analysis.team
-                    )}/${new Date().getFullYear()}`}
+                    href={
+                      'https://www.thebluealliance.com/team/' +
+                      formatTeamNumber(analysis.team)
+                    }
                   >
                     {formatTeamNumber(analysis.team)}
                   </a>

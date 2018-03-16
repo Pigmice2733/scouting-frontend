@@ -67,7 +67,7 @@ const Chart = ({ reports, stat, fieldType }: ChartProps) => {
           <text
             class={tooltip}
             font-size={textSize}
-            x={lerpX(i) + 5}
+            x={lerpX(i) + 2}
             y={lerpY(getNumber(report.stats[stat])) - 7.5}
           >
             {formatMatchId(parseMatchKey(report.matchKey).matchKey)}

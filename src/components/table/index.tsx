@@ -13,6 +13,7 @@ import { table, statColumn, note, reports } from './style.sss'
 interface TableProps {
   analyses: Analysis[]
   schema: Schema
+  eventKey: string
 }
 
 interface TableState {
@@ -35,7 +36,10 @@ class Table extends Component<TableProps, TableState> {
       reversed: state.sortBy === stat ? !state.reversed : false
     }))
 
-  render({ analyses, schema }: TableProps, { sortBy, reversed }: TableState) {
+  render(
+    { analyses, schema, eventKey }: TableProps,
+    { sortBy, reversed }: TableState
+  ) {
     return (
       <div class={table}>
         <table>
@@ -77,10 +81,9 @@ class Table extends Component<TableProps, TableState> {
               <tr key={analysis.team}>
                 <td key="teamNumber">
                   <a
-                    href={
-                      'https://www.thebluealliance.com/team/' +
-                      formatTeamNumber(analysis.team)
-                    }
+                    href={`/events/${eventKey}/team/${formatTeamNumber(
+                      analysis.team
+                    )}`}
                   >
                     {formatTeamNumber(analysis.team)}
                   </a>

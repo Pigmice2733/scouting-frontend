@@ -22,7 +22,13 @@ const EventAnalysis = ({ eventId }: { eventId: string }) => (
           title={`Analysis - ${(event && event.shortName) || eventId}`}
         />
         {schema &&
-          eventAnalysis && <Table schema={schema} analyses={eventAnalysis} />}
+          eventAnalysis && (
+            <Table
+              eventKey={eventId}
+              schema={schema}
+              analyses={eventAnalysis}
+            />
+          )}
       </div>
     )}
   />

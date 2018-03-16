@@ -81,11 +81,11 @@ const formatMatchId = (matchId: string): string => {
   if (id.startsWith('QM')) {
     return `Qual ${endNumber}`
   } else if (id.startsWith('QF')) {
-    return `Quarter Final ${group} Match ${endNumber}`
+    return `QF${group} M${endNumber}`
   } else if (id.startsWith('SF')) {
-    return `Semi Final ${group} Match ${endNumber}`
+    return `SF${group} M${endNumber}`
   } else if (id.startsWith('F')) {
-    return `Final ${group} Match ${endNumber}`
+    return `F${group} M${endNumber}`
   }
   return id
 }
@@ -178,6 +178,9 @@ const toPercentage = (val: number) => Math.round(val * 100) + '%'
 
 const toPrettyNumber = (val: number) => Math.round(val * 10) / 10
 
+const getNumber = (val: number | boolean) =>
+  typeof val === 'number' ? val : val ? 1 : 0
+
 const eventTypeNames = new Map<number, string>([
   [0, ''],
   [1, ''],
@@ -190,6 +193,25 @@ const eventTypeNames = new Map<number, string>([
   [100, 'Pre'],
   [-1, '']
 ])
+
+const parseMatch = (
+  key: string
+): {
+  type: String
+  n: number
+  m: number
+} => {
+  const r = /.+_([a-zA-Z]+)(\d+)m?(\d+)?/gm
+  const [, type, n, m] = r.exec(key)
+  return { type, n: Number.parseInt(n), m: Number.parseInt(m) }
+}
+
+const lerper = (a: number, b: number, c: number, d: number) => (
+  x: number
+): number => lerp(x, a, b, c, d)
+
+const lerp = (x: number, a: number, b: number, c: number, d: number): number =>
+  (x - a) / (b - a) * (d - c) + c
 
 const eventTypeName = (eventType: number) => eventTypeNames.get(eventType)
 
@@ -220,5 +242,9 @@ export {
   abbreviate,
   sortTeams,
   getCoords,
-  capitalize
+  capitalize,
+  getNumber,
+  parseMatch,
+  lerp,
+  lerper
 }

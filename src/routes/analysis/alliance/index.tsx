@@ -34,7 +34,7 @@ const AllianceAnalysis = ({
           ) : data.length === 0 ? (
             <p>No reports have been submitted for this alliance yet.</p>
           ) : (
-            <Table analyses={data} schema={schema} />
+            <Table eventKey={eventId} analyses={data} schema={schema} />
           )}
         </div>
       )

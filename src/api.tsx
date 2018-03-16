@@ -1,6 +1,7 @@
 import FRCEvent from './models/frc-event'
 import Match from './models/match'
 import Analysis from './models/analysis'
+import Report from './models/report'
 import Schema from './models/schema'
 import UserInfo from './models/user-info'
 import idbKeyval from 'idb-keyval'
@@ -101,6 +102,9 @@ const getSchema = () => get<Schema>('schema')
 const getReporterStats = () =>
   get<{ reporter: string; reports: number }[]>('leaderboard')
 
+const getTeamStats = (eventKey: string, team: string) =>
+  get<Report[]>(`raw/${eventKey}/frc${team}`)
+
 const getUsers = () => get<UserInfo[]>('users')
 
 const authenticate = (credentials: {
@@ -156,5 +160,6 @@ export {
   updateUser,
   createUser,
   queryAPI,
-  req
+  req,
+  getTeamStats
 }

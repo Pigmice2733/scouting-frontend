@@ -10,6 +10,7 @@ import Event from '../../routes/event'
 import Match from '../../routes/match'
 import AllianceAnalysis from '../../routes/analysis/alliance'
 import EventAnalysis from '../../routes/analysis/event'
+import TeamAnalysis from '../../routes/analysis/team'
 import Error404 from '../../routes/404'
 import Scout from '../../routes/scout'
 
@@ -22,6 +23,7 @@ const App = () => (
       <Route path="/admin" component={Admin} />
       <Route path="/events/:eventId" component={Event} />
       <Route path="/events/:eventId/analysis" component={EventAnalysis} />
+      <Route path="/events/:eventId/team/:team" component={TeamAnalysis} />
       <Route path="/events/:eventId/:matchId" component={Match} />
       <Route
         path="/events/:eventId/:matchId/alliance/:color"

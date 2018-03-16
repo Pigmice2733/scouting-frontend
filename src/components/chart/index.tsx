@@ -33,7 +33,7 @@ const Chart = ({ reports, stat, fieldType }: ChartProps) => {
 
   const lerpX = lerper(0, reports.length - 1, 20, 560)
   const lerpY = lerper(min, max, 475, 40)
-  const textSize = lerp(640 / reports.length, 100, 34, 12, 8)
+  const textSize = lerp(640 / reports.length, 100, 34, 10, 8)
 
   return (
     <svg class={chartClass} viewBox="0 0 640 480">

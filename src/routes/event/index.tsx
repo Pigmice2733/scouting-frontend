@@ -2,7 +2,12 @@ import { h } from 'preact'
 import Resolver from '../../resolver'
 import Header from '../../components/header'
 import { getEvent } from '../../api'
-import { parseMatchKey, formatMatchId, formatTime } from '../../utils'
+import {
+  parseMatchKey,
+  formatMatchId,
+  formatTime,
+  compareMatchKey
+} from '../../utils'
 import { event as eventClass } from './style.sss'
 import List from '../../components/list'
 import Spinner from '../../components/spinner'
@@ -31,7 +36,7 @@ const Event = ({ eventId }: { eventId: string }) => (
                 m.time = new Date(m.actualTime || m.predictedTime)
                 return m
               })
-              .sort((a, b) => (a.time > b.time ? 1 : -1))
+              .sort((a, b) => compareMatchKey(a.key, b.key))
               .map(m => {
                 const { matchKey } = parseMatchKey(m.key)
                 return (

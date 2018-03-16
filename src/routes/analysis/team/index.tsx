@@ -4,9 +4,13 @@ import { getEvent, getTeamStats, getSchema } from '../../../api'
 import Table from '../../../components/table'
 import Header from '../../../components/header'
 import Spinner from '../../../components/spinner'
-import Report from '../../../models/report'
 import Chart from '../../../components/chart'
-import { camelToTitle, getNumber, parseMatch } from '../../../utils'
+import {
+  camelToTitle,
+  getNumber,
+  parseMatch,
+  compareMatchKey
+} from '../../../utils'
 import { teamAnalysis } from './style.sss'
 
 const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
@@ -20,18 +24,7 @@ const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
       const sorted =
         teamStats === undefined
           ? []
-          : teamStats.sort((a: Report, b: Report) => {
-              const aParsed = parseMatch(a.matchKey)
-              const bParsed = parseMatch(b.matchKey)
-
-              if (aParsed.type === bParsed.type) {
-                if (aParsed.n === bParsed.n) {
-                  return aParsed.m < bParsed.m ? -1 : 1
-                }
-                return aParsed.n < bParsed.n ? -1 : 1
-              }
-              return aParsed.type > bParsed.type ? -1 : 1
-            })
+          : teamStats.sort((a, b) => compareMatchKey(a.matchKey, b.matchKey))
 
       return (
         <div class={teamAnalysis}>

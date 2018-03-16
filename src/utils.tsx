@@ -197,7 +197,7 @@ const eventTypeNames = new Map<number, string>([
 const parseMatch = (
   key: string
 ): {
-  type: String
+  type: string
   n: number
   m: number
 } => {
@@ -212,6 +212,24 @@ const lerper = (a: number, b: number, c: number, d: number) => (
 
 const lerp = (x: number, a: number, b: number, c: number, d: number): number =>
   (x - a) / (b - a) * (d - c) + c
+
+const compareMatchKey = (a: string, b: string) => {
+  const aParsed = parseMatch(a)
+  const bParsed = parseMatch(b)
+
+  if (aParsed.type === bParsed.type) {
+    if (aParsed.n === bParsed.n) {
+      return aParsed.m < bParsed.m ? -1 : 1
+    }
+    return aParsed.n < bParsed.n ? -1 : 1
+  }
+  return compareMatchType(aParsed.type, bParsed.type)
+}
+
+const order = ['qm', 'ef', 'qf', 'sf', 'f']
+
+const compareMatchType = (a: string, b: string) =>
+  order.indexOf(a) > order.indexOf(b) ? 1 : -1
 
 const eventTypeName = (eventType: number) => eventTypeNames.get(eventType)
 
@@ -246,5 +264,6 @@ export {
   getNumber,
   parseMatch,
   lerp,
-  lerper
+  lerper,
+  compareMatchKey
 }

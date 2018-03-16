@@ -2,17 +2,17 @@
   "name": "pigmice_scouting_frontend",
   "version": "0.0.0",
   "dependencies": {
-    "idb-keyval": "^2.3.0",
-    "linkstate": "^1.1.0",
+    "idb-keyval": "^2.4.1",
+    "linkstate": "^1.1.1",
     "preact": "^8.2.7",
     "preact-router": "^2.6.0",
     "webpack-config-calebeby": "^0.6.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.1.2",
-    "eslint": "^4.14.0",
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.18.2",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-react": "^7.5.1"
+    "eslint-plugin-react": "^7.7.0"
   },
   "eslintIgnore": [
     "build/*"

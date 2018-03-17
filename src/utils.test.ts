@@ -1,4 +1,4 @@
-import { capitalize, compareMatchKey, parseMatch } from './utils'
+import { capitalize, compareMatchKey, parseMatch, lerp, lerper } from './utils'
 
 test('capitalize', () => {
   expect(capitalize('hello')).toEqual('Hello')
@@ -23,4 +23,14 @@ test('compareMatchKey', () => {
     expect(compareMatchKey(a, b)).toEqual(-1)
     expect(compareMatchKey(b, a)).toEqual(1)
   })
+})
+
+test('lerp', () => {
+  expect(lerp(4, 2, 8, 3, 6)).toEqual(4)
+  expect(lerp(-1, -3, 4, 1, 8)).toEqual(3)
+})
+
+test('lerper', () => {
+  expect(lerper(2, 8, 3, 6)(4)).toEqual(4)
+  expect(lerper(-3, 4, 1, 8)(-1)).toEqual(3)
 })

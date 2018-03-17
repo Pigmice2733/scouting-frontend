@@ -103,7 +103,7 @@ const getReporterStats = () =>
   get<{ reporter: string; reports: number }[]>('leaderboard')
 
 const getTeamStats = (eventKey: string, team: string) =>
-  get<Report[]>(`raw/${eventKey}/frc${team}`)
+  get<Report[]>(`reports/${eventKey}/frc${team}/raw`)
 
 const getUsers = () => get<UserInfo[]>('users')
 

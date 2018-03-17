@@ -206,12 +206,20 @@ const parseMatch = (
   return { type, n: Number.parseInt(n), m: Number.parseInt(m) }
 }
 
-const lerper = (a: number, b: number, c: number, d: number) => (
-  x: number
-): number => lerp(x, a, b, c, d)
+const lerper = (
+  minIn: number,
+  maxIn: number,
+  minOut: number,
+  maxOut: number
+) => (val: number): number => lerp(val, minIn, maxIn, minOut, maxOut)
 
-const lerp = (x: number, a: number, b: number, c: number, d: number): number =>
-  (x - a) / (b - a) * (d - c) + c
+const lerp = (
+  val: number,
+  minIn: number,
+  maxIn: number,
+  minOut: number,
+  maxOut: number
+): number => (val - minIn) / (maxIn - minIn) * (maxOut - minOut) + minOut
 
 const compareMatchKey = (a: string, b: string) => {
   if (a == b) {

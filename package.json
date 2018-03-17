@@ -16,9 +16,7 @@
     "jest": "^22.4.2",
     "ts-jest": "^22.4.1"
   },
-  "eslintIgnore": [
-    "build/*"
-  ],
+  "eslintIgnore": ["build/*"],
   "license": "MIT",
   "prettier": {
     "semi": false,
@@ -28,6 +26,8 @@
   "scripts": {
     "build": "webpack-config-calebeby build",
     "dev": "webpack-config-calebeby",
+    "type": "tsc --noEmit --pretty",
+    "type:watch": "tsc --noEmit --pretty --watch",
     "lint": "eslint src",
     "start": "npm run -s dev",
     "test": "jest",
@@ -41,13 +41,6 @@
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   }
 }

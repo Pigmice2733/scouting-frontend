@@ -40,7 +40,7 @@ interface AdminPanelState {
   users: EditableUser[]
 }
 
-class AdminPanel extends Component<any, AdminPanelState> {
+class AdminPanel extends Component<{}, AdminPanelState> {
   constructor() {
     super()
   }
@@ -59,7 +59,7 @@ class AdminPanel extends Component<any, AdminPanelState> {
     )
   }
 
-  render(props, { users }: AdminPanelState) {
+  render({}, { users }: AdminPanelState) {
     if (!hasValidJWT()) {
       route('/login')
       return
@@ -116,7 +116,9 @@ class AdminPanel extends Component<any, AdminPanelState> {
                         checked={user.edit.isAdmin}
                         onChange={evt =>
                           this.setState((state: AdminPanelState) => {
-                            state.users[i].edit.isAdmin = evt.target.checked
+                            state.users[
+                              i
+                            ].edit.isAdmin = (evt.target as HTMLInputElement).checked
                             return state
                           })
                         }

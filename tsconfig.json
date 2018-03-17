@@ -10,11 +10,7 @@
     "moduleResolution": "node",
     "target": "ESNext",
     "sourceMap": true,
-    "baseUrl": "./src",
-    "paths": {
-      "linkstate.ts": ["models/linkstate"]
-    }
+    "baseUrl": "./src"
   },
-  "files": ["./src/index.tsx", "./src/sw.ts"],
-  "include": ["./src/models/linkstate.d.ts"]
+  "files": ["./src/index.tsx", "./src/sw.ts"]
 }

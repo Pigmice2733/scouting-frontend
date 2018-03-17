@@ -8,7 +8,7 @@ import {
   formatTeamNumber,
   sortTeams
 } from '../../utils'
-import { table, statColumn, note, reports } from './style.sss'
+import { table, statColumn, note } from './style.sss'
 
 interface TableProps {
   analyses: Analysis[]
@@ -105,7 +105,7 @@ class Table extends Component<TableProps, TableState> {
                   ))}
                 </td>
                 <td key="reports">
-                  <span class={reports}>{analysis.reports}</span>
+                  <span>{analysis.reports}</span>
                 </td>
               </tr>
             ))}

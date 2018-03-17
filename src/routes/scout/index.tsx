@@ -83,7 +83,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
       }}
       render={
         class extends Component<ScoutProps, ScoutState> {
-          teamPicker: string = null
+          teamPicker: HTMLSelectElement = null
 
           constructor() {
             super()

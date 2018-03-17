@@ -45,7 +45,6 @@ class NumberPicker extends Component<NumberProps, NumberState> {
         <TextInput
           type="number"
           onInput={this.onInput}
-          id={id}
           value={String(number)}
         />
         <button onClick={this.increment}>+</button>

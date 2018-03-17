@@ -1,5 +1,3 @@
-/// <reference path="./sw.d.ts" />
-
 const cacheName = '2'
 const staticAssets = ['/', '/scripts.js', '/styles.css']
 const ignore = ['/browser-sync/']
@@ -8,6 +6,19 @@ const getPath = (url: string) => url.replace(self.location.origin, '')
 
 const isPathIgnored = (path: string) => {
   return ignore.some(i => path.startsWith(`${self.location.origin}${i}`))
+}
+
+interface ExtendableEvent extends Event {
+  waitUntil(fn: Promise<any>): void
+}
+
+interface FetchEvent extends ExtendableEvent {
+  request: Request
+  respondWith(response: Promise<Response> | Response): Promise<Response>
+}
+
+interface InstallEvent extends ExtendableEvent {
+  activeWorker: ServiceWorker
 }
 
 self.addEventListener('install', (e: InstallEvent) => {

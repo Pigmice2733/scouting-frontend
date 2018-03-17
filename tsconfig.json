@@ -5,6 +5,8 @@
     "jsxFactory": "h",
     "lib": ["ESNext", "DOM"],
     "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "checkJs": true,
     "moduleResolution": "node",
     "target": "ESNext",
     "sourceMap": true,

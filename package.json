@@ -9,14 +9,14 @@
     "webpack-config-calebeby": "^0.6.0"
   },
   "devDependencies": {
-    "babel-eslint": "^8.2.2",
+    "@types/jest": "^22.2.0",
     "eslint": "^4.18.2",
     "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-react": "^7.7.0"
+    "eslint-plugin-react": "^7.7.0",
+    "jest": "^22.4.2",
+    "ts-jest": "^22.4.1"
   },
-  "eslintIgnore": [
-    "build/*"
-  ],
+  "eslintIgnore": ["build/*"],
   "license": "MIT",
   "prettier": {
     "semi": false,
@@ -27,6 +27,18 @@
     "build": "webpack-config-calebeby build",
     "dev": "webpack-config-calebeby",
     "lint": "eslint src",
-    "start": "npm run -s dev"
+    "start": "npm run -s dev",
+    "test": "jest",
+    "test:watch": "jest --watch"
+  },
+  "jest": {
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "transform": {
+      "^.+\\.tsx$": "ts-jest",
+      "^.+\\.ts$": "ts-jest",
+      "^.+\\.jsx$": "ts-jest",
+      "^.+\\.js$": "ts-jest"
+    },
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   }
 }

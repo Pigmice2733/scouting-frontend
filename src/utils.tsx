@@ -201,7 +201,7 @@ const parseMatch = (
   n: number
   m: number
 } => {
-  const r = /.+_([a-zA-Z]+)(\d+)m?(\d+)?/gm
+  const r = /.+_([a-zA-Z]+)(\d+)m?(\d+)?/g
   const [, type, n, m] = r.exec(key)
   return { type, n: Number.parseInt(n), m: Number.parseInt(m) }
 }

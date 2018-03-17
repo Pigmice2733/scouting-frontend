@@ -4,7 +4,7 @@ import Header from '../../components/header'
 import { getEvent } from '../../api'
 import {
   parseMatchKey,
-  formatMatchId,
+  formatMatchKey,
   formatTime,
   compareMatchKey
 } from '../../utils'
@@ -42,7 +42,7 @@ const Event = ({ eventId }: { eventId: string }) => (
                 return (
                   <li key={m.key}>
                     <a href={`/events/${event.key}/${matchKey}`}>
-                      {formatMatchId(matchKey)}
+                      {formatMatchKey(matchKey)}
                       {<span>{formatTime(m.time)}</span>}
                     </a>
                   </li>

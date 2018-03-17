@@ -5,12 +5,7 @@ import Table from '../../../components/table'
 import Header from '../../../components/header'
 import Spinner from '../../../components/spinner'
 import Chart from '../../../components/chart'
-import {
-  camelToTitle,
-  getNumber,
-  parseMatch,
-  compareMatchKey
-} from '../../../utils'
+import { camelToTitle, getNumber, compareMatchKey } from '../../../utils'
 import { teamAnalysis } from './style.sss'
 
 const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
@@ -33,22 +28,26 @@ const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
             title={`${team} - ${(event && event.shortName) || eventId}`}
           />
 
-          <div>
-            {Object.keys(schema).map(key => (
-              <div>
-                <h1>{camelToTitle(key)}</h1>
-                {teamStats === undefined || teamStats.length === 0 ? (
-                  <Spinner />
-                ) : (
-                  <Chart
-                    reports={teamStats}
-                    stat={key}
-                    fieldType={schema[key]}
-                  />
-                )}
-              </div>
-            ))}
-          </div>
+          {schema === undefined ? (
+            <Spinner />
+          ) : (
+            <div>
+              {Object.keys(schema).map(key => (
+                <div>
+                  <h1>{camelToTitle(key)}</h1>
+                  {teamStats === undefined || teamStats.length === 0 ? (
+                    <Spinner />
+                  ) : (
+                    <Chart
+                      reports={teamStats}
+                      stat={key}
+                      fieldType={schema[key]}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )
     }}

@@ -74,20 +74,12 @@ const sortSchemaKeys = (keys: string[]): SortedSchemaKeys =>
     { auto: [], teleop: [], general: [] }
   )
 
-const formatMatchId = (matchId: string): string => {
-  const id = matchId.toUpperCase()
-  const endNumber = /[\D]*([\d]*)$/.exec(id)[1]
-  const group = /^[\D]*([\d]*)/.exec(id)[1]
-  if (id.startsWith('QM')) {
-    return `Qual ${endNumber}`
-  } else if (id.startsWith('QF')) {
-    return `QF${group} M${endNumber}`
-  } else if (id.startsWith('SF')) {
-    return `SF${group} M${endNumber}`
-  } else if (id.startsWith('F')) {
-    return `F${group} M${endNumber}`
+const formatMatchKey = (matchId: string): string => {
+  const { type, number, group } = parseMatchKey(matchId.toUpperCase())
+  if (type === 'q') {
+    return `Qual ${number}`
   }
-  return id
+  return `${type.toUpperCase()}${group} M${number}`
 }
 
 const toRadians = (deg: number) => deg * (Math.PI / 180)
@@ -164,9 +156,26 @@ const sortReporterStats = (stats: { reporter: string; reports: Number }[]) =>
     ? stats.sort((a, b) => (a.reports < b.reports ? 1 : -1))
     : []
 
-const parseMatchKey = (name: string) => {
-  const [, eventKey, matchKey] = name.match(/([^_]*)_(.*)/)
-  return { eventKey, matchKey }
+const parseMatchKey = (key: string) => {
+  let eventKey, matchKey
+  if (key.includes('_')) {
+    const [, e, m] = key.match(/([^_]*)_(.*)/)
+    eventKey = e.toLowerCase()
+    matchKey = m.toLowerCase()
+  } else {
+    eventKey = null
+    matchKey = key.toLowerCase()
+  }
+  const number = Number.parseInt(/.*m([\d]*)$/.exec(matchKey)[1])
+  const g = /^[\D]*([\d]*)m/.exec(matchKey)[1]
+  const type = /(^[\D]*).*m.*$/.exec(matchKey)[1]
+  return {
+    eventKey,
+    matchKey,
+    group: g === '' ? null : Number.parseInt(g),
+    number,
+    type
+  }
 }
 
 const camelToTitle = (text: string) => {
@@ -194,18 +203,6 @@ const eventTypeNames = new Map<number, string>([
   [-1, '']
 ])
 
-const parseMatch = (
-  key: string
-): {
-  type: string
-  n: number
-  m: number
-} => {
-  const r = /.+_([a-zA-Z]+)(\d+)m?(\d+)?/g
-  const [, type, n, m] = r.exec(key)
-  return { type, n: Number.parseInt(n), m: Number.parseInt(m) }
-}
-
 const lerper = (
   minIn: number,
   maxIn: number,
@@ -226,14 +223,14 @@ const compareMatchKey = (a: string, b: string) => {
     return 0
   }
 
-  const aParsed = parseMatch(a)
-  const bParsed = parseMatch(b)
+  const aParsed = parseMatchKey(a)
+  const bParsed = parseMatchKey(b)
 
   if (aParsed.type === bParsed.type) {
-    if (aParsed.n === bParsed.n) {
-      return aParsed.m < bParsed.m ? -1 : 1
+    if (aParsed.group === bParsed.group) {
+      return aParsed.number < bParsed.number ? -1 : 1
     }
-    return aParsed.n < bParsed.n ? -1 : 1
+    return aParsed.group < bParsed.group ? -1 : 1
   }
   return compareMatchType(aParsed.type, bParsed.type)
 }
@@ -258,7 +255,7 @@ export {
   getJWT,
   getUserInfo,
   formatTeamNumber,
-  formatMatchId,
+  formatMatchKey,
   sortEvents,
   formatDate,
   formatTime,
@@ -274,7 +271,6 @@ export {
   getCoords,
   capitalize,
   getNumber,
-  parseMatch,
   lerp,
   lerper,
   compareMatchKey

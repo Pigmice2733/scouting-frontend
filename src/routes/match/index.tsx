@@ -17,7 +17,7 @@ import {
 import RobotImage from '../../components/robot-image'
 import {
   formatTeamNumber,
-  formatMatchId,
+  formatMatchKey,
   formatTime,
   parseMatchKey
 } from '../../utils'
@@ -71,7 +71,7 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
           />
 
           <div class={matchNameClass}>
-            <h2>{formatMatchId(matchId)}</h2>
+            <h2>{formatMatchKey(matchId)}</h2>
           </div>
           <div class={matchTimeClass}>
             <h2>

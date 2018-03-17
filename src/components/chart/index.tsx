@@ -1,12 +1,6 @@
 import { h } from 'preact'
 import Report from '../../models/report'
-import {
-  lerp,
-  lerper,
-  getNumber,
-  parseMatchKey,
-  formatMatchId
-} from '../../utils'
+import { lerp, lerper, getNumber, formatMatchKey } from '../../utils'
 import { chart as chartClass, tooltip } from './style.sss'
 
 interface ChartProps {
@@ -70,7 +64,7 @@ const Chart = ({ reports, stat, fieldType }: ChartProps) => {
             x={lerpX(i)}
             y={lerpY(getNumber(report.stats[stat])) - 7.5}
           >
-            {formatMatchId(parseMatchKey(report.matchKey).matchKey)}
+            {formatMatchKey(report.matchKey)}
           </text>
         </g>
       ))}

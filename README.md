@@ -1,5 +1,7 @@
 # Pigmice Scouting Frontend
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/Pigmice2733/scouting-frontend.svg)](https://greenkeeper.io/)
+
 ---
 <p align="center">
   <sub>Tested across browsers with</sub>

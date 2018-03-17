@@ -6,7 +6,7 @@
     "linkstate": "^1.1.1",
     "preact": "^8.2.7",
     "preact-router": "^2.6.0",
-    "webpack-config-calebeby": "^2.2.0"
+    "webpack-config-calebeby": "0.6.0"
   },
   "devDependencies": {
     "@types/jest": "^22.2.0",

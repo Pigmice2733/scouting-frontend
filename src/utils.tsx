@@ -214,6 +214,10 @@ const lerp = (x: number, a: number, b: number, c: number, d: number): number =>
   (x - a) / (b - a) * (d - c) + c
 
 const compareMatchKey = (a: string, b: string) => {
+  if (a == b) {
+    return 0
+  }
+
   const aParsed = parseMatch(a)
   const bParsed = parseMatch(b)
 

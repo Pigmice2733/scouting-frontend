@@ -13,10 +13,13 @@
     "eslint": "^4.18.2",
     "eslint-plugin-babel": "^4.1.2",
     "eslint-plugin-react": "^7.7.0",
+    "greenkeeper-lockfile": "^1.14.0",
     "jest": "^22.4.2",
     "ts-jest": "^22.4.1"
   },
-  "eslintIgnore": ["build/*"],
+  "eslintIgnore": [
+    "build/*"
+  ],
   "license": "MIT",
   "prettier": {
     "semi": false,
@@ -41,6 +44,13 @@
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   }
 }

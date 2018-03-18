@@ -18,7 +18,9 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn greenkeeper-lockfile-update
       # - run: yarn type
       - run: yarn test
       - run: yarn build
+      - run: yarn greenkeeper-lockfile-upload
 

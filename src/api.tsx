@@ -10,7 +10,7 @@ import { hasValidJWT, getJWT } from './utils'
 
 const endpoint = 'https://api.pigmice.ga'
 
-interface req {
+export interface req {
   path: string
   method: string
   body?: string
@@ -160,6 +160,5 @@ export {
   updateUser,
   createUser,
   queryAPI,
-  req,
   getTeamStats
 }

@@ -1,5 +1,5 @@
 const cacheName = '2'
-const staticAssets = ['/', '/scripts.js', '/styles.css']
+const staticAssets = ['/', '/main.js', '/main.css']
 const ignore = ['/browser-sync/']
 
 const getPath = (url: string) => url.replace(self.location.origin, '')

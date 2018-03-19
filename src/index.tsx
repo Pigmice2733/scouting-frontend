@@ -3,7 +3,9 @@ import { render, h } from 'preact'
 import idbKeyval from 'idb-keyval'
 import { req, queryAPI } from './api'
 
-render(<App />, document.body, document.getElementById('app'))
+const rootNode = document.getElementById('app')
+
+render(<App />, rootNode, rootNode.lastElementChild)
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(console.error)
@@ -19,4 +21,14 @@ const syncRequests = async () => {
 
 if (navigator.onLine) {
   syncRequests()
+}
+
+var module: {
+  hot: {
+    accept: () => void
+  }
+}
+
+if (module.hot) {
+  module.hot.accept()
 }

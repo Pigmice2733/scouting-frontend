@@ -23,7 +23,6 @@ import {
 } from '../../utils'
 import Button from '../../components/button'
 import FRCEvent from '../../models/frc-event'
-import Match from '../../models/match'
 import Icon from '../../components/icon'
 
 interface AllianceProps {

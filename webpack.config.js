@@ -1,9 +1,13 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+const path = require('path')
 
 const mode = process.env.NODE_ENV
 const devtool = mode === 'development' ? 'source-map' : false
+
+const root = __dirname
 
 const tsLoader = {
   test: /\.tsx?$/,
@@ -92,7 +96,17 @@ module.exports = [
       }),
       new ForkTsCheckerWebpackPlugin({
         tslint: true
-      })
+      }),
+      new CopyWebpackPlugin([
+        { from: path.join(root, '_redirects') },
+        { from: path.join(root, '_headers') },
+        { from: path.join(root, 'manifest.json') },
+        {
+          from: path.join(root, 'src', 'assets', 'favicon.ico'),
+          to: 'favicon.ico'
+        },
+        { from: path.join(root, 'src', 'assets'), to: 'assets' }
+      ])
     ]
   },
   {

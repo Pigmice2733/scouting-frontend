@@ -1,2 +1,2 @@
-export const chart: string;
-export const tooltip: string;
+export const chart: string
+export const tooltip: string

@@ -1,4 +1,4 @@
-import { h, Component } from 'preact'
+import { Component, h } from 'preact'
 import TextInput from '../text-input'
 import { numberPicker } from './style.sss'
 
@@ -9,18 +9,18 @@ interface NumberProps {
 }
 
 interface NumberState {
-  number: number
+  num: number
 }
 
 class NumberPicker extends Component<NumberProps, NumberState> {
-  constructor({ number = 0 }) {
+  constructor({ num = 0 }) {
     super()
-    this.state = { number }
+    this.state = { num }
   }
 
   increment = () => {
     this.setState((state: NumberState) => {
-      this.props.onChange(++state.number)
+      this.props.onChange(++state.num)
       return state
     })
   }
@@ -28,25 +28,21 @@ class NumberPicker extends Component<NumberProps, NumberState> {
   onInput = (e: { target: EventTarget }) => {
     const value = Number((e.target as HTMLInputElement).value)
     this.props.onChange(value)
-    this.setState({ number: value })
+    this.setState({ num: value })
   }
 
   decrement = () => {
     this.setState((state: NumberState) => {
-      this.props.onChange(--state.number)
+      this.props.onChange(--state.num)
       return state
     })
   }
 
-  render({ id, onChange }: NumberProps, { number }: NumberState) {
+  render({ id, onChange }: NumberProps, { num }: NumberState) {
     return (
       <div class={numberPicker}>
         <button onClick={this.decrement}>-</button>
-        <TextInput
-          type="number"
-          onInput={this.onInput}
-          value={String(number)}
-        />
+        <TextInput type="number" onInput={this.onInput} value={String(num)} />
         <button onClick={this.increment}>+</button>
       </div>
     )

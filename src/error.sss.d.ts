@@ -1,2 +1,2 @@
-export const err: string;
-export const wrapper: string;
+export const err: string
+export const wrapper: string

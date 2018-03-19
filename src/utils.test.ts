@@ -48,35 +48,35 @@ test('parseMatchKey', () => {
     matchKey: 'qm1',
     type: 'q',
     group: null,
-    number: 1
+    num: 1
   })
   expect(parseMatchKey('2018orwil_ef4m3')).toEqual({
     eventKey: '2018orwil',
     matchKey: 'ef4m3',
     type: 'ef',
     group: 4,
-    number: 3
+    num: 3
   })
   expect(parseMatchKey('2018orwil_qf3m2')).toEqual({
     eventKey: '2018orwil',
     matchKey: 'qf3m2',
     type: 'qf',
     group: 3,
-    number: 2
+    num: 2
   })
   expect(parseMatchKey('2018orwil_f3m2')).toEqual({
     eventKey: '2018orwil',
     matchKey: 'f3m2',
     type: 'f',
     group: 3,
-    number: 2
+    num: 2
   })
   expect(parseMatchKey('2018orwil_fm3m2')).toEqual({
     eventKey: '2018orwil',
     matchKey: 'fm3m2',
     type: 'fm',
     group: 3,
-    number: 2
+    num: 2
   })
 })
 

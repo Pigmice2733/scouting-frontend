@@ -1,10 +1,10 @@
 import { h } from 'preact'
 
-import Resolver from '../../../resolver'
 import { getEvent, getEventAnalysis, getSchema } from '../../../api'
+import Resolver from '../../../resolver'
 
-import Table from '../../../components/table'
 import Header from '../../../components/header'
+import Table from '../../../components/table'
 
 import { eventAnalysis as eventAnalysisClass } from './style.sss'
 

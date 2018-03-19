@@ -1,6 +1,6 @@
-import { h, Component } from 'preact'
-import { route } from 'preact-router'
 import linkState from 'linkstate'
+import { Component, h } from 'preact'
+import { route } from 'preact-router'
 
 import FRCEvent from '../../models/frc-event'
 import Match from '../../models/match'
@@ -9,21 +9,21 @@ import Schema from '../../models/schema'
 import { getEvent, getMatch, getSchema, submitReport } from '../../api'
 import {
   camelToTitle,
+  capitalize,
   hasValidJWT,
-  sortSchemaKeys,
-  capitalize
+  sortSchemaKeys
 } from '../../utils'
 
 import Resolver from '../../resolver'
 
-import Header from '../../components/header'
-import Toggle from '../../components/toggle'
-import NumberPicker from '../../components/number-picker'
-import TextInput from '../../components/text-input'
 import Button from '../../components/button'
+import Header from '../../components/header'
+import NumberPicker from '../../components/number-picker'
 import TeamPicker from '../../components/team-picker'
+import TextInput from '../../components/text-input'
+import Toggle from '../../components/toggle'
 
-import { scout, fields, scoutMain, notes } from './style.sss'
+import { fields, notes, scout, scoutMain } from './style.sss'
 
 interface ScoutProps {
   event: FRCEvent

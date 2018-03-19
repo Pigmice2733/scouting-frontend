@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import Report from '../../models/report'
-import { lerp, lerper, getNumber, formatMatchKey } from '../../utils'
+import { formatMatchKey, getNumber, lerp, lerper } from '../../utils'
 import { chart as chartClass, tooltip } from './style.sss'
 
 interface ChartProps {

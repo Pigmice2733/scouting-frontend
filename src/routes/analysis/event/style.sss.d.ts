@@ -1,1 +1,1 @@
-export const eventAnalysis: string;
+export const eventAnalysis: string

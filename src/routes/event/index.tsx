@@ -1,19 +1,19 @@
 import { h } from 'preact'
-import Resolver from '../../resolver'
-import Header from '../../components/header'
 import { getEvent } from '../../api'
-import {
-  parseMatchKey,
-  formatMatchKey,
-  formatTime,
-  compareMatchKey
-} from '../../utils'
-import { event as eventClass } from './style.sss'
+import Button from '../../components/button'
+import DateDisplay from '../../components/date-display'
+import Header from '../../components/header'
 import List from '../../components/list'
 import Spinner from '../../components/spinner'
-import DateDisplay from '../../components/date-display'
-import Button from '../../components/button'
 import FRCEvent from '../../models/frc-event'
+import Resolver from '../../resolver'
+import {
+  compareMatchKey,
+  formatMatchKey,
+  formatTime,
+  parseMatchKey
+} from '../../utils'
+import { event as eventClass } from './style.sss'
 
 const Event = ({ eventId }: { eventId: string }) => (
   <Resolver

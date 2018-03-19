@@ -1,1 +1,1 @@
-export const main404: string;
+export const main404: string

@@ -1,13 +1,13 @@
 import { h } from 'preact'
-import Resolver from '../../resolver'
-import Header from '../../components/header'
 import { getReporterStats } from '../../api'
+import Header from '../../components/header'
 import Spinner from '../../components/spinner'
-import {
-  leaderboard as leaderboardClass,
-  emoji as emojiClass
-} from './style.sss'
+import Resolver from '../../resolver'
 import { sortReporterStats } from '../../utils'
+import {
+  emoji as emojiClass,
+  leaderboard as leaderboardClass
+} from './style.sss'
 
 const Leaderboard = () => (
   <Resolver

@@ -1,29 +1,29 @@
 import { h } from 'preact'
-import Resolver from '../../resolver'
-import Header from '../../components/header'
-import Spinner from '../../components/spinner'
 import { getEvent, getMatch } from '../../api'
-import {
-  match as matchClass,
-  matchName as matchNameClass,
-  matchTime as matchTimeClass,
-  alliance as allianceClass,
-  blue as blueClass,
-  red as redClass,
-  score as scoreClass,
-  navigation as navigationClass,
-  navbar
-} from './style.sss'
+import Button from '../../components/button'
+import Header from '../../components/header'
+import Icon from '../../components/icon'
 import RobotImage from '../../components/robot-image'
+import Spinner from '../../components/spinner'
+import FRCEvent from '../../models/frc-event'
+import Resolver from '../../resolver'
 import {
-  formatTeamNumber,
   formatMatchKey,
+  formatTeamNumber,
   formatTime,
   parseMatchKey
 } from '../../utils'
-import Button from '../../components/button'
-import FRCEvent from '../../models/frc-event'
-import Icon from '../../components/icon'
+import {
+  alliance as allianceClass,
+  blue as blueClass,
+  match as matchClass,
+  matchName as matchNameClass,
+  matchTime as matchTimeClass,
+  navbar,
+  navigation as navigationClass,
+  red as redClass,
+  score as scoreClass
+} from './style.sss'
 
 interface AllianceProps {
   baseUrl: string

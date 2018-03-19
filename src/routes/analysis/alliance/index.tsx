@@ -1,10 +1,10 @@
 import { h } from 'preact'
+import { getAllianceAnalysis, getSchema } from '../../../api'
 import Header from '../../../components/header'
 import Spinner from '../../../components/spinner'
 import Table from '../../../components/table'
-import Resolver from '../../../resolver'
 import Analysis from '../../../models/analysis'
-import { getAllianceAnalysis, getSchema } from '../../../api'
+import Resolver from '../../../resolver'
 import { camelToTitle } from '../../../utils'
 import { allianceAnalysis } from './style.sss'
 

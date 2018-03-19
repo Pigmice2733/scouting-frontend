@@ -1,1 +1,1 @@
-export const event: string;
+export const event: string

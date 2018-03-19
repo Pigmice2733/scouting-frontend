@@ -1,1 +1,1 @@
-export const teamPicker: string;
+export const teamPicker: string

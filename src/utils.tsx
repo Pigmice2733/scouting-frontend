@@ -75,11 +75,11 @@ const sortSchemaKeys = (keys: string[]): SortedSchemaKeys =>
   )
 
 const formatMatchKey = (matchId: string): string => {
-  const { type, number, group } = parseMatchKey(matchId.toUpperCase())
+  const { type, num, group } = parseMatchKey(matchId.toUpperCase())
   if (type === 'q') {
-    return `Qual ${number}`
+    return `Qual ${num}`
   }
-  return `${type.toUpperCase()}${group} M${number}`
+  return `${type.toUpperCase()}${group} M${num}`
 }
 
 const toRadians = (deg: number) => deg * (Math.PI / 180)
@@ -151,13 +151,14 @@ const sortEvents = (
         })
     : []
 
-const sortReporterStats = (stats: { reporter: string; reports: Number }[]) =>
+const sortReporterStats = (stats: { reporter: string; reports: number }[]) =>
   stats !== undefined && stats !== null
     ? stats.sort((a, b) => (a.reports < b.reports ? 1 : -1))
     : []
 
 const parseMatchKey = (key: string) => {
-  let eventKey, matchKey
+  let eventKey
+  let matchKey
   if (key.includes('_')) {
     const [, e, m] = key.match(/([^_]*)_(.*)/)
     eventKey = e.toLowerCase()
@@ -166,14 +167,14 @@ const parseMatchKey = (key: string) => {
     eventKey = null
     matchKey = key.toLowerCase()
   }
-  const number = Number.parseInt(/.*m([\d]*)$/.exec(matchKey)[1])
+  const num = Number.parseInt(/.*m([\d]*)$/.exec(matchKey)[1])
   const g = /^[\D]*([\d]*)m/.exec(matchKey)[1]
   const type = /(^[\D]*).*m.*$/.exec(matchKey)[1]
   return {
     eventKey,
     matchKey,
     group: g === '' ? null : Number.parseInt(g),
-    number,
+    num,
     type
   }
 }
@@ -219,7 +220,7 @@ const lerp = (
 ): number => (val - minIn) / (maxIn - minIn) * (maxOut - minOut) + minOut
 
 const compareMatchKey = (a: string, b: string) => {
-  if (a == b) {
+  if (a === b) {
     return 0
   }
 
@@ -228,7 +229,7 @@ const compareMatchKey = (a: string, b: string) => {
 
   if (aParsed.type === bParsed.type) {
     if (aParsed.group === bParsed.group) {
-      return aParsed.number < bParsed.number ? -1 : 1
+      return aParsed.num < bParsed.num ? -1 : 1
     }
     return aParsed.group < bParsed.group ? -1 : 1
   }

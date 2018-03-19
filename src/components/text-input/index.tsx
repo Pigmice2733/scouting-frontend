@@ -9,9 +9,7 @@ export interface TextInputEvent extends Event {
   target: TextInputEventTarget
 }
 
-interface TextInputEventCallback {
-  (event: TextInputEvent): any
-}
+type TextInputEventCallback = (event: TextInputEvent) => any
 
 interface TextInputProps {
   onInput?: TextInputEventCallback

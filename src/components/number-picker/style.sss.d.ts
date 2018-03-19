@@ -1,1 +1,1 @@
-export const numberPicker: string;
+export const numberPicker: string

@@ -1,11 +1,11 @@
 import { h } from 'preact'
-import Resolver from '../../../resolver'
-import { getEvent, getTeamStats, getSchema } from '../../../api'
-import Table from '../../../components/table'
+import { getEvent, getSchema, getTeamStats } from '../../../api'
+import Chart from '../../../components/chart'
 import Header from '../../../components/header'
 import Spinner from '../../../components/spinner'
-import Chart from '../../../components/chart'
-import { camelToTitle, getNumber, compareMatchKey } from '../../../utils'
+import Table from '../../../components/table'
+import Resolver from '../../../resolver'
+import { camelToTitle, compareMatchKey, getNumber } from '../../../utils'
 import { teamAnalysis } from './style.sss'
 
 const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (

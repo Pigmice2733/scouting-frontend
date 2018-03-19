@@ -1,14 +1,14 @@
-import { h, Component } from 'preact'
+import { Component, h } from 'preact'
 import Analysis from '../../models/analysis'
 import Schema from '../../models/schema'
 import {
   camelToTitle,
-  toPercentage,
-  toPrettyNumber,
   formatTeamNumber,
-  sortTeams
+  sortTeams,
+  toPercentage,
+  toPrettyNumber
 } from '../../utils'
-import { table, statColumn, note } from './style.sss'
+import { note, statColumn, table } from './style.sss'
 
 interface TableProps {
   analyses: Analysis[]

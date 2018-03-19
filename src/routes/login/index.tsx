@@ -1,11 +1,11 @@
-import { h, Component } from 'preact'
-import { authenticate } from '../../api'
 import linkState from 'linkstate'
+import { Component, h } from 'preact'
 import { route } from 'preact-router'
+import { authenticate } from '../../api'
+import Button from '../../components/button'
 import Header from '../../components/header'
 import TextInput from '../../components/text-input'
-import Button from '../../components/button'
-import { login, err } from './style.sss'
+import { err as errClass, login } from './style.sss'
 
 interface LoginProps {
   back: string
@@ -41,7 +41,7 @@ class Login extends Component<LoginProps, LoginState> {
       <div class={login}>
         <Header title="Login" back={back || '/'} />
         <div>
-          {state.error ? <p class={err}>{state.error}</p> : null}
+          {state.error ? <p class={errClass}>{state.error}</p> : null}
           <form onSubmit={e => this.handleLogin(e, back)}>
             <TextInput
               placeholder="Username"

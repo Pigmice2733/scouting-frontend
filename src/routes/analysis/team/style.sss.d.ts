@@ -1,1 +1,1 @@
-export const teamAnalysis: string;
+export const teamAnalysis: string

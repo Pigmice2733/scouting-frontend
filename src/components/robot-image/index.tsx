@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { robotImage, blue, red } from './style.sss'
+import { blue, red, robotImage } from './style.sss'
 
 interface RobotImageProps {
   team: string

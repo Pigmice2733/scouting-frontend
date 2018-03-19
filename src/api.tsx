@@ -1,24 +1,24 @@
+import idbKeyval from 'idb-keyval'
+import Analysis from './models/analysis'
 import FRCEvent from './models/frc-event'
 import Match from './models/match'
-import Analysis from './models/analysis'
 import Report from './models/report'
 import Schema from './models/schema'
 import UserInfo from './models/user-info'
-import idbKeyval from 'idb-keyval'
 
-import { hasValidJWT, getJWT } from './utils'
+import { getJWT, hasValidJWT } from './utils'
 
 const endpoint = 'https://api.pigmice.ga'
 
-export interface req {
+export interface Req {
   path: string
   method: string
   body?: string
 }
 
-const addRequestToIdb = async (request: req) => {
+const addRequestToIdb = async (request: Req) => {
   const currentRequests = (await idbKeyval.get('cachedRequests')) as
-    | req[]
+    | Req[]
     | undefined
   if (currentRequests === undefined) {
     await idbKeyval.set('cachedRequests', [request])

@@ -9,9 +9,7 @@ export interface SearchInputEvent extends Event {
   target: SearchInputEventTarget
 }
 
-interface SearchInputEventCallback {
-  (event: SearchInputEvent): any
-}
+type SearchInputEventCallback = (event: SearchInputEvent) => any
 
 interface SearchInputProps {
   onInput?: SearchInputEventCallback

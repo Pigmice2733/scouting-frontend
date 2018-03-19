@@ -1,9 +1,9 @@
 import {
-  h,
   Component,
   ComponentConstructor,
+  ComponentProps,
   FunctionalComponent,
-  ComponentProps
+  h
 } from 'preact'
 import { err as errClass, wrapper as wrapperClass } from './error.sss'
 
@@ -24,16 +24,16 @@ interface ResolverState {
 const Resolver = <T extends {}>(props: ResolverProps<T>) =>
   h(
     class extends Component<ResolverProps<T>, ResolverState> {
-      constructor(props: ResolverProps<T>) {
+      constructor(p: ResolverProps<T>) {
         super()
         this.state = { data: {}, error: null }
 
-        Object.keys(props.data).forEach(prop => {
+        Object.keys(p.data).forEach(prop => {
           if (prop === 'children') {
             return
           }
 
-          props.data[prop]((err: Error, d: any) =>
+          p.data[prop]((err: Error, d: any) =>
             this.setState((state: ResolverState) => {
               if (err !== null) {
                 return this.setState({ error: err })

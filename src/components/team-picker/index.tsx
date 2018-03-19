@@ -1,6 +1,6 @@
 import { h } from 'preact'
-import { teamPicker } from './style.sss'
 import { formatTeamNumber } from '../../utils'
+import { teamPicker } from './style.sss'
 
 interface TeamPickerProps {
   onChange: (team: string) => any

@@ -1,7 +1,7 @@
 import { h } from 'preact'
+import { formatDate } from '../../utils'
 import Icon from '../icon'
 import { date as dateClass } from './style.sss'
-import { formatDate } from '../../utils'
 
 interface DateDisplayProps {
   date: Date | undefined

@@ -1,34 +1,34 @@
-import { h, Component } from 'preact'
-import { home } from './style.sss'
-import Resolver from '../../resolver'
-import SearchInput, { SearchInputEvent } from '../../components/search-input'
-import { getEvents } from '../../api'
-import {
-  sortEvents,
-  hasValidJWT,
-  getUserInfo,
-  eventTypeName,
-  abbreviate,
-  getCoords
-} from '../../utils'
-import Spinner from '../../components/spinner'
-import List from '../../components/list'
-import DateDisplay from '../../components/date-display'
-import FRCEvent from '../../models/frc-event'
-import Button from '../../components/button'
+import { Component, h } from 'preact'
 import { route } from 'preact-router'
+import { getEvents } from '../../api'
+import Button from '../../components/button'
+import DateDisplay from '../../components/date-display'
 import Header from '../../components/header'
-import {
-  info as infoClass,
-  headerContents,
-  dcmp,
-  cmp,
-  off,
-  pre,
-  navigationDrawerButtonContainer,
-  navigationDrawerButton
-} from './style.sss'
 import Icon from '../../components/icon'
+import List from '../../components/list'
+import SearchInput, { SearchInputEvent } from '../../components/search-input'
+import Spinner from '../../components/spinner'
+import FRCEvent from '../../models/frc-event'
+import Resolver from '../../resolver'
+import {
+  abbreviate,
+  eventTypeName,
+  getCoords,
+  getUserInfo,
+  hasValidJWT,
+  sortEvents
+} from '../../utils'
+import { home } from './style.sss'
+import {
+  cmp,
+  dcmp,
+  headerContents,
+  info as infoClass,
+  navigationDrawerButton,
+  navigationDrawerButtonContainer,
+  off,
+  pre
+} from './style.sss'
 
 interface HomeProps {
   events: FRCEvent[]
@@ -40,7 +40,7 @@ interface HomeState {
   coords?: { lat: number; long: number }
 }
 
-const eventTypeClassMap = new Map<Number, string>([
+const eventTypeClassMap = new Map<number, string>([
   [5, dcmp],
   [2, dcmp],
   [3, cmp],
@@ -80,7 +80,7 @@ export default () => (
           this.setState({ loggedIn: false })
         }
 
-        eventTypeClass = (eventType: Number) => {
+        eventTypeClass = (eventType: number) => {
           return eventTypeClassMap.get(eventType)
         }
 

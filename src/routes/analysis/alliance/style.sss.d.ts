@@ -1,1 +1,1 @@
-export const allianceAnalysis: string;
+export const allianceAnalysis: string

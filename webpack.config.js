@@ -7,21 +7,35 @@ const devtool = mode === 'development' ? 'source-map' : false
 
 const tsLoader = {
   test: /\.tsx?$/,
-  use: {
-    loader: 'babel-loader',
-    options: {
-      presets: ['@babel/preset-typescript', '@babel/preset-env'],
-      plugins: [
-        [
-          require('@babel/plugin-transform-react-jsx'),
-          {
-            pragma: 'h'
-          }
+  use: [
+    {
+      loader: 'babel-loader',
+      options: {
+        presets: [
+          [
+            '@babel/preset-env',
+            {
+              targets: {
+                browsers: ['last 2 versions']
+              },
+              exclude: ['transform-regenerator']
+            }
+          ]
         ],
-        '@babel/plugin-proposal-class-properties'
-      ]
-    }
-  },
+        plugins: [
+          [
+            '@babel/plugin-transform-react-jsx',
+            {
+              pragma: 'h'
+            }
+          ],
+          '@babel/plugin-proposal-class-properties',
+          '@babel/plugin-transform-typescript'
+        ]
+      }
+    },
+    'ts-loader'
+  ],
   exclude: /node_modules/
 }
 

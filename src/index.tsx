@@ -1,7 +1,7 @@
-import App from './components/app'
-import { render, h } from 'preact'
 import idbKeyval from 'idb-keyval'
-import { req, queryAPI } from './api'
+import { h, render } from 'preact'
+import { queryAPI, Req } from './api'
+import App from './components/app'
 
 const rootNode = document.getElementById('app')
 
@@ -12,7 +12,7 @@ if ('serviceWorker' in navigator) {
 }
 
 const syncRequests = async () => {
-  const requests = (await idbKeyval.get('cachedRequests')) as req[]
+  const requests = (await idbKeyval.get('cachedRequests')) as Req[]
   if (requests !== undefined) {
     await Promise.all(requests.map(re => queryAPI(re.path, re.method, re.body)))
   }
@@ -23,7 +23,7 @@ if (navigator.onLine) {
   syncRequests()
 }
 
-var module: {
+declare const module: {
   hot: {
     accept: () => void
   }

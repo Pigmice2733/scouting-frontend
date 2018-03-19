@@ -1,30 +1,30 @@
-import { h, Component } from 'preact'
-import Header from '../../components/header'
-import { getUserInfo, hasValidJWT } from '../../utils'
-import Resolver from '../../resolver'
+import { Component, h } from 'preact'
+import { route } from 'preact-router'
 import {
-  getUsers,
-  getEvents,
+  createUser,
   deleteUser,
-  updateUser,
-  createUser
+  getEvents,
+  getUsers,
+  updateUser
 } from '../../api'
-import Spinner from '../../components/spinner'
 import Button from '../../components/button'
-import UserInfo from '../../models/user-info'
+import Header from '../../components/header'
 import Icon from '../../components/icon'
-import Toggle from '../../components/toggle'
+import Spinner from '../../components/spinner'
 import TextInput from '../../components/text-input'
+import Toggle from '../../components/toggle'
+import UserInfo from '../../models/user-info'
+import Resolver from '../../resolver'
+import { getUserInfo, hasValidJWT } from '../../utils'
 import {
-  adminPanel as adminPanelClass,
-  del as deleteClass,
-  save as saveClass,
   admin as adminClass,
   adminInner as adminPanelInnerClass,
+  adminPanel as adminPanelClass,
+  del as deleteClass,
   failed,
+  save as saveClass,
   success
 } from './style.sss'
-import { route } from 'preact-router'
 
 class EditableUser {
   username: string
@@ -133,7 +133,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                             1200
                           )
 
-                          var re = /[^A-Za-z0-9 ]/
+                          const re = /[^A-Za-z0-9 ]/
                           if (
                             !user.edit.username ||
                             re.exec(user.edit.username)
@@ -143,7 +143,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                           }
 
                           try {
-                            if (user.username != '') {
+                            if (user.username !== '') {
                               updateUser(user.username, {
                                 username: user.edit.username,
                                 isAdmin: user.edit.isAdmin,

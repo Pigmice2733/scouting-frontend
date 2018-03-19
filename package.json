@@ -19,9 +19,6 @@
     "connect-history-api-fallback": "^1.5.0",
     "cross-env": "^5.1.4",
     "css-loader": "^0.28.11",
-    "eslint": "^4.18.2",
-    "eslint-plugin-babel": "^4.1.2",
-    "eslint-plugin-react": "^7.7.0",
     "fork-ts-checker-webpack-plugin": "^0.4.1",
     "greenkeeper-lockfile": "^1.14.0",
     "html-webpack-plugin": "^3.0.6",
@@ -40,14 +37,12 @@
     "sugarss": "^1.0.1",
     "ts-jest": "^22.4.1",
     "tslint": "^5.9.1",
+    "tslint-config-prettier": "^1.10.0",
     "typescript": "^2.7.2",
     "webpack": "^4.1.1",
     "webpack-cli": "^2.0.12",
     "webpack-serve": "^0.2.0"
   },
-  "eslintIgnore": [
-    "build/*"
-  ],
   "license": "MIT",
   "prettier": {
     "semi": false,
@@ -59,7 +54,7 @@
     "build": "cross-env NODE_ENV=production webpack",
     "type": "tsc --noEmit --pretty",
     "type:watch": "tsc --noEmit --pretty --watch",
-    "lint": "eslint src",
+    "lint": "tslint --project tsconfig.json --format codeFrame",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -71,13 +66,6 @@
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   }
 }

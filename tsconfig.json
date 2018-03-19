@@ -10,7 +10,9 @@
     "moduleResolution": "node",
     "target": "ESNext",
     "sourceMap": true,
-    "baseUrl": "./src"
+    "baseUrl": "./src",
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true
   },
   "files": ["./src/index.tsx", "./src/sw.ts"]
 }

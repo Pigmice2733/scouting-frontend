@@ -2,7 +2,7 @@
   "name": "pigmice_scouting_frontend",
   "version": "0.0.0",
   "dependencies": {
-    "idb-keyval": "^2.4.1",
+    "idb-keyval": "^3.0.0",
     "linkstate": "^1.1.1",
     "preact": "^8.2.7",
     "preact-router": "^2.6.0"

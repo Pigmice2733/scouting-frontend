@@ -3,8 +3,8 @@ import Analysis from '../../models/analysis'
 import Schema from '../../models/schema'
 import {
   camelToTitle,
-  formatTeamNumber,
   compareTeams,
+  formatTeamNumber,
   toPercentage,
   toPrettyNumber
 } from '../../utils'

@@ -10,8 +10,8 @@ import Resolver from '../../resolver'
 import {
   camelToTitle,
   compareMatchKey,
-  formatTeamNumber,
-  compareTeams
+  compareTeams,
+  formatTeamNumber
 } from '../../utils'
 import {
   chart,
@@ -53,15 +53,17 @@ const Compare = ({
         route(`/compare/${eventId}/${team1}/${formatTeamNumber(teams[0])}`)
       }
 
+      if (teams === undefined) {
+	return <Spinner />
+      }
+
       const sortedTeams = teams.sort(compareTeams)
 
       const sortedTeamStats = (statsTeam1 || [])
         .concat(statsTeam2 || [])
         .sort((a, b) => compareMatchKey(a.matchKey, b.matchKey))
 
-      return !teams ? (
-        <Spinner />
-      ) : (
+      return (
         <div>
           <Header title={`Compare: ${team1} to ${team2}`} back="/" />
           <div class={compare}>

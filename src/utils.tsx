@@ -49,8 +49,8 @@ const parseTeamNumber = (teamId: string) => {
   return { num: Number(num), letter }
 }
 
-const sortTeams = (a: string, b: string) =>
-  parseTeamNumber(a).num > parseTeamNumber(b).num
+const compareTeams = (a: string, b: string) =>
+  parseTeamNumber(a).num > parseTeamNumber(b).num ? 1 : -1
 
 interface SortedSchemaKeys {
   auto: string[]
@@ -228,10 +228,10 @@ const compareMatchKey = (a: string, b: string) => {
   const bParsed = parseMatchKey(b)
 
   if (aParsed.type === bParsed.type) {
-    if (aParsed.group === bParsed.group) {
-      return aParsed.num < bParsed.num ? -1 : 1
+    if (aParsed.num === bParsed.num) {
+      return aParsed.group < bParsed.group ? -1 : 1
     }
-    return aParsed.group < bParsed.group ? -1 : 1
+    return aParsed.num < bParsed.num ? -1 : 1
   }
   return compareMatchType(aParsed.type, bParsed.type)
 }
@@ -268,7 +268,7 @@ export {
   sortSchemaKeys,
   eventTypeName,
   abbreviate,
-  sortTeams,
+  compareTeams,
   getCoords,
   capitalize,
   getNumber,

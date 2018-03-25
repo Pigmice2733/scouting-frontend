@@ -145,6 +145,9 @@ const updateUser = (username: string, user: UserInfo & { password?: string }) =>
 const createUser = (user: UserInfo & { password: string }) =>
   queryAPI(`users`, 'POST', user)
 
+const getTeamsAtEvent = (eventId: string) =>
+  get<string[]>(`/events/${eventId}/teams`)
+
 export {
   getEvents,
   getEvent,
@@ -153,6 +156,7 @@ export {
   getAllianceAnalysis,
   getSchema,
   getReporterStats,
+  getTeamsAtEvent,
   getUsers,
   deleteUser,
   authenticate,

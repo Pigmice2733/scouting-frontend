@@ -17,7 +17,12 @@ const matchKeys = [
   ['2018test_qm5', '2018test_sf1m1'],
   ['2018test_sf1m1', '2018test_sf1m2'],
   ['2018test_sf1m3', '2018test_f1m1'],
-  ['2018test_qm1', '2018test_qm1']
+  ['2018test_qm1', '2018test_qm1'],
+  ['2018test_qf1m1', '2018test_qf2m1'],
+  ['2018test_qf3m1', '2018test_qf4m2'],
+  ['2018test_qf3m2', '2018test_qf4m2'],
+  ['2018test_qf1m1', '2018test_qf4m4'],
+  ['2018test_qf2m1', '2018test_qf1m2']
 ]
 
 test('compareMatchKey', () => {

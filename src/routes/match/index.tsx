@@ -39,7 +39,7 @@ const Alliance = ({ baseUrl, color, alliance, score }: AllianceProps) => (
     class={`${allianceClass} ${color === 'red' ? redClass : blueClass}`}
   >
     {alliance.map(team => (
-      <RobotImage team={formatTeamNumber(team)} color={color} key={team} />
+      <RobotImage team={formatTeamNumber(team)} color={color} />
     ))}
     <div class={scoreClass}>
       <h2>Score</h2>

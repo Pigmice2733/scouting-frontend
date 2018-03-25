@@ -7,6 +7,7 @@ import Admin from '../../routes/admin'
 import AllianceAnalysis from '../../routes/analysis/alliance'
 import EventAnalysis from '../../routes/analysis/event'
 import TeamAnalysis from '../../routes/analysis/team'
+import Compare from '../../routes/compare'
 import Event from '../../routes/event'
 import Home from '../../routes/home'
 import Leaderboard from '../../routes/leaderboard'
@@ -30,6 +31,7 @@ const App = () => (
         component={AllianceAnalysis}
       />
       <Route path="/events/:eventId/:matchId/scout" component={Scout} />
+      <Route path="/compare/:eventId/:team1?/:team2?" component={Compare} />
       <Route default component={Error404} />
     </Router>
   </div>

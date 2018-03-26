@@ -1,3 +1,0 @@
-/api/*  https://api.pigmice.ga/:splat 200!
-http://scouting.netlify.com/* https://scouting.netlify.com/:splat 301!
-/*    /index.html   200

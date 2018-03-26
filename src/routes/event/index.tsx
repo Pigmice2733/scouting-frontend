@@ -24,7 +24,10 @@ const Event = ({ eventId }: { eventId: string }) => (
           title={(event && event.shortName) || `Event ${eventId}`}
           back="/"
         />
-        <Button href={`/events/${eventId}/analysis`}>View Analysis</Button>
+        <div>
+          <Button href={`/events/${eventId}/analysis`}>View Analysis</Button>
+          <Button href={`/compare/${eventId}`}>Compare</Button>
+        </div>
         {typeof event === 'undefined' ? (
           <Spinner />
         ) : event.matches === null || event.matches.length === 0 ? (

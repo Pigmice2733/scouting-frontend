@@ -65,7 +65,7 @@ const Compare = ({
 
       return (
         <div>
-          <Header title={`Compare: ${team1} to ${team2}`} back="/" />
+          <Header title={`Compare: ${team1} to ${team2}`} back={`/events/${eventId}`} />
           <div class={compare}>
             <div class={chooser}>
               <div class={teamClass}>

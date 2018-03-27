@@ -53,7 +53,9 @@ const Compare = ({
       }
 
       if (team2 === '' && teams) {
-        route(`/events/${eventId}/compare/${team1}/${formatTeamNumber(teams[0])}`)
+        route(
+          `/events/${eventId}/compare/${team1}/${formatTeamNumber(teams[0])}`
+        )
       }
 
       if (teams === undefined) {
@@ -129,7 +131,7 @@ const Compare = ({
                   <Chart
                     reports={sortedTeamStats}
                     stat={key}
-                    fieldType={'number'}
+                    fieldType={schema[key]}
                     colorKey={{ [team1]: 'blue', [team2]: 'red' }}
                   />
                 </div>

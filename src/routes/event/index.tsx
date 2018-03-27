@@ -26,7 +26,7 @@ const Event = ({ eventId }: { eventId: string }) => (
         />
         <div>
           <Button href={`/events/${eventId}/analysis`}>View Analysis</Button>
-          <Button href={`/compare/${eventId}`}>Compare</Button>
+          <Button href={`/compare/${eventId}`}>Compare Teams</Button>
         </div>
         {typeof event === 'undefined' ? (
           <Spinner />

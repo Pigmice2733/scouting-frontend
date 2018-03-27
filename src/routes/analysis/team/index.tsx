@@ -1,5 +1,6 @@
 import { h } from 'preact'
 import { getEvent, getSchema, getTeamStats } from '../../../api'
+import Button from '../../../components/button'
 import Chart from '../../../components/chart'
 import Header from '../../../components/header'
 import Spinner from '../../../components/spinner'
@@ -7,7 +8,6 @@ import Table from '../../../components/table'
 import Resolver from '../../../resolver'
 import { camelToTitle, compareMatchKey, getNumber } from '../../../utils'
 import { teamAnalysis } from './style.sss'
-import Button from '../../../components/button'
 
 const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
   <Resolver

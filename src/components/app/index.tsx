@@ -31,7 +31,10 @@ const App = () => (
         component={AllianceAnalysis}
       />
       <Route path="/events/:eventId/:matchId/scout" component={Scout} />
-      <Route path="/compare/:eventId/:team1?/:team2?" component={Compare} />
+      <Route
+        path="/events/:eventId/compare/:team1?/:team2?"
+        component={Compare}
+      />
       <Route default component={Error404} />
     </Router>
   </div>

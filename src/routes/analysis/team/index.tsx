@@ -33,7 +33,9 @@ const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
             <Spinner />
           ) : (
             <div>
-              <Button href={`/compare/${eventId}/${team}`}>Compare</Button>
+              <Button href={`/events/${eventId}/compare/${team}`}>
+                Compare
+              </Button>
 
               {Object.keys(schema).map(key => (
                 <div>

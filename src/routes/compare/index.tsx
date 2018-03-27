@@ -47,11 +47,13 @@ const Compare = ({
     }}
     render={({ teams, statsTeam1, statsTeam2, schema }: CompareProps) => {
       if (team1 === '' && teams) {
-        route(`/compare/${eventId}/${formatTeamNumber(teams[0])}/${team2}`)
+        route(
+          `/events/${eventId}/compare/${formatTeamNumber(teams[0])}/${team2}`
+        )
       }
 
       if (team2 === '' && teams) {
-        route(`/compare/${eventId}/${team1}/${formatTeamNumber(teams[0])}`)
+        route(`/events/${eventId}/compare/${team1}/${formatTeamNumber(teams[0])}`)
       }
 
       if (teams === undefined) {
@@ -80,7 +82,7 @@ const Compare = ({
                     value={team1}
                     onChange={e =>
                       route(
-                        `/compare/${eventId}/${
+                        `/events/${eventId}/compare/${
                           (e.target as HTMLSelectElement).value
                         }/${team2}`
                       )
@@ -104,7 +106,7 @@ const Compare = ({
                     value={team2}
                     onChange={e =>
                       route(
-                        `/compare/${eventId}/${team1}/${
+                        `/events/${eventId}/compare/${team1}/${
                           (e.target as HTMLSelectElement).value
                         }`
                       )

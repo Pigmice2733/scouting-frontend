@@ -18,7 +18,8 @@ import {
   chooser,
   compare,
   robotImage,
-  team as teamClass
+  team as teamClass,
+  err
 } from './style.sss'
 
 interface CompareProps {
@@ -70,7 +71,7 @@ const Compare = ({
             back={`/events/${eventId}`}
           />
           {teams === null ? (
-            <p>No teams have been scouted for this event</p>
+            <p class={err}>No teams have been scouted for this event</p>
           ) : (
             <div class={compare}>
               <div class={chooser}>

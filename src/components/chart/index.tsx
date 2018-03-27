@@ -25,10 +25,10 @@ const Chart = ({
   const min = Math.min(...allReports.map(e => getNumber(e.stats[stat])))
   const max = Math.max(...allReports.map(e => getNumber(e.stats[stat])))
 
-  const categories: { [key: string]: Report[] } = {}
+  const groupedTeamStats: { [key: string]: Report[] } = {}
 
   allReports.map(
-    r => (categories[r.team] = (categories[r.team] || []).concat(r))
+    r => (groupedTeamStats[r.team] = (groupedTeamStats[r.team] || []).concat(r))
   )
 
   if (max === min) {
@@ -60,7 +60,7 @@ const Chart = ({
       ))}}}
       <line x1="20" x2="20" y1="0" y2="475" stroke-width="3" />
       <line x1="20" x2="640" y1="475" y2="475" stroke-width="3" />
-      {Array.from(Object.entries(categories)).map(([key, reports]) => {
+      {Array.from(Object.entries(groupedTeamStats)).map(([key, reports]) => {
         return (
           <g>
             <polyline

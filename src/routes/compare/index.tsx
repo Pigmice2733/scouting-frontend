@@ -54,10 +54,10 @@ const Compare = ({
       }
 
       if (teams === undefined) {
-	return <Spinner />
+        return <Spinner />
       }
 
-      const sortedTeams = teams.sort(compareTeams)
+      const sortedTeams = (teams || []).sort(compareTeams)
 
       const sortedTeamStats = (statsTeam1 || [])
         .concat(statsTeam2 || [])
@@ -65,63 +65,74 @@ const Compare = ({
 
       return (
         <div>
-          <Header title={`Compare: ${team1} to ${team2}`} back={`/events/${eventId}`} />
-          <div class={compare}>
-            <div class={chooser}>
-              <div class={teamClass}>
-                <select
-                  value={team1}
-                  onChange={e =>
-                    route(
-                      `/compare/${eventId}/${
-                        (e.target as HTMLSelectElement).value
-                      }/${team2}`
-                    )
-                  }
-                >
-                  {sortedTeams.map(team => (
-                    <option value={formatTeamNumber(team)}>
-                      {formatTeamNumber(team)}
-                    </option>
-                  ))}
-                </select>
-                <RobotImage className={robotImage} team={team1} color="blue" />
+          <Header
+            title={teams !== null ? `Compare: ${team1} to ${team2}` : 'Compare'}
+            back={`/events/${eventId}`}
+          />
+          {teams === null ? (
+            <h1>No teams have been scouted for this event</h1>
+          ) : (
+            <div class={compare}>
+              <div class={chooser}>
+                <div class={teamClass}>
+                  <select
+                    value={team1}
+                    onChange={e =>
+                      route(
+                        `/compare/${eventId}/${
+                          (e.target as HTMLSelectElement).value
+                        }/${team2}`
+                      )
+                    }
+                  >
+                    {sortedTeams.map(team => (
+                      <option value={formatTeamNumber(team)}>
+                        {formatTeamNumber(team)}
+                      </option>
+                    ))}
+                  </select>
+                  <RobotImage
+                    className={robotImage}
+                    team={team1}
+                    color="blue"
+                  />
+                </div>
+
+                <div class={teamClass}>
+                  <select
+                    value={team2}
+                    onChange={e =>
+                      route(
+                        `/compare/${eventId}/${team1}/${
+                          (e.target as HTMLSelectElement).value
+                        }`
+                      )
+                    }
+                  >
+                    {sortedTeams.map(team => (
+                      <option value={formatTeamNumber(team)}>
+                        {formatTeamNumber(team)}
+                      </option>
+                    ))}
+                  </select>
+
+                  <RobotImage className={robotImage} team={team2} color="red" />
+                </div>
               </div>
 
-              <div class={teamClass}>
-                <select
-                  value={team2}
-                  onChange={e =>
-                    route(
-                      `/compare/${eventId}/${team1}/${
-                        (e.target as HTMLSelectElement).value
-                      }`
-                    )
-                  }
-                >
-                  {sortedTeams.map(team => (
-                    <option value={formatTeamNumber(team)}>
-                      {formatTeamNumber(team)}
-                    </option>
-                  ))}
-                </select>
-
-                <RobotImage className={robotImage} team={team2} color="red" />
-              </div>
+              {Object.keys(schema).map(key => (
+                <div class={chart}>
+                  <h1>{camelToTitle(key)}</h1>
+                  <Chart
+                    reports={sortedTeamStats}
+                    stat={key}
+                    fieldType={'number'}
+                    colorKey={{ [team1]: 'blue', [team2]: 'red' }}
+                  />
+                </div>
+              ))}
             </div>
-
-            {Object.keys(schema).map(key => (
-              <div class={chart}>
-                <h1>{camelToTitle(key)}</h1>
-                <Chart
-                  reports={sortedTeamStats}
-                  stat={key}
-                  fieldType={'number'}
-                  colorKey={{ [team1]: 'blue', [team2]: 'red' }}
-                />
-              </div>
-            ))}
-          </div>
+          )}
         </div>
       )
     }}

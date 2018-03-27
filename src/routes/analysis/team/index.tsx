@@ -7,6 +7,7 @@ import Table from '../../../components/table'
 import Resolver from '../../../resolver'
 import { camelToTitle, compareMatchKey, getNumber } from '../../../utils'
 import { teamAnalysis } from './style.sss'
+import Button from '../../../components/button'
 
 const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
   <Resolver
@@ -32,6 +33,8 @@ const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
             <Spinner />
           ) : (
             <div>
+              <Button href={`/compare/${eventId}/${team}`}>Compare</Button>
+
               {Object.keys(schema).map(key => (
                 <div>
                   <h1>{camelToTitle(key)}</h1>

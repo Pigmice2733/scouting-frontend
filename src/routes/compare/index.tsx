@@ -70,7 +70,7 @@ const Compare = ({
             back={`/events/${eventId}`}
           />
           {teams === null ? (
-            <h1>No teams have been scouted for this event</h1>
+            <p>No teams have been scouted for this event</p>
           ) : (
             <div class={compare}>
               <div class={chooser}>

@@ -46,16 +46,22 @@ const Compare = ({
       schema: getSchema()
     }}
     render={({ teams, statsTeam1, statsTeam2, schema }: CompareProps) => {
-      const firstTeam = formatTeamNumber(teams[0])
-
-      if (team1 === '' && teams) {
-        route(`/events/${eventId}/compare/${firstTeam}/${team2}`)
-      } else if (team2 === '' && teams) {
-        route(`/events/${eventId}/compare/${team1}/${firstTeam}`)
+      if (teams === undefined || schema === undefined) {
+        return <Spinner />
       }
 
-      if (teams === undefined) {
-        return <Spinner />
+      const firstTeam = formatTeamNumber(teams[0])
+
+      if (team1 === '' || team2 === '') {
+        if (team1 === '') {
+          team1 = firstTeam
+        }
+
+        if (team2 === '') {
+          team2 = firstTeam
+        }
+
+        route(`/events/${eventId}/compare/${team1}/${team2}`)
       }
 
       const sortedTeams = (teams || []).sort(compareTeams)

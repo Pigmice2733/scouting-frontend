@@ -71,7 +71,7 @@ const Field = ({
 
 const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
   if (!hasValidJWT()) {
-    route(`/login?back=/events/${eventId}/${matchId}/scout`, true)
+    route(`/login`, true)
     return
   }
   return (
@@ -124,7 +124,6 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
               <div class={scout}>
                 <Header
                   title={`Scout - ${matchId.toUpperCase()} - ${eventName}`}
-                  back={`/events/${eventId}/${matchId}`}
                   verify
                 />
                 <div class={scoutMain}>

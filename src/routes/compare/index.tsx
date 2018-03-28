@@ -68,7 +68,6 @@ const Compare = ({
         <div>
           <Header
             title={teams !== null ? `Compare: ${team1} to ${team2}` : 'Compare'}
-            back={`/events/${eventId}`}
           />
           {teams === null ? (
             <p class={err}>No teams have been scouted for this event</p>

@@ -70,7 +70,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
       <p>You are not an admin.</p>
     ) : (
       <div class={adminPanelClass}>
-        <Header title={`Admin Panel: ${userInfo.username}`} back="/" />
+        <Header title={`Admin Panel: ${userInfo.username}`} />
         {!users ? (
           <Spinner />
         ) : (

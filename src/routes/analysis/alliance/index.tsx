@@ -27,7 +27,6 @@ const AllianceAnalysis = ({
         <div class={allianceAnalysis}>
           <Header
             title={`${matchId.toUpperCase()} - ${camelToTitle(color)} Alliance`}
-            back={`/events/${eventId}/${matchId}`}
           />
           {!data ? (
             <Spinner />

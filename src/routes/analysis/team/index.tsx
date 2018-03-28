@@ -25,7 +25,6 @@ const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
       return (
         <div class={teamAnalysis}>
           <Header
-            back={`/events/${eventId}/analysis`}
             title={`${team} - ${(event && event.shortName) || eventId}`}
           />
 

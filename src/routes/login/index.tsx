@@ -7,23 +7,19 @@ import Header from '../../components/header'
 import TextInput from '../../components/text-input'
 import { err as errClass, login } from './style.sss'
 
-interface LoginProps {
-  back: string
-}
-
 interface LoginState {
   username: string
   password: string
   error: string
 }
 
-class Login extends Component<LoginProps, LoginState> {
-  handleLogin = (e: Event, back: string) => {
+class Login extends Component<{}, LoginState> {
+  handleLogin = (e: Event) => {
     e.preventDefault()
     authenticate(this.state)
       .then((jwt: string) => {
         localStorage.setItem('jwt', jwt)
-        route(back || '/')
+        window.history.back()
       })
       .catch(err =>
         this.setState((state: LoginState) => {
@@ -36,13 +32,13 @@ class Login extends Component<LoginProps, LoginState> {
       )
   }
 
-  render({ back }: LoginProps, state: LoginState) {
+  render({}, state: LoginState) {
     return (
       <div class={login}>
-        <Header title="Login" back={back || '/'} />
+        <Header title="Login" />
         <div>
           {state.error ? <p class={errClass}>{state.error}</p> : null}
-          <form onSubmit={e => this.handleLogin(e, back)}>
+          <form onSubmit={e => this.handleLogin(e)}>
             <TextInput
               placeholder="Username"
               onInput={linkState(this, 'username')}

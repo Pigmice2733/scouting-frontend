@@ -94,6 +94,7 @@ export default () => (
           return (
             <div class={home}>
               <Header
+                noBack
                 contents={
                   <div class={headerContents}>
                     <span class={navigationDrawerButtonContainer}>

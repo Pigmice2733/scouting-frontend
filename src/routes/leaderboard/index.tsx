@@ -16,7 +16,7 @@ const Leaderboard = () => (
       const sortedStats = sortReporterStats(stats) || []
       return (
         <div>
-          <Header title="Leaderboard" back="/" />
+          <Header title="Leaderboard" />
           {!sortedStats ? (
             <Spinner />
           ) : (

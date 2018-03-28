@@ -17,10 +17,7 @@ const EventAnalysis = ({ eventId }: { eventId: string }) => (
     }}
     render={({ event, eventAnalysis, schema }) => (
       <div class={eventAnalysisClass}>
-        <Header
-          back={`/events/${eventId}`}
-          title={`Analysis - ${(event && event.shortName) || eventId}`}
-        />
+        <Header title={`Analysis - ${(event && event.shortName) || eventId}`} />
         {schema &&
           eventAnalysis && (
             <Table

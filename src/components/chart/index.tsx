@@ -81,17 +81,23 @@ const Chart = ({
             />
             {reports.map((report, i) => (
               <g>
-                <circle
-                  r="4"
-                  fill={
-                    colorKey !== undefined
-                      ? colorKey[formatTeamNumber(key)]
-                      : 'purple'
-                  }
-                  stroke="0.2"
-                  cx={lerpX(allReports.indexOf(report))}
-                  cy={lerpY(getNumber(report.stats[stat]))}
-                />
+                <a
+                  href={`/events/${report.eventKey}/${report.matchKey.slice(
+                    report.eventKey.length + 1
+                  )}`}
+                >
+                  <circle
+                    r="4"
+                    fill={
+                      colorKey !== undefined
+                        ? colorKey[formatTeamNumber(key)]
+                        : 'purple'
+                    }
+                    stroke="0.2"
+                    cx={lerpX(allReports.indexOf(report))}
+                    cy={lerpY(getNumber(report.stats[stat]))}
+                  />
+                </a>
                 <text
                   class={tooltip}
                   font-size={textSize}

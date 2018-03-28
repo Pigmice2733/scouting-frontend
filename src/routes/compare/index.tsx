@@ -17,9 +17,9 @@ import {
   chart,
   chooser,
   compare,
+  err,
   robotImage,
-  team as teamClass,
-  err
+  team as teamClass
 } from './style.sss'
 
 interface CompareProps {

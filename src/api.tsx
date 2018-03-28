@@ -146,7 +146,7 @@ const createUser = (user: UserInfo & { password: string }) =>
   queryAPI(`users`, 'POST', user)
 
 const getTeamsAtEvent = (eventId: string) =>
-  get<string[]>(`/events/${eventId}/teams`)
+  get<string[]>(`events/${eventId}/teams`)
 
 export {
   getEvents,

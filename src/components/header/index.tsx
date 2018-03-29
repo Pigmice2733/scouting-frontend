@@ -8,9 +8,10 @@ interface HeaderProps {
   contents?: any
   verify?: boolean
   noBack?: boolean
+  back?: () => any
 }
 
-const Header = ({ title, contents, verify, noBack }: HeaderProps) => (
+const Header = ({ title, contents, verify, back, noBack }: HeaderProps) => (
   <header class={header}>
     {noBack || (
       <a
@@ -20,9 +21,15 @@ const Header = ({ title, contents, verify, noBack }: HeaderProps) => (
             e.stopImmediatePropagation()
             e.preventDefault()
             if (confirm('Are you sure you want to leave?')) {
+              if (back !== undefined) {
+                back()
+              }
               window.history.back()
             }
           } else {
+            if (back !== undefined) {
+              back()
+            }
             window.history.back()
           }
         }}

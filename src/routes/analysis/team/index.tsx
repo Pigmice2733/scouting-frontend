@@ -9,7 +9,15 @@ import Resolver from '../../../resolver'
 import { camelToTitle, compareMatchKey, getNumber } from '../../../utils'
 import { teamAnalysis } from './style.sss'
 
-const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
+const TeamAnalysis = ({
+  eventId,
+  team,
+  back
+}: {
+  eventId: string
+  team: string
+  back: string
+}) => (
   <Resolver
     data={{
       event: getEvent(eventId),
@@ -26,13 +34,16 @@ const TeamAnalysis = ({ eventId, team }: { eventId: string; team: string }) => (
         <div class={teamAnalysis}>
           <Header
             title={`${team} - ${(event && event.shortName) || eventId}`}
+            back={back}
           />
 
           {schema === undefined ? (
             <Spinner />
           ) : (
             <div>
-              <Button href={`/events/${eventId}/compare/${team}`}>
+              <Button
+                href={`/events/${eventId}/compare/${team}?back=/events/${eventId}/team/${team}?back=${back}`}
+              >
                 Compare
               </Button>
 

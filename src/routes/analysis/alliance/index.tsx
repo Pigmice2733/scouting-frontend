@@ -27,13 +27,19 @@ const AllianceAnalysis = ({
         <div class={allianceAnalysis}>
           <Header
             title={`${matchId.toUpperCase()} - ${camelToTitle(color)} Alliance`}
+            back={`/events/${eventId}/${matchId}/`}
           />
           {!data ? (
             <Spinner />
           ) : data.length === 0 ? (
             <p>No reports have been submitted for this alliance yet.</p>
           ) : (
-            <Table eventKey={eventId} analyses={data} schema={schema} />
+            <Table
+              back={`/events/${eventId}/${matchId}/alliance/${color}`}
+              eventKey={eventId}
+              analyses={data}
+              schema={schema}
+            />
           )}
         </div>
       )

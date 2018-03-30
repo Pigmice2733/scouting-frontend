@@ -35,7 +35,7 @@ class Login extends Component<{}, LoginState> {
   render({}, state: LoginState) {
     return (
       <div class={login}>
-        <Header title="Login" />
+        <Header title="Login" back="/" />
         <div>
           {state.error ? <p class={errClass}>{state.error}</p> : null}
           <form onSubmit={e => this.handleLogin(e)}>

@@ -14,6 +14,7 @@ interface TableProps {
   analyses: Analysis[]
   schema: Schema
   eventKey: string
+  back: string
 }
 
 interface TableState {
@@ -37,7 +38,7 @@ class Table extends Component<TableProps, TableState> {
     }))
 
   render(
-    { analyses, schema, eventKey }: TableProps,
+    { analyses, schema, eventKey, back }: TableProps,
     { sortBy, reversed }: TableState
   ) {
     return (
@@ -83,7 +84,7 @@ class Table extends Component<TableProps, TableState> {
                   <a
                     href={`/events/${eventKey}/team/${formatTeamNumber(
                       analysis.team
-                    )}`}
+                    )}?back=${back}`}
                   >
                     {formatTeamNumber(analysis.team)}
                   </a>

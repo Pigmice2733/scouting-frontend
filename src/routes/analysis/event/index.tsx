@@ -17,10 +17,14 @@ const EventAnalysis = ({ eventId }: { eventId: string }) => (
     }}
     render={({ event, eventAnalysis, schema }) => (
       <div class={eventAnalysisClass}>
-        <Header title={`Analysis - ${(event && event.shortName) || eventId}`} />
+        <Header
+          title={`Analysis - ${(event && event.shortName) || eventId}`}
+          back={`/events/${eventId}`}
+        />
         {schema &&
           eventAnalysis && (
             <Table
+              back={`/events/${eventId}/analysis`}
               eventKey={eventId}
               schema={schema}
               analyses={eventAnalysis}

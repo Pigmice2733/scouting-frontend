@@ -32,11 +32,13 @@ interface CompareProps {
 const Compare = ({
   eventId,
   team1,
-  team2
+  team2,
+  back
 }: {
   eventId: string
   team1?: string
   team2?: string
+  back: string
 }) => (
   <Resolver
     data={{
@@ -61,7 +63,7 @@ const Compare = ({
           team2 = firstTeam
         }
 
-        route(`/events/${eventId}/compare/${team1}/${team2}`)
+        route(`/events/${eventId}/compare/${team1}/${team2}?back=${back}`)
       }
 
       const sortedTeams = (teams || []).sort(compareTeams)
@@ -74,7 +76,7 @@ const Compare = ({
         <div>
           <Header
             title={teams !== null ? `Compare: ${team1} to ${team2}` : 'Compare'}
-            back={() => window.history.go(-3)}
+            back={back}
           />
           {teams === null ? (
             <p class={err}>No teams have been scouted for this event</p>
@@ -88,7 +90,7 @@ const Compare = ({
                       route(
                         `/events/${eventId}/compare/${
                           (e.target as HTMLSelectElement).value
-                        }/${team2}`
+                        }/${team2}?back=${back}`
                       )
                     }
                   >
@@ -112,7 +114,7 @@ const Compare = ({
                       route(
                         `/events/${eventId}/compare/${team1}/${
                           (e.target as HTMLSelectElement).value
-                        }`
+                        }?back=${back}`
                       )
                     }
                   >

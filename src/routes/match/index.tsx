@@ -64,7 +64,10 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
         previousMatch && parseMatchKey(previousMatch.key).matchKey
       return (
         <div class={matchClass}>
-          <Header title={`${matchId.toUpperCase()} - ${eventName}`} />
+          <Header
+            title={`${matchId.toUpperCase()} - ${eventName}`}
+            back={`/events/${eventId}`}
+          />
           <div class={matchNameClass}>
             <h2>{formatMatchKey(matchId)}</h2>
           </div>

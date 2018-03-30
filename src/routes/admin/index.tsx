@@ -62,7 +62,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
   render({}, { users }: AdminPanelState) {
     if (!hasValidJWT()) {
       route('/login')
-      return
+      return null
     }
 
     const userInfo = getUserInfo()
@@ -70,7 +70,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
       <p>You are not an admin.</p>
     ) : (
       <div class={adminPanelClass}>
-        <Header title={`Admin Panel: ${userInfo.username}`} />
+        <Header title={`Admin Panel: ${userInfo.username}`} back="/" />
         {!users ? (
           <Spinner />
         ) : (

@@ -20,10 +20,15 @@ const Event = ({ eventId }: { eventId: string }) => (
     data={{ event: getEvent(eventId) }}
     render={({ event }) => (
       <div class={eventClass}>
-        <Header title={(event && event.shortName) || `Event ${eventId}`} />
+        <Header
+          title={(event && event.shortName) || `Event ${eventId}`}
+          back="/"
+        />
         <div>
           <Button href={`/events/${eventId}/analysis`}>View Analysis</Button>
-          <Button href={`/events/${eventId}/compare`}>Compare Teams</Button>
+          <Button href={`/events/${eventId}/compare?back=/events/${eventId}`}>
+            Compare Teams
+          </Button>
         </div>
         {typeof event === 'undefined' ? (
           <Spinner />

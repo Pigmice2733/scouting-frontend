@@ -124,6 +124,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
               <div class={scout}>
                 <Header
                   title={`Scout - ${matchId.toUpperCase()} - ${eventName}`}
+                  back={`/events/${eventId}/${matchId}`}
                   verify
                 />
                 <div class={scoutMain}>

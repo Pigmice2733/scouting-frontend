@@ -92,10 +92,10 @@ const getEvent = (eventKey: string) => async (
 }
 
 const getEventAnalysis = (eventKey: string) =>
-  get<Analysis[]>(`analysis/${eventKey}`)
+  get<Analysis[]>(`events/${eventKey}/analysis`)
 
 const getMatch = (eventKey: string, matchKey: string) =>
-  get<Match>(`events/${eventKey}/${eventKey}_${matchKey}`)
+  get<Match>(`events/${eventKey}/matches/${eventKey}_${matchKey}`)
 
 const getSchema = () => get<Schema>('schema')
 
@@ -103,7 +103,7 @@ const getReporterStats = () =>
   get<{ reporter: string; reports: number }[]>('leaderboard')
 
 const getTeamStats = (eventKey: string, team: string) =>
-  get<Report[]>(`reports/${eventKey}/frc${team}/raw`)
+  get<Report[]>(`events/${eventKey}/teams/frc${team}/reports`)
 
 const getUsers = () => get<UserInfo[]>('users')
 
@@ -125,17 +125,24 @@ const submitReport = (
   stats: { [key: string]: boolean | number },
   notes?: string
 ) =>
-  queryAPI(`reports/${eventKey}/${eventKey}_${matchKey}`, 'PUT', {
-    team,
-    stats,
-    notes
-  })
+  queryAPI(
+    `events/${eventKey}/matches/${eventKey}_${matchKey}/reports`,
+    'PUT',
+    {
+      team,
+      stats,
+      notes
+    }
+  )
 
 const getAllianceAnalysis = (
   eventKey: string,
   matchKey: string,
   color: string
-) => get<Analysis[]>(`analysis/${eventKey}/${eventKey}_${matchKey}/${color}`)
+) =>
+  get<Analysis[]>(
+    `events/${eventKey}/matches/${eventKey}_${matchKey}/alliance/${color}/analysis`
+  )
 
 const deleteUser = (username: string) => queryAPI(`users/${username}`, 'DELETE')
 

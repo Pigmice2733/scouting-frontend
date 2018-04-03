@@ -86,13 +86,13 @@ const Compare = ({
                 <div class={teamClass}>
                   <select
                     value={team1}
-                    onChange={e =>
-                      route(
-                        `/events/${eventId}/compare/${
-                          (e.target as HTMLSelectElement).value
-                        }/${team2}?back=${back}`
-                      )
-                    }
+                    // onChange={e =>
+                    //   route(
+                    //     `/events/${eventId}/compare/${
+                    //       (e.target as HTMLSelectElement).value
+                    //     }/${team2}?back=${back}`
+                    //   )
+                    // }
                   >
                     {sortedTeams.map(team => (
                       <option value={formatTeamNumber(team)}>
@@ -110,13 +110,13 @@ const Compare = ({
                 <div class={teamClass}>
                   <select
                     value={team2}
-                    onChange={e =>
-                      route(
-                        `/events/${eventId}/compare/${team1}/${
-                          (e.target as HTMLSelectElement).value
-                        }?back=${back}`
-                      )
-                    }
+                    // onChange={e =>
+                    //   route(
+                    //     `/events/${eventId}/compare/${team1}/${
+                    //       (e.target as HTMLSelectElement).value
+                    //     }?back=${back}`
+                    //   )
+                    // }
                   >
                     {sortedTeams.map(team => (
                       <option value={formatTeamNumber(team)}>

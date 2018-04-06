@@ -5,8 +5,8 @@ import Schema from '../../models/schema'
 import Resolver from '../../resolver'
 import {
   camelToTitle,
-  formatTeamNumber,
   formatMatchKey,
+  formatTeamNumber,
   toPercentage,
   toPrettyNumber
 } from '../../utils'

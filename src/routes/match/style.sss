@@ -82,3 +82,17 @@
 
   & path
     fill: currentColor
+
+.print
+  display: flex
+  justify-content: center
+  align-items: center
+  padding: 0 10px
+  transition: background 0.3s ease
+  cursor: pointer
+
+  &:hover, &:focus
+    background: color(white alpha(10%))
+
+  & path
+    fill: white

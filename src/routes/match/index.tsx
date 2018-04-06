@@ -1,4 +1,4 @@
-import { h } from 'preact'
+import { h, render } from 'preact'
 import { getEvent, getMatch } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
@@ -21,6 +21,7 @@ import {
   matchTime as matchTimeClass,
   navbar,
   navigation as navigationClass,
+  print as printClass,
   red as redClass,
   score as scoreClass
 } from './style.sss'
@@ -108,6 +109,12 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             ) : (
               <div />
             )}
+            <a
+              class={printClass}
+              onClick={() => window.open(`/events/${eventId}/${matchId}/print`)}
+            >
+              <Icon icon="print" />
+            </a>
             {nextMatchKey !== undefined ? (
               <a
                 class={navigationClass}

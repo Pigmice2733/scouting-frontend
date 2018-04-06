@@ -13,6 +13,7 @@ import Home from '../../routes/home'
 import Leaderboard from '../../routes/leaderboard'
 import Login from '../../routes/login'
 import Match from '../../routes/match'
+import Print from '../../routes/print'
 import Scout from '../../routes/scout'
 
 const App = () => (
@@ -26,6 +27,7 @@ const App = () => (
       <Route path="/events/:eventId/analysis" component={EventAnalysis} />
       <Route path="/events/:eventId/team/:team" component={TeamAnalysis} />
       <Route path="/events/:eventId/:matchId" component={Match} />
+      <Route path="/events/:eventId/:matchId/print" component={Print} />
       <Route
         path="/events/:eventId/:matchId/alliance/:color"
         component={AllianceAnalysis}

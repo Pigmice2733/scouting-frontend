@@ -10,9 +10,9 @@ import {
 } from '../../utils'
 import {
   note,
+  selectedTeam as selectedTeamClass,
   statColumn,
-  table,
-  selectedTeam as selectedTeamClass
+  table
 } from './style.sss'
 
 interface TableProps {

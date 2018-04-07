@@ -48,7 +48,6 @@ class Table extends Component<TableProps, TableState> {
     { analyses, schema, eventKey, back }: TableProps,
     { sortBy, reversed, selectedTeam }: TableState
   ) {
-    console.log(this.state)
     return (
       <div class={table}>
         <table>

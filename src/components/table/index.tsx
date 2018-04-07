@@ -48,6 +48,7 @@ class Table extends Component<TableProps, TableState> {
     { analyses, schema, eventKey, back }: TableProps,
     { sortBy, reversed, selectedTeam }: TableState
   ) {
+    console.log(this.state)
     return (
       <div class={table}>
         <table>
@@ -79,10 +80,15 @@ class Table extends Component<TableProps, TableState> {
           </tr>
           {analyses
             .sort((a, b) => {
-              const v =
-                sortBy === 'teamNumber'
-                  ? compareTeams(a.team, b.team)
-                  : a.stats[sortBy] > b.stats[sortBy] ? 1 : -1
+              let v: number
+              if (
+                sortBy === 'teamNumber' ||
+                a.stats[sortBy] === b.stats[sortBy]
+              ) {
+                v = compareTeams(a.team, b.team)
+              } else {
+                v = a.stats[sortBy] > b.stats[sortBy] ? 1 : -1
+              }
               return reversed ? -v : v
             })
             .map(analysis => (

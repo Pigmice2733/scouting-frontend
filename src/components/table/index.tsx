@@ -4,10 +4,10 @@ import Schema from '../../models/schema'
 import {
   camelToTitle,
   compareTeams,
+  formatMatchKey,
   formatTeamNumber,
   toPercentage,
-  toPrettyNumber,
-  formatMatchKey
+  toPrettyNumber
 } from '../../utils'
 import {
   note,

@@ -2,6 +2,7 @@
   "name": "pigmice_scouting_frontend",
   "version": "0.0.0",
   "dependencies": {
+    "husky": "^1.0.0-rc.1",
     "idb-keyval": "^2.4.1",
     "linkstate": "^1.1.1",
     "preact": "^8.2.7",
@@ -69,13 +70,11 @@
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn fix && yarn test"
+    }
   }
 }

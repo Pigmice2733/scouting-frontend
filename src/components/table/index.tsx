@@ -6,7 +6,8 @@ import {
   compareTeams,
   formatTeamNumber,
   toPercentage,
-  toPrettyNumber
+  toPrettyNumber,
+  formatMatchKey
 } from '../../utils'
 import {
   note,
@@ -117,9 +118,14 @@ class Table extends Component<TableProps, TableState> {
                     )
                   })}
                 <td key="notes">
-                  {Object.keys(analysis.notes).map(key => (
-                    <span class={note}>{analysis.notes[key]}</span>
-                  ))}
+                  {Object.keys(analysis.notes).map(
+                    key =>
+                      analysis.notes[key] ? (
+                        <span class={note}>
+                          {formatMatchKey(key)}: {analysis.notes[key]}
+                        </span>
+                      ) : null
+                  )}
                 </td>
                 <td key="reports">
                   <span>{analysis.reports}</span>

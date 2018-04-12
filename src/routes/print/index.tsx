@@ -32,6 +32,8 @@ interface AllianceProps {
   schema: Schema
 }
 
+declare const print: () => void
+
 const Alliance = ({ data, name, schema }: AllianceProps) => (
   <div class={allianceClass}>
     <h2>{name}</h2>

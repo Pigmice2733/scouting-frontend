@@ -122,11 +122,14 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
                   <Icon icon="print" />
                 </a>
 
-                <a href={`https://www.thebluealliance.com/match/${match.key}`}>
+                <a
+                  target="_blank"
+                  href={`https://www.thebluealliance.com/match/${match.key}`}
+                >
                   <Icon icon="tba" />
                 </a>
                 {match.youtubeURL !== '' ? (
-                  <a href={match.youtubeURL}>
+                  <a href={match.youtubeURL} target="_blank">
                     <Icon icon="youtube" />
                   </a>
                 ) : null}

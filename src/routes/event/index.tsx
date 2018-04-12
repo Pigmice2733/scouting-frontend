@@ -57,7 +57,7 @@ const Event = ({ eventId }: { eventId: string }) => (
                       </div>
                     </a>
                     {m.youtubeURL !== '' ? (
-                      <a href={m.youtubeURL}>
+                      <a href={m.youtubeURL} target="_blank">
                         <Icon icon="youtube" fill="red" />
                       </a>
                     ) : null}

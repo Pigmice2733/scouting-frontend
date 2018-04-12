@@ -116,11 +116,7 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             )}
             {match !== undefined ? (
               <div class={icons}>
-                <a
-                  onClick={() =>
-                    window.open(`/events/${eventId}/${matchId}/print`)
-                  }
-                >
+                <a href={`/events/${eventId}/${matchId}/print`} target="_blank">
                   <Icon icon="print" />
                 </a>
 

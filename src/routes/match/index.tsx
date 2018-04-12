@@ -110,7 +110,9 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
                 <Icon icon="left" />
               </a>
             ) : (
-              <div />
+              <a class={navigationClass}>
+                <Icon icon="left" fill="gray" />
+              </a>
             )}
             {match !== undefined ? (
               <div class={icons}>
@@ -146,7 +148,9 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
                 <Icon icon="right" />
               </a>
             ) : (
-              <div />
+              <a class={navigationClass}>
+                <Icon icon="right" fill="gray" />
+              </a>
             )}
           </div>
         </div>

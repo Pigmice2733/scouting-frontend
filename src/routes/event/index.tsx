@@ -60,7 +60,11 @@ const Event = ({ eventId }: { eventId: string }) => (
                       <a href={m.youtubeURL} target="_blank">
                         <Icon icon="youtube" fill="red" />
                       </a>
-                    ) : null}
+                    ) : (
+                      <a>
+                        <Icon icon="youtube" fill="grey" />
+                      </a>
+                    )}
                   </li>
                 )
               })}

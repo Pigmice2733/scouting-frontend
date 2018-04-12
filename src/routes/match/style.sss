@@ -63,10 +63,12 @@
   text-decoration: none
   color: white
   padding: 15px
-  transition: background 0.2s ease
-
-  &:hover, &:focus
-    background: color(white alpha(10%))
+  
+  &[href]
+    transition: background 0.3s ease
+    
+    &:hover, &:focus
+      background: color(white alpha(10%))
 
 .navbar
   display: flex
@@ -88,8 +90,10 @@
   & a
     padding: 0.3em
     border-radius: 50%
-    transition: background 0.3s ease
     cursor: pointer
+  
+  & a[href]
+    transition: background 0.3s ease
     
     &:hover, &:focus
       background: color(white alpha(10%))

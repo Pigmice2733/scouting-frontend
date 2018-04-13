@@ -4,7 +4,7 @@
   flex-direction: column
   align-items: center
 
-  & div
+  & > div
     margin: 1em 0
 
     & a
@@ -14,6 +14,13 @@
     flex-grow: 1
     flex-basis: 0
 
-    & a
-      display: flex
-      justify-content: space-between
+  & li
+    display: flex
+
+.match
+  width: 100%
+
+  & div
+    display: flex
+    justify-content: space-between
+    flex-grow: 1

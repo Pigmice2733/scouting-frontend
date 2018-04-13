@@ -8,6 +8,7 @@ interface Match {
   blueScore?: number
   redAlliance?: string[]
   blueAlliance?: string[]
+  youtubeURL?: string
 }
 
 export default Match

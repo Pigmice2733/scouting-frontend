@@ -3,6 +3,7 @@ import { getEvent } from '../../api'
 import Button from '../../components/button'
 import DateDisplay from '../../components/date-display'
 import Header from '../../components/header'
+import Icon from '../../components/icon'
 import List from '../../components/list'
 import Spinner from '../../components/spinner'
 import FRCEvent from '../../models/frc-event'
@@ -13,7 +14,7 @@ import {
   formatTime,
   parseMatchKey
 } from '../../utils'
-import { event as eventClass } from './style.sss'
+import { event as eventClass, match as matchClass } from './style.sss'
 
 const Event = ({ eventId }: { eventId: string }) => (
   <Resolver
@@ -46,10 +47,24 @@ const Event = ({ eventId }: { eventId: string }) => (
                 const { matchKey } = parseMatchKey(m.key)
                 return (
                   <li key={m.key}>
-                    <a href={`/events/${event.key}/${matchKey}`}>
-                      {formatMatchKey(matchKey)}
-                      {<span>{formatTime(m.time)}</span>}
+                    <a
+                      class={matchClass}
+                      href={`/events/${event.key}/${matchKey}`}
+                    >
+                      <div>
+                        <span>{formatMatchKey(matchKey)}</span>
+                        <span>{formatTime(m.time)}</span>
+                      </div>
                     </a>
+                    {m.youtubeURL !== '' ? (
+                      <a href={m.youtubeURL} target="_blank">
+                        <Icon icon="youtube" fill="red" />
+                      </a>
+                    ) : (
+                      <a>
+                        <Icon icon="youtube" fill="grey" />
+                      </a>
+                    )}
                   </li>
                 )
               })}

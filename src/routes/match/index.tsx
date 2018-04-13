@@ -16,12 +16,12 @@ import {
 import {
   alliance as allianceClass,
   blue as blueClass,
+  icons,
   match as matchClass,
   matchName as matchNameClass,
   matchTime as matchTimeClass,
   navbar,
   navigation as navigationClass,
-  print as printClass,
   red as redClass,
   score as scoreClass
 } from './style.sss'
@@ -55,14 +55,15 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
     render={({ match, event }) => {
       const url = `/events/${eventId}/${matchId}`
       const eventName = (event && event.shortName) || eventId
-      const currentMatchIndex = event.matches.findIndex(
-        ({ key }) => key === `${eventId}_${matchId}`
-      )
-      const nextMatch = event.matches[currentMatchIndex + 1]
-      const previousMatch = event.matches[currentMatchIndex - 1]
-      const nextMatchKey = nextMatch && parseMatchKey(nextMatch.key).matchKey
-      const previousMatchKey =
-        previousMatch && parseMatchKey(previousMatch.key).matchKey
+      const currentMatchIndex =
+        event && event.matches
+          ? event.matches.findIndex(
+              ({ key }) => key === `${eventId}_${matchId}`
+            )
+          : 0
+      const matches = event && event.matches
+      const previousMatch = matches && matches[currentMatchIndex - 1]
+      const nextMatch = matches && matches[currentMatchIndex + 1]
       return (
         <div class={matchClass}>
           <Header
@@ -98,30 +99,51 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
           )}
           {!match && <Spinner />}
           <div class={navbar}>
-            {previousMatchKey !== undefined ? (
+            {previousMatch !== undefined ? (
               <a
                 class={navigationClass}
-                href={`/events/${eventId}/${previousMatchKey}`}
-                data-disabled={previousMatchKey === undefined}
+                href={`/events/${eventId}/${
+                  parseMatchKey(previousMatch.key).matchKey
+                }`}
+                data-disabled={previousMatch === undefined}
               >
-                <Icon icon="left" /> Previous Match
+                <Icon icon="left" />
               </a>
             ) : (
               <div />
             )}
-            <a
-              class={printClass}
-              onClick={() => window.open(`/events/${eventId}/${matchId}/print`)}
-            >
-              <Icon icon="print" />
-            </a>
-            {nextMatchKey !== undefined ? (
+            {match !== undefined ? (
+              <div class={icons}>
+                <a
+                  onClick={() =>
+                    window.open(`/events/${eventId}/${matchId}/print`)
+                  }
+                >
+                  <Icon icon="print" />
+                </a>
+
+                <a
+                  target="_blank"
+                  href={`https://www.thebluealliance.com/match/${match.key}`}
+                >
+                  <Icon icon="tba" />
+                </a>
+                {match.youtubeURL !== '' ? (
+                  <a href={match.youtubeURL} target="_blank">
+                    <Icon icon="youtube" />
+                  </a>
+                ) : null}
+              </div>
+            ) : null}
+            {nextMatch !== undefined ? (
               <a
                 class={navigationClass}
-                href={`/events/${eventId}/${nextMatchKey}`}
-                data-disabled={nextMatchKey === undefined}
+                href={`/events/${eventId}/${
+                  parseMatchKey(nextMatch.key).matchKey
+                }`}
+                data-disabled={nextMatch === undefined}
               >
-                Next Match <Icon icon="right" />
+                <Icon icon="right" />
               </a>
             ) : (
               <div />

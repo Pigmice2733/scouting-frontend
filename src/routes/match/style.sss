@@ -65,8 +65,15 @@
   padding: 15px
   transition: background 0.2s ease
 
-  &:hover, &:focus
-    background: color(white alpha(10%))
+  & path
+    fill: color(white alpha(40%))
+
+  &[href]
+    &:hover, &:focus
+      background: color(white alpha(10%))
+
+    & path
+      fill: white
 
 .navbar
   display: flex

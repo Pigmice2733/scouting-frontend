@@ -99,26 +99,20 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
           )}
           {!match && <Spinner />}
           <div class={navbar}>
-            {previousMatch !== undefined ? (
-              <a
-                class={navigationClass}
-                href={`/events/${eventId}/${
+            <a
+              class={navigationClass}
+              href={
+                previousMatch &&
+                `/events/${eventId}/${
                   parseMatchKey(previousMatch.key).matchKey
-                }`}
-                data-disabled={previousMatch === undefined}
-              >
-                <Icon icon="left" />
-              </a>
-            ) : (
-              <div />
-            )}
+                }`
+              }
+            >
+              <Icon icon="left" />
+            </a>
             {match !== undefined ? (
               <div class={icons}>
-                <a
-                  onClick={() =>
-                    window.open(`/events/${eventId}/${matchId}/print`)
-                  }
-                >
+                <a target="_blank" href={`/events/${eventId}/${matchId}/print`}>
                   <Icon icon="print" />
                 </a>
 
@@ -135,19 +129,15 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
                 ) : null}
               </div>
             ) : null}
-            {nextMatch !== undefined ? (
-              <a
-                class={navigationClass}
-                href={`/events/${eventId}/${
-                  parseMatchKey(nextMatch.key).matchKey
-                }`}
-                data-disabled={nextMatch === undefined}
-              >
-                <Icon icon="right" />
-              </a>
-            ) : (
-              <div />
-            )}
+            <a
+              class={navigationClass}
+              href={
+                nextMatch &&
+                `/events/${eventId}/${parseMatchKey(nextMatch.key).matchKey}`
+              }
+            >
+              <Icon icon="right" />
+            </a>
           </div>
         </div>
       )

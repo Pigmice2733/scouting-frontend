@@ -56,7 +56,6 @@ class Login extends Component<{}, LoginState> {
               value={state.password}
             />
             <div class={buttons}>
-              <Button>Login</Button>
               <Button
                 class={register}
                 type="button"
@@ -64,6 +63,7 @@ class Login extends Component<{}, LoginState> {
               >
                 Register
               </Button>
+              <Button>Login</Button>
             </div>
           </form>
         </div>

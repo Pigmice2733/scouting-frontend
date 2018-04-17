@@ -56,7 +56,7 @@ class Login extends Component<{}, LoginState> {
               value={state.password}
             />
             <div class={buttons}>
-              <Button type="submit" value="Login" />
+              <Button>Login</Button>
               <Button type="button" onClick={this.handleRegister}>
                 Register
               </Button>

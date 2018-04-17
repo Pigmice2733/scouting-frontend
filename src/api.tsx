@@ -118,7 +118,7 @@ const authenticate = (credentials: {
     return (await resp.json()).jwt
   })
 
-const register = (credentials: {
+const registerUser = (credentials: {
   username: string
   password: string
 }): Promise<string> =>
@@ -177,7 +177,7 @@ export {
   getUsers,
   deleteUser,
   authenticate,
-  register,
+  registerUser,
   submitReport,
   updateUser,
   createUser,

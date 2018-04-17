@@ -1,7 +1,7 @@
 import linkState from 'linkstate'
 import { Component, h } from 'preact'
 import { route } from 'preact-router'
-import { authenticate, register } from '../../api'
+import { authenticate, registerUser } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
 import TextInput from '../../components/text-input'
@@ -32,7 +32,7 @@ class Login extends Component<{}, LoginState> {
   }
 
   handleRegister = () => {
-    register(this.state)
+    registerUser(this.state)
       .then(() => alert('Success! Awaiting admin approval.'))
       .catch((err: Error) => this.setState({ error: err.message }))
   }

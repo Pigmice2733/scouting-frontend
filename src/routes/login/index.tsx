@@ -5,7 +5,7 @@ import { authenticate, registerUser } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
 import TextInput from '../../components/text-input'
-import { buttons, err as errClass, login } from './style.sss'
+import { buttons, err as errClass, login, register } from './style.sss'
 
 interface LoginState {
   username: string
@@ -57,7 +57,11 @@ class Login extends Component<{}, LoginState> {
             />
             <div class={buttons}>
               <Button>Login</Button>
-              <Button type="button" onClick={this.handleRegister}>
+              <Button
+                class={register}
+                type="button"
+                onClick={this.handleRegister}
+              >
                 Register
               </Button>
             </div>

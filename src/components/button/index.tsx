@@ -4,7 +4,7 @@ import { button } from './style.sss'
 interface ButtonProps {
   children?: JSX.Element[]
   href?: string
-  type?: 'submit' | null
+  type?: string
   value?: string
   onClick?: () => any
   disabled?: boolean

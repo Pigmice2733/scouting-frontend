@@ -105,7 +105,7 @@ const getReporterStats = () =>
 const getTeamStats = (eventKey: string, team: string) =>
   get<Report[]>(`events/${eventKey}/teams/frc${team}/reports`)
 
-const getUsers = () => get<UserInfo[]>('users')
+const getUsers = () => get<(UserInfo & { isVerified: boolean })[]>('users')
 
 const authenticate = (credentials: {
   username: string
@@ -116,6 +116,17 @@ const authenticate = (credentials: {
       throw new Error(resp.status)
     }
     return (await resp.json()).jwt
+  })
+
+const register = (credentials: {
+  username: string
+  password: string
+}): Promise<string> =>
+  queryAPI('users', 'POST', credentials).then(async resp => {
+    if (resp.status < 200 || resp.status >= 300) {
+      throw new Error(resp.status)
+    }
+    return null
   })
 
 const submitReport = (
@@ -146,11 +157,14 @@ const getAllianceAnalysis = (
 
 const deleteUser = (username: string) => queryAPI(`users/${username}`, 'DELETE')
 
-const updateUser = (username: string, user: UserInfo & { password?: string }) =>
-  queryAPI(`users/${username}`, 'PUT', user)
+const updateUser = (
+  username: string,
+  user: UserInfo & { password?: string; isVerified?: boolean }
+) => queryAPI(`users/${username}`, 'PUT', user)
 
-const createUser = (user: UserInfo & { password: string }) =>
-  queryAPI(`users`, 'POST', user)
+const createUser = (
+  user: UserInfo & { password: string; isVerified?: boolean }
+) => queryAPI(`users`, 'POST', user)
 
 const getTeamsAtEvent = (eventId: string) =>
   get<string[]>(`events/${eventId}/teams`)
@@ -167,6 +181,7 @@ export {
   getUsers,
   deleteUser,
   authenticate,
+  register,
   submitReport,
   updateUser,
   createUser,

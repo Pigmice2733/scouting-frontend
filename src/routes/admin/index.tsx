@@ -28,11 +28,11 @@ import {
 
 class EditableUser {
   username: string
-  edit: UserInfo & { password: string }
+  edit: UserInfo & { password: string; isVerified: boolean }
 
-  constructor(username: string, isAdmin: boolean) {
+  constructor(username: string, isAdmin: boolean, isVerified: boolean) {
     this.username = username
-    this.edit = { username, isAdmin, password: '' }
+    this.edit = { username, isAdmin, isVerified, password: '' }
   }
 }
 
@@ -51,7 +51,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
         users
           ? this.setState((state: AdminPanelState) => {
               state.users = users.map(
-                u => new EditableUser(u.username, u.isAdmin)
+                u => new EditableUser(u.username, u.isAdmin, u.isVerified)
               )
               return state
             })
@@ -80,6 +80,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                 <th>Username</th>
                 <th>Password</th>
                 <th>Admin</th>
+                <th>Verified</th>
               </tr>
               {users.map((user, i) => {
                 const id = `user-${i}`
@@ -112,13 +113,27 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                     </td>
                     <td class={adminClass}>
                       <Toggle
-                        id={`toggle-${i}`}
+                        id={`toggle-admin-${i}`}
                         checked={user.edit.isAdmin}
                         onChange={evt =>
                           this.setState((state: AdminPanelState) => {
                             state.users[
                               i
                             ].edit.isAdmin = (evt.target as HTMLInputElement).checked
+                            return state
+                          })
+                        }
+                      />
+                    </td>
+                    <td class={adminClass}>
+                      <Toggle
+                        id={`toggle-verified-${i}`}
+                        checked={user.edit.isVerified}
+                        onChange={evt =>
+                          this.setState((state: AdminPanelState) => {
+                            state.users[
+                              i
+                            ].edit.isVerified = (evt.target as HTMLInputElement).checked
                             return state
                           })
                         }
@@ -147,9 +162,8 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                               updateUser(user.username, {
                                 username: user.edit.username,
                                 isAdmin: user.edit.isAdmin,
-                                password: user.edit.password
-                                  ? user.edit.password
-                                  : undefined
+                                isVerified: user.edit.isVerified,
+                                password: user.edit.password || undefined
                               })
                             } else {
                               createUser(user.edit)
@@ -186,7 +200,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
             <Button
               onClick={() =>
                 this.setState((state: AdminPanelState) => {
-                  state.users.push(new EditableUser('', false))
+                  state.users.push(new EditableUser('', false, false))
                   return state
                 })
               }

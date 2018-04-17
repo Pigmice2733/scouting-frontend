@@ -1,5 +1,5 @@
 import FRCEvent from './models/frc-event'
-import UserInfo from './models/user-info'
+import { UserInfo } from './models/user'
 
 const hasValidJWT = (): boolean => {
   const jwt = getJWT()

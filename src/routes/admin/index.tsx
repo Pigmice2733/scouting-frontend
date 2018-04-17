@@ -13,7 +13,7 @@ import Icon from '../../components/icon'
 import Spinner from '../../components/spinner'
 import TextInput from '../../components/text-input'
 import Toggle from '../../components/toggle'
-import UserInfo from '../../models/user-info'
+import { User } from '../../models/user'
 import Resolver from '../../resolver'
 import { getUserInfo, hasValidJWT } from '../../utils'
 import {
@@ -28,7 +28,7 @@ import {
 
 class EditableUser {
   username: string
-  edit: UserInfo & { password: string; isVerified: boolean }
+  edit: User
 
   constructor(username: string, isAdmin: boolean, isVerified: boolean) {
     this.username = username

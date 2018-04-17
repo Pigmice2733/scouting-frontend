@@ -4,7 +4,7 @@ import FRCEvent from './models/frc-event'
 import Match from './models/match'
 import Report from './models/report'
 import Schema from './models/schema'
-import UserInfo from './models/user-info'
+import { User, UserInfo } from './models/user'
 
 import { getJWT, hasValidJWT } from './utils'
 
@@ -105,7 +105,7 @@ const getReporterStats = () =>
 const getTeamStats = (eventKey: string, team: string) =>
   get<Report[]>(`events/${eventKey}/teams/frc${team}/reports`)
 
-const getUsers = () => get<(UserInfo & { isVerified: boolean })[]>('users')
+const getUsers = () => get<User[]>('users')
 
 const authenticate = (credentials: {
   username: string
@@ -157,14 +157,10 @@ const getAllianceAnalysis = (
 
 const deleteUser = (username: string) => queryAPI(`users/${username}`, 'DELETE')
 
-const updateUser = (
-  username: string,
-  user: UserInfo & { password?: string; isVerified?: boolean }
-) => queryAPI(`users/${username}`, 'PUT', user)
+const updateUser = (username: string, user: User) =>
+  queryAPI(`users/${username}`, 'PUT', user)
 
-const createUser = (
-  user: UserInfo & { password: string; isVerified?: boolean }
-) => queryAPI(`users`, 'POST', user)
+const createUser = (user: User) => queryAPI(`users`, 'POST', user)
 
 const getTeamsAtEvent = (eventId: string) =>
   get<string[]>(`events/${eventId}/teams`)

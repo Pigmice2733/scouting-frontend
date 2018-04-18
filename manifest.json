@@ -4,7 +4,7 @@
   "display": "standalone",
   "short_name": "Peregrine",
   "name": "Peregrine",
-  "background_color": "#ff00ff",
+  "background_color": "#800080",
   "icons": [
     {
       "src": "/assets/icons/icon-192.png",

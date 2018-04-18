@@ -85,7 +85,7 @@ module.exports = [
     entry: './src/index.tsx',
     plugins: [
       new HtmlWebpackPlugin({
-        title: 'Pigmice Scouting',
+        title: 'Peregrine',
         minify: { collapseWhitespace: true },
         template: 'src/index.html',
         hash: true
@@ -100,11 +100,8 @@ module.exports = [
       new CopyWebpackPlugin([
         { from: path.join(root, '_redirects') },
         { from: path.join(root, '_headers') },
+        { from: path.join(root, 'browserconfig.xml') },
         { from: path.join(root, 'manifest.json') },
-        {
-          from: path.join(root, 'src', 'assets', 'favicon.ico'),
-          to: 'favicon.ico'
-        },
         { from: path.join(root, 'src', 'assets'), to: 'assets' }
       ])
     ]

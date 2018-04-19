@@ -70,18 +70,11 @@
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ]
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   },
   "husky": {
     "hooks": {
-      "pre-commit": "tslint --project tsconfig.json --format codeFrame && jest"
+      "pre-commit": "tslint --project tsconfig.json --format codeFrame"
     }
   }
 }

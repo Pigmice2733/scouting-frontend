@@ -1,8 +1,8 @@
 import { get as idbGet, set as idbSet } from 'idb-keyval'
 import Analysis from './models/analysis'
 import FRCEvent from './models/frc-event'
-import Match from './models/match'
 import Report from './models/report'
+import Match from './models/match'
 import Schema from './models/schema'
 import { User, UserInfo } from './models/user'
 
@@ -58,7 +58,7 @@ const get = <T extends {}>(url: string) => async (
         idbSet(url, data)
       })
   } catch (ex) {
-    cb(ex, undefine)
+    cb(ex, undefined)
   }
 }
 

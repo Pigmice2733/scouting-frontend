@@ -47,8 +47,11 @@ const queryAPI = (
 const get = <T extends {}>(url: string) => async (
   cb: (err: Error | null, data: T | null) => any
 ) => {
+  let gotten = false
   idbGet<T>(url).then(val => {
-    cb(null, val === undefined ? undefined : val)
+    if (!gotten) {
+      cb(null, val === undefined ? undefined : val)
+    }
   })
   try {
     queryAPI(url)
@@ -56,6 +59,7 @@ const get = <T extends {}>(url: string) => async (
       .then(data => {
         cb(null, data)
         idbSet(url, data)
+        gotten = true
       })
   } catch (ex) {
     cb(ex, undefined)

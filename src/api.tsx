@@ -58,7 +58,7 @@ const get = <T extends {}>(url: string) => async (
         idbSet(url, data)
       })
   } catch (ex) {
-    cb(ex, undefined)
+    cb(ex, undefine)
   }
 }
 

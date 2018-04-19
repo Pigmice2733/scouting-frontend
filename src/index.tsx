@@ -1,4 +1,4 @@
-import idbKeyval from 'idb-keyval'
+import { get, set } from 'idb-keyval'
 import { h, render } from 'preact'
 import { queryAPI, Req } from './api'
 import App from './components/app'
@@ -12,11 +12,11 @@ if ('serviceWorker' in navigator) {
 }
 
 const syncRequests = async () => {
-  const requests = (await idbKeyval.get('cachedRequests')) as Req[]
+  const requests = await get<Req[]>('cachedRequests')
   if (requests !== undefined) {
     await Promise.all(requests.map(re => queryAPI(re.path, re.method, re.body)))
   }
-  await idbKeyval.set('cachedRequests', [])
+  await set('cachedRequests', [])
 }
 
 if (navigator.onLine) {

@@ -1,4 +1,4 @@
-import idbKeyval from 'idb-keyval'
+import { get as idbGet, set as idbSet } from 'idb-keyval'
 import Analysis from './models/analysis'
 import FRCEvent from './models/frc-event'
 import Match from './models/match'
@@ -17,14 +17,12 @@ export interface Req {
 }
 
 const addRequestToIdb = async (request: Req) => {
-  const currentRequests = (await idbKeyval.get('cachedRequests')) as
-    | Req[]
-    | undefined
+  const currentRequests = (await idbGet('cachedRequests')) as Req[] | undefined
   if (currentRequests === undefined) {
-    await idbKeyval.set('cachedRequests', [request])
+    await idbSet('cachedRequests', [request])
     return 1
   }
-  await idbKeyval.set('cachedRequests', currentRequests.concat(request))
+  await idbSet('cachedRequests', currentRequests.concat(request))
   return currentRequests.length + 1
 }
 
@@ -49,11 +47,16 @@ const queryAPI = (
 const get = <T extends {}>(url: string) => async (
   cb: (err: Error | null, data: T | null) => any
 ) => {
-  cb(null, JSON.parse(localStorage.getItem(url)) || undefined)
+  idbGet<T>(url).then(val => {
+    cb(null, val === undefined ? undefined : val)
+  })
   try {
-    const data = await queryAPI(url).then(d => d.json())
-    cb(null, data)
-    localStorage.setItem(url, JSON.stringify(data))
+    queryAPI(url)
+      .then(d => d.json())
+      .then(data => {
+        cb(null, data)
+        idbSet(url, data)
+      })
   } catch (ex) {
     cb(ex, undefined)
   }

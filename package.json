@@ -2,7 +2,6 @@
   "name": "pigmice_scouting_frontend",
   "version": "0.0.0",
   "dependencies": {
-    "husky": "^1.0.0-rc.1",
     "idb-keyval": "^3.0.3",
     "linkstate": "^1.1.1",
     "preact": "^8.2.7",
@@ -24,6 +23,7 @@
     "fork-ts-checker-webpack-plugin": "^0.4.1",
     "greenkeeper-lockfile": "^1.14.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^1.0.0-rc.1",
     "jest": "^22.4.3",
     "koa-connect": "^2.0.1",
     "mini-css-extract-plugin": "^0.4.0",
@@ -70,11 +70,18 @@
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ]
   },
   "husky": {
     "hooks": {
-      "pre-push": "yarn lint && yarn test"
+      "pre-commit": "tslint --project tsconfig.json --format codeFrame && jest"
     }
   }
 }

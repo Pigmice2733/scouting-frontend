@@ -2,9 +2,10 @@ import { get as idbGet, set as idbSet } from 'idb-keyval'
 import Analysis from './models/analysis'
 import FRCEvent from './models/frc-event'
 import Match from './models/match'
+import { BasicList, PickList, PickLists } from './models/picklist'
 import Report from './models/report'
 import Schema from './models/schema'
-import { User, UserInfo } from './models/user'
+import { User } from './models/user'
 
 import { getJWT, hasValidJWT } from './utils'
 
@@ -39,7 +40,7 @@ const queryAPI = (
       : undefined
   }).catch(async (err: Error) => {
     if (method !== 'GET') {
-      const numRequests = await addRequestToIdb({ path, method, body })
+      await addRequestToIdb({ path, method, body })
     }
     throw err
   })
@@ -50,7 +51,7 @@ const get = <T extends {}>(url: string) => async (
   let gotten = false
   idbGet<T>(url).then(val => {
     if (!gotten) {
-      cb(null, val === undefined ? undefined : val)
+      cb(null, val === undefined ? null : val)
     }
   })
   try {
@@ -62,9 +63,20 @@ const get = <T extends {}>(url: string) => async (
         gotten = true
       })
   } catch (ex) {
-    cb(ex, undefined)
+    cb(ex, null)
   }
 }
+
+export const getPickList = (id: string) => get<PickList>(`picklists/${id}`)
+
+export const getPickListsAtEvent = (eventId: string) =>
+  get<PickLists>(`picklists/event/${eventId}`)
+
+export const createPickList = (options: BasicList) =>
+  queryAPI('picklists', 'POST', options)
+
+export const updatePickList = (id: string, options: BasicList) =>
+  queryAPI(`picklists/${id}`, 'PUT', options)
 
 const getEvents = () => get<FRCEvent[]>('events')
 
@@ -125,10 +137,7 @@ const authenticate = (credentials: {
     return (await resp.json()).jwt
   })
 
-const registerUser = (credentials: {
-  username: string
-  password: string
-}): Promise<string> =>
+const registerUser = (credentials: { username: string; password: string }) =>
   queryAPI('users', 'POST', credentials).then(async resp => {
     if (resp.status < 200 || resp.status >= 300) {
       throw new Error(resp.status)

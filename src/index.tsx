@@ -1,11 +1,14 @@
 import { get, set } from 'idb-keyval'
-import { h, render } from 'preact'
+import { ComponentChild, h, render } from 'preact'
 import { queryAPI, Req } from './api'
 import App from './components/app'
 
 const rootNode = document.getElementById('app')
-
-render(<App />, rootNode, rootNode.lastElementChild)
+;(render as (
+  node: ComponentChild,
+  parent: Element | null,
+  mergeWith?: Element | null
+) => void)(<App />, rootNode, rootNode && rootNode.lastElementChild)
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(console.error)

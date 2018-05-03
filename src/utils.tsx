@@ -3,7 +3,7 @@ import { UserInfo } from './models/user'
 
 const hasValidJWT = (): boolean => {
   const jwt = getJWT()
-  if (!jwt) {
+  if (jwt === null) {
     return false
   }
 
@@ -15,17 +15,32 @@ const hasValidJWT = (): boolean => {
   return JSON.parse(atob(parts[1])).exp > Number(new Date()) / 1000
 }
 
-const getJWT = (): string => {
+const getJWT = () => {
   return localStorage.getItem('jwt')
 }
 
-const getUserInfo = (): UserInfo => {
-  const body = JSON.parse(atob(getJWT().split('.')[1]))
+const getUserInfo = (): UserInfo | null => {
+  const jwt = getJWT()
+  if (jwt === null) {
+    return null
+  }
+  const body = JSON.parse(atob(jwt.split('.')[1]))
 
   return {
     username: body.sub,
     isAdmin: body.pigmice_is_admin
   }
+}
+
+const matchRegex = (regex: RegExp, str: string, groupNum?: number) => {
+  const match = regex.exec(str)
+  if (match === null) {
+    return null
+  }
+  if (groupNum !== undefined) {
+    return match[groupNum + 1]
+  }
+  return match[0]
 }
 
 const formatTime = (date: Date): string =>
@@ -45,12 +60,22 @@ const formatDate = (date: Date): string =>
 const formatTeamNumber = (teamId: string) => teamId.replace('frc', '')
 
 const parseTeamNumber = (teamId: string) => {
-  const [, num, letter] = formatTeamNumber(teamId).match(/([0-9]*)(.*)/)
+  const results = formatTeamNumber(teamId).match(/([0-9]*)(.*)/)
+  if (results === null) {
+    return { num: null, letter: null }
+  }
+  const [, num, letter] = results
   return { num: Number(num), letter }
 }
 
-const compareTeams = (a: string, b: string) =>
-  parseTeamNumber(a).num > parseTeamNumber(b).num ? 1 : -1
+const compareTeams = (a: string, b: string) => {
+  const teamA = parseTeamNumber(a).num
+  const teamB = parseTeamNumber(b).num
+  if (teamA === null || teamB === null) {
+    return 0
+  }
+  return teamA > teamB ? 1 : -1
+}
 
 interface SortedSchemaKeys {
   auto: string[]
@@ -71,15 +96,19 @@ const sortSchemaKeys = (keys: string[]): SortedSchemaKeys =>
       }
       return acc
     },
-    { auto: [], teleop: [], general: [] }
+    { auto: [], teleop: [], general: [] } as {
+      auto: string[]
+      teleop: string[]
+      general: string[]
+    }
   )
 
 const formatMatchKey = (matchId: string): string => {
-  const { type, num, group } = parseMatchKey(matchId.toUpperCase())
+  const { type, num, group } = parseMatchKey(matchId)
   if (type === 'q') {
     return `Qual ${num}`
   }
-  return `${type.toUpperCase()}${group} M${num}`
+  return `${type !== null ? type.toUpperCase() : ''}${group} M${num}`
 }
 
 const toRadians = (deg: number) => deg * (Math.PI / 180)
@@ -122,20 +151,27 @@ const getCoords = (cb: (pos: { lat: number; long: number }) => any) => {
 
 const today = Number(new Date())
 
+type FRCEventWithInfo = FRCEvent & {
+  parsedDate: Date
+  parsedEndDate: Date
+  distanceFromToday: number
+  distance: number
+}
+
 const sortEvents = (
   events: FRCEvent[],
   coords?: { lat: number; long: number }
 ) =>
   events !== undefined && events !== null
     ? events
-        .map(e => {
+        .map((e: FRCEventWithInfo): FRCEventWithInfo => {
           e.parsedDate = new Date(e.date)
           e.parsedEndDate = new Date(e.endDate)
           e.distanceFromToday = Math.round(
             (Number(e.parsedEndDate) - today) / 1000 / 60 / 60 / 24 / 7
           )
 
-          if (coords !== undefined) {
+          if (coords !== undefined && e.lat && e.long) {
             e.distance = distanceBetween(coords.lat, coords.long, e.lat, e.long)
           }
 
@@ -157,24 +193,17 @@ const sortReporterStats = (stats: { reporter: string; reports: number }[]) =>
     : []
 
 const parseMatchKey = (key: string) => {
-  let eventKey
-  let matchKey
-  if (key.includes('_')) {
-    const [, e, m] = key.match(/([^_]*)_(.*)/)
-    eventKey = e.toLowerCase()
-    matchKey = m.toLowerCase()
-  } else {
-    eventKey = null
-    matchKey = key.toLowerCase()
-  }
-  const num = Number.parseInt(/.*m([\d]*)$/.exec(matchKey)[1])
-  const g = /^[\D]*([\d]*)m/.exec(matchKey)[1]
-  const type = /(^[\D]*).*m.*$/.exec(matchKey)[1]
+  const split = key.split('_')
+  const eventKey = split[1] ? split[0].toLowerCase() : null
+  const matchKey = split[1] ? split[1].toLowerCase() : split[0].toLowerCase()
+  const num = matchRegex(/.*m([\d]*)$/, matchKey, 0)
+  const g = matchRegex(/^[\D]*([\d]*)m/, matchKey, 0)
+  const type = matchRegex(/(^[\D]*).*m.*$/, matchKey, 0)
   return {
     eventKey,
     matchKey,
-    group: g === '' ? null : Number.parseInt(g),
-    num,
+    group: g === '' || g === null ? null : Number.parseInt(g),
+    num: num !== null ? Number.parseInt(num) : null,
     type
   }
 }
@@ -229,9 +258,18 @@ const compareMatchKey = (a: string, b: string) => {
 
   if (aParsed.type === bParsed.type) {
     if (aParsed.num === bParsed.num) {
+      if (aParsed.group === null || bParsed.group === null) {
+        return 0
+      }
       return aParsed.group < bParsed.group ? -1 : 1
     }
+    if (aParsed.num === null || bParsed.num === null) {
+      return 0
+    }
     return aParsed.num < bParsed.num ? -1 : 1
+  }
+  if (aParsed.type === null || bParsed.type === null) {
+    return 0
   }
   return compareMatchType(aParsed.type, bParsed.type)
 }

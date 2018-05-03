@@ -1,4 +1,4 @@
-import { Component, h } from 'preact'
+import { h } from 'preact'
 import { route } from 'preact-router'
 import { getSchema, getTeamsAtEvent, getTeamStats } from '../../api'
 import Chart from '../../components/chart'
@@ -32,120 +32,132 @@ interface CompareProps {
 const Compare = ({
   eventId,
   team1,
-  team2,
-  back
+  team2
 }: {
   eventId: string
-  team1?: string
-  team2?: string
-  back: string
-}) => (
-  <Resolver
-    data={{
-      teams: getTeamsAtEvent(eventId),
-      statsTeam1: getTeamStats(eventId, team1),
-      statsTeam2: getTeamStats(eventId, team2),
-      schema: getSchema()
-    }}
-    render={({ teams, statsTeam1, statsTeam2, schema }: CompareProps) => {
-      if (teams === undefined || schema === undefined) {
-        return <Spinner />
+  team1: string
+  team2: string
+}) => {
+  if (team1 === '' || team2 === '') {
+    getTeamsAtEvent(eventId)((error, allTeams) => {
+      if (allTeams === null) {
+        return
+      }
+      if (team1 === '') {
+        team1 = formatTeamNumber(allTeams[0])
       }
 
-      const firstTeam = formatTeamNumber(teams !== null ? teams[0] : '')
-
-      if (teams !== null && (team1 === '' || team2 === '')) {
-        if (team1 === '') {
-          team1 = firstTeam
-        }
-
-        if (team2 === '') {
-          team2 = firstTeam
-        }
-
-        route(`/events/${eventId}/compare/${team1}/${team2}?back=${back}`)
+      if (team2 === '') {
+        team2 = formatTeamNumber(allTeams[1])
       }
 
-      const sortedTeams = (teams || []).sort(compareTeams)
+      route(`/events/${eventId}/compare/${team1}/${team2}`, true)
+    })
+    return <Spinner />
+  }
 
-      const sortedTeamStats = (statsTeam1 || [])
-        .concat(statsTeam2 || [])
-        .sort((a, b) => compareMatchKey(a.matchKey, b.matchKey))
+  return (
+    <Resolver
+      data={{
+        teams: getTeamsAtEvent(eventId),
+        statsTeam1: getTeamStats(eventId, team1),
+        statsTeam2: getTeamStats(eventId, team2),
+        schema: getSchema()
+      }}
+      render={({ teams, statsTeam1, statsTeam2, schema }: CompareProps) => {
+        if (teams === undefined || schema === undefined) {
+          return <Spinner />
+        }
 
-      return (
-        <div>
-          <Header
-            title={teams !== null ? `Compare: ${team1} to ${team2}` : 'Compare'}
-            back={back}
-          />
-          {teams === null ? (
-            <p class={err}>No teams have been scouted for this event</p>
-          ) : (
-            <div class={compare}>
-              <div class={chooser}>
-                <div class={teamClass}>
-                  <select
-                    value={team1}
-                    onChange={e =>
-                      route(
-                        `/events/${eventId}/compare/${
-                          (e.target as HTMLSelectElement).value
-                        }/${team2}?back=${back}`
-                      )
-                    }
-                  >
-                    {sortedTeams.map(team => (
-                      <option value={formatTeamNumber(team)}>
-                        {formatTeamNumber(team)}
-                      </option>
-                    ))}
-                  </select>
-                  <RobotImage
-                    className={robotImage}
-                    team={team1}
-                    color="blue"
-                  />
+        const sortedTeams = (teams || []).sort(compareTeams)
+
+        const sortedTeamStats = (statsTeam1 || [])
+          .concat(statsTeam2 || [])
+          .sort((a, b) => compareMatchKey(a.matchKey, b.matchKey))
+
+        return (
+          <div>
+            <Header
+              title={
+                teams !== null ? `Compare: ${team1} to ${team2}` : 'Compare'
+              }
+              back={`/events/${eventId}`}
+            />
+            {teams === null ? (
+              <p class={err}>No teams have been scouted for this event</p>
+            ) : schema === null ? (
+              <Spinner />
+            ) : (
+              <div class={compare}>
+                <div class={chooser}>
+                  <div class={teamClass}>
+                    <select
+                      value={team1}
+                      onChange={e =>
+                        route(
+                          `/events/${eventId}/compare/${
+                            (e.target as HTMLSelectElement).value
+                          }/${team2}`
+                        )
+                      }
+                    >
+                      {sortedTeams.map(team => (
+                        <option value={formatTeamNumber(team)}>
+                          {formatTeamNumber(team)}
+                        </option>
+                      ))}
+                    </select>
+                    <RobotImage
+                      className={robotImage}
+                      team={team1}
+                      color="blue"
+                    />
+                  </div>
+
+                  <div class={teamClass}>
+                    <select
+                      value={team2}
+                      onChange={e =>
+                        route(
+                          `/events/${eventId}/compare/${team1}/${
+                            (e.target as HTMLSelectElement).value
+                          }`
+                        )
+                      }
+                    >
+                      {sortedTeams.map(team => (
+                        <option value={formatTeamNumber(team)}>
+                          {formatTeamNumber(team)}
+                        </option>
+                      ))}
+                    </select>
+
+                    <RobotImage
+                      className={robotImage}
+                      team={team2}
+                      color="red"
+                    />
+                  </div>
                 </div>
 
-                <div class={teamClass}>
-                  <select
-                    value={team2}
-                    onChange={e =>
-                      route(
-                        `/events/${eventId}/compare/${team1}/${
-                          (e.target as HTMLSelectElement).value
-                        }?back=${back}`
-                      )
-                    }
-                  >
-                    {sortedTeams.map(team => (
-                      <option value={formatTeamNumber(team)}>
-                        {formatTeamNumber(team)}
-                      </option>
-                    ))}
-                  </select>
-
-                  <RobotImage className={robotImage} team={team2} color="red" />
-                </div>
+                {Object.keys(schema).map(key => (
+                  <div class={chart}>
+                    <h1>{camelToTitle(key)}</h1>
+                    <Chart
+                      reports={sortedTeamStats}
+                      stat={key}
+                      fieldType={schema[key]}
+                      colorKey={{ [team1]: 'blue', [team2]: 'red' }}
+                    />
+                  </div>
+                ))}
               </div>
-
-              {Object.keys(schema).map(key => (
-                <div class={chart}>
-                  <h1>{camelToTitle(key)}</h1>
-                  <Chart
-                    reports={sortedTeamStats}
-                    stat={key}
-                    fieldType={schema[key]}
-                    colorKey={{ [team1]: 'blue', [team2]: 'red' }}
-                  />
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      )
-    }}
-  />
-)
+            )}
+          </div>
+        )
+      }}
+    />
+  )
+}
 
 export default Compare

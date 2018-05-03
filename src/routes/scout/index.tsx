@@ -26,9 +26,9 @@ import Toggle from '../../components/toggle'
 import { fields, notes, scout, scoutMain } from './style.sss'
 
 interface ScoutProps {
-  event: FRCEvent
-  match: Match
-  schema: Schema
+  event: FRCEvent | null
+  match: Match | null
+  schema: Schema | null
 }
 
 interface ScoutState {
@@ -83,7 +83,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
       }}
       render={
         class extends Component<ScoutProps, ScoutState> {
-          teamPicker: HTMLSelectElement = null
+          teamPicker: HTMLSelectElement
 
           constructor() {
             super()
@@ -107,7 +107,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
           }
           render({ event, match, schema }: ScoutProps, { report }: ScoutState) {
             const eventName = (event && event.shortName) || eventId
-            if (schema && Object.keys(report).length === 0) {
+            if (schema !== null && Object.keys(report).length === 0) {
               this.setState((state: ScoutState) => {
                 Object.keys(schema).map(fieldName => {
                   const fieldType = schema[fieldName]
@@ -128,24 +128,27 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                   verify
                 />
                 <div class={scoutMain}>
-                  {match && (
+                  {match !== null && match !== undefined ? (
                     <TeamPicker
                       onChange={this.changeTeam}
                       redAlliance={match.redAlliance}
                       blueAlliance={match.blueAlliance}
                       inputRef={e => (this.teamPicker = e)}
                     />
-                  )}
+                  ) : null}
                   {['auto', 'teleop', 'general'].map(sectionName => (
                     <div class={fields}>
                       <h2>{capitalize(sectionName)}</h2>
-                      {sortedKeys[sectionName].map(fieldName => (
-                        <Field
-                          fieldName={fieldName}
-                          fieldType={schema[fieldName]}
-                          self={this}
-                        />
-                      ))}
+                      {sortedKeys[sectionName].map(
+                        fieldName =>
+                          schema !== null ? (
+                            <Field
+                              fieldName={fieldName}
+                              fieldType={schema[fieldName]}
+                              self={this}
+                            />
+                          ) : null
+                      )}
                     </div>
                   ))}
                   <TextInput

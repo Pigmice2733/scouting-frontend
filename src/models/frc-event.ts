@@ -9,10 +9,6 @@ interface FRCEvent {
   lat?: number
   long?: number
   eventType: number
-  parsedDate?: Date
-  parsedEndDate?: Date
-  distanceFromToday?: number
-  distance?: number
   matches?: Match[]
 }
 

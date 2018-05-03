@@ -1,5 +1,4 @@
 import { Component, h } from 'preact'
-import { route } from 'preact-router'
 import { getEvents } from '../../api'
 import Button from '../../components/button'
 import DateDisplay from '../../components/date-display'
@@ -10,14 +9,7 @@ import SearchInput, { SearchInputEvent } from '../../components/search-input'
 import Spinner from '../../components/spinner'
 import FRCEvent from '../../models/frc-event'
 import Resolver from '../../resolver'
-import {
-  abbreviate,
-  eventTypeName,
-  getCoords,
-  getUserInfo,
-  hasValidJWT,
-  sortEvents
-} from '../../utils'
+import { eventTypeName, getCoords, hasValidJWT, sortEvents } from '../../utils'
 import { home } from './style.sss'
 import {
   cmp,
@@ -31,7 +23,7 @@ import {
 } from './style.sss'
 
 interface HomeProps {
-  events: FRCEvent[]
+  events: FRCEvent[] | null
 }
 
 interface HomeState {
@@ -85,8 +77,8 @@ export default () => (
         }
 
         render({ events }: HomeProps, { query, loggedIn, coords }: HomeState) {
-          const matchingEvents = (events !== undefined ? events : []).filter(
-            e => e.name.toLowerCase().includes(query.toLowerCase())
+          const matchingEvents = (events !== null ? events : []).filter(e =>
+            e.name.toLowerCase().includes(query.toLowerCase())
           )
 
           const sortedEvents = sortEvents(matchingEvents, coords)
@@ -114,13 +106,13 @@ export default () => (
                   </div>
                 }
               />
-              {events === undefined ? (
+              {events === null ? (
                 <Spinner />
               ) : events.length === 0 ? (
                 'No matching events'
               ) : (
                 <List>
-                  {sortedEvents.map((e: FRCEvent) => (
+                  {sortedEvents.map(e => (
                     <li key={e.key}>
                       <a href={`/events/${e.key}`}>
                         {e.shortName || e.name}

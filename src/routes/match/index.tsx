@@ -1,11 +1,10 @@
-import { h, render } from 'preact'
+import { h } from 'preact'
 import { getEvent, getMatch } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
 import Icon from '../../components/icon'
 import RobotImage from '../../components/robot-image'
 import Spinner from '../../components/spinner'
-import FRCEvent from '../../models/frc-event'
 import Resolver from '../../resolver'
 import {
   formatMatchKey,
@@ -81,31 +80,32 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             </h2>
             <Button href={`${url}/scout`}>Scout</Button>
           </div>
-          {match && (
+          {match && match.redScore ? (
             <Alliance
               score={match.redScore}
               color="red"
               alliance={match.redAlliance}
               baseUrl={url}
             />
-          )}
-          {match && (
+          ) : null}
+          {match && match.blueScore ? (
             <Alliance
               score={match.blueScore}
               color="blue"
               alliance={match.blueAlliance}
               baseUrl={url}
             />
-          )}
+          ) : null}
           {!match && <Spinner />}
           <div class={navbar}>
             <a
               class={navigationClass}
               href={
-                previousMatch &&
-                `/events/${eventId}/${
-                  parseMatchKey(previousMatch.key).matchKey
-                }`
+                previousMatch
+                  ? `/events/${eventId}/${
+                      parseMatchKey(previousMatch.key).matchKey
+                    }`
+                  : undefined
               }
             >
               <Icon icon="left" />
@@ -129,8 +129,11 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             <a
               class={navigationClass}
               href={
-                nextMatch &&
-                `/events/${eventId}/${parseMatchKey(nextMatch.key).matchKey}`
+                nextMatch
+                  ? `/events/${eventId}/${
+                      parseMatchKey(nextMatch.key).matchKey
+                    }`
+                  : undefined
               }
             >
               <Icon icon="right" />

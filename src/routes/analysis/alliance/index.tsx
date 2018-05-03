@@ -3,7 +3,6 @@ import { getAllianceAnalysis, getSchema } from '../../../api'
 import Header from '../../../components/header'
 import Spinner from '../../../components/spinner'
 import Table from '../../../components/table'
-import Analysis from '../../../models/analysis'
 import Resolver from '../../../resolver'
 import { camelToTitle } from '../../../utils'
 import { allianceAnalysis } from './style.sss'
@@ -29,7 +28,7 @@ const AllianceAnalysis = ({
             title={`${matchId.toUpperCase()} - ${camelToTitle(color)} Alliance`}
             back={`/events/${eventId}/${matchId}/`}
           />
-          {!data ? (
+          {data === null || schema === null ? (
             <Spinner />
           ) : data.length === 0 ? (
             <p>No reports have been submitted for this alliance yet.</p>

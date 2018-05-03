@@ -1,6 +1,5 @@
 import linkState from 'linkstate'
 import { Component, h } from 'preact'
-import { route } from 'preact-router'
 import { authenticate, registerUser } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'

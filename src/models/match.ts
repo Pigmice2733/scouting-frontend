@@ -2,12 +2,12 @@ interface Match {
   key: string
   actualTime?: string
   predictedTime: string
-  time?: Date
+  time: Date
   blueWon?: boolean
   redScore?: number
   blueScore?: number
-  redAlliance?: string[]
-  blueAlliance?: string[]
+  redAlliance: string[]
+  blueAlliance: string[]
   youtubeURL?: string
 }
 

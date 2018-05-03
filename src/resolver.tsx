@@ -1,17 +1,9 @@
-import {
-  Component,
-  ComponentConstructor,
-  ComponentProps,
-  FunctionalComponent,
-  h
-} from 'preact'
+import { Component, ComponentConstructor, FunctionalComponent, h } from 'preact'
 import { err as errClass, wrapper as wrapperClass } from './error.sss'
 
 interface ResolverProps<T> {
-  data: {
-    [K in keyof T]: (d: (error: Error | null, d: T[K]) => any) => any
-  } & {
-    [key: string]: any
+  data: { [K in keyof T]: (cb: (err: any, data: T[K]) => any) => any } & {
+    [key: string]: (cb: (err: any, data: any) => any) => any
   }
   render: FunctionalComponent<T> | ComponentConstructor<T, any>
 }
@@ -32,6 +24,8 @@ const Resolver = <T extends {}>(props: ResolverProps<T>) =>
           if (prop === 'children') {
             return
           }
+
+          this.state.data[prop] = null
 
           p.data[prop]((err: Error, d: any) =>
             this.setState((state: ResolverState) => {

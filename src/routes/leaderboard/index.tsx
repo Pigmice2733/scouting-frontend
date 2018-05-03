@@ -12,35 +12,32 @@ import {
 const Leaderboard = () => (
   <Resolver
     data={{ stats: getReporterStats() }}
-    render={({ stats }) => {
-      const sortedStats = sortReporterStats(stats) || []
-      return (
-        <div class={leaderboardClass}>
-          <Header title="Leaderboard" back="/" />
-          {!sortedStats ? (
-            <Spinner />
-          ) : (
-            <table>
-              <tr>
-                <th />
-                <th>Reporter</th>
-                <th>Reports</th>
+    render={({ stats }) => (
+      <div class={leaderboardClass}>
+        <Header title="Leaderboard" back="/" />
+        {stats === null ? (
+          <Spinner />
+        ) : (
+          <table>
+            <tr>
+              <th />
+              <th>Reporter</th>
+              <th>Reports</th>
+            </tr>
+            {sortReporterStats(stats).map((stat, i) => (
+              <tr key={stat.reporter}>
+                <td class={emojiClass}>
+                  {i === 0 ? '👑' : ''}
+                  {i === stats.length - 1 && stats.length !== 1 ? '🙁' : ''}
+                </td>
+                <td>{stat.reporter}</td>
+                <td>{stat.reports}</td>
               </tr>
-              {sortedStats.map((stat, i) => (
-                <tr key={stat.reporter}>
-                  <td class={emojiClass}>
-                    {i === 0 ? '👑' : ''}
-                    {i === stats.length - 1 && stats.length !== 1 ? '🙁' : ''}
-                  </td>
-                  <td>{stat.reporter}</td>
-                  <td>{stat.reports}</td>
-                </tr>
-              ))}
-            </table>
-          )}
-        </div>
-      )
-    }}
+            ))}
+          </table>
+        )}
+      </div>
+    )}
   />
 )
 

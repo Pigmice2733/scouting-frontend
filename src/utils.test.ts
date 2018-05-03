@@ -83,6 +83,13 @@ test('parseMatchKey', () => {
     group: 3,
     num: 2
   })
+  expect(parseMatchKey('fm3m2')).toEqual({
+    eventKey: null,
+    matchKey: 'fm3m2',
+    type: 'fm',
+    group: 3,
+    num: 2
+  })
 })
 
 test('formatMatchKey', () => {

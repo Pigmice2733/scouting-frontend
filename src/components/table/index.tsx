@@ -12,7 +12,6 @@ import {
 import {
   note,
   selectedTeam as selectedTeamClass,
-  statColumn,
   table
 } from './style.sss'
 

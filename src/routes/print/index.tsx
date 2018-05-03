@@ -21,9 +21,9 @@ interface PrintProps {
 }
 
 interface Props {
-  redAlliance: Analysis[]
-  blueAlliance: Analysis[]
-  schema: Schema
+  redAlliance: Analysis[] | null
+  blueAlliance: Analysis[] | null
+  schema: Schema | null
 }
 
 interface AllianceProps {
@@ -81,10 +81,10 @@ export default ({ eventId, matchId }: PrintProps) => (
           return (
             <div class={alliancesClass}>
               <h1>{formatMatchKey(matchId)}</h1>
-              {redAlliance !== undefined ? (
+              {redAlliance !== null && schema !== null ? (
                 <Alliance name="Red" data={redAlliance} schema={schema} />
               ) : null}
-              {blueAlliance !== undefined ? (
+              {blueAlliance !== null && schema !== null ? (
                 <Alliance name="Blue" data={blueAlliance} schema={schema} />
               ) : null}
             </div>

@@ -13,6 +13,8 @@ import Home from '../../routes/home'
 import Leaderboard from '../../routes/leaderboard'
 import Login from '../../routes/login'
 import Match from '../../routes/match'
+import PickList from '../../routes/picklist'
+import PickLists from '../../routes/picklists'
 import Print from '../../routes/print'
 import Scout from '../../routes/scout'
 
@@ -25,6 +27,8 @@ const App = () => (
       <Route path="/admin" component={Admin} />
       <Route path="/events/:eventId" component={Event} />
       <Route path="/events/:eventId/analysis" component={EventAnalysis} />
+      <Route path="/events/:eventId/lists/:listId" component={PickList} />
+      <Route path="/events/:eventId/lists" component={PickLists} />
       <Route path="/events/:eventId/team/:team" component={TeamAnalysis} />
       <Route path="/events/:eventId/:matchId" component={Match} />
       <Route path="/events/:eventId/:matchId/print" component={Print} />

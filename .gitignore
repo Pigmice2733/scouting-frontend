@@ -3,3 +3,4 @@
 /*.log
 stats.json
 package-lock.json
+.cache

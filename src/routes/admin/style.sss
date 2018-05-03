@@ -6,13 +6,16 @@
   align-items: center
 
   @media screen and (width < 800px)
-    & .admin
+    & .admin, & .verify
       display: flex
       flex-direction: row
       justify-content: space-between
 
-      &::before
-        content: 'Admin'
+    & .admin::before
+      content: 'Admin'
+
+    & .verify::before
+      content: 'Verified'
 
     & tr
       margin-bottom: 40px

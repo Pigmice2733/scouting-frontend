@@ -1,4 +1,5 @@
-import { h } from 'preact'
+import { hiya } from 'preact'
+/*
 import { Route, Router } from 'preact-router'
 import { app } from './style.sss'
 
@@ -41,5 +42,10 @@ const App = () => (
     </Router>
   </div>
 )
+
+export default App
+*/
+
+const App = () => <h1>Hi</h1>
 
 export default App

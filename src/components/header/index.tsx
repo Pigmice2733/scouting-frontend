@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { route } from 'preact-router'
 import Icon from '../icon'
-import { back as backClass, header } from './style.sss'
+import style from './style.sss'
 
 interface HeaderProps {
   title?: string
@@ -11,10 +11,10 @@ interface HeaderProps {
 }
 
 const Header = ({ title, back, contents, verify }: HeaderProps) => (
-  <header class={header}>
+  <header class={style.header}>
     {back && (
       <a
-        class={backClass}
+        class={style.back}
         onClick={e => {
           if (verify === true) {
             e.stopImmediatePropagation()

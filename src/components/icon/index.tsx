@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { icon as iconClass } from './style.sss'
+import style from './style.sss'
 
 const icons: { [key: string]: string } = {
   left:
@@ -27,7 +27,7 @@ interface IconProps {
 }
 
 const Icon = ({ icon, fill = 'white' }: IconProps) => (
-  <svg class={iconClass} viewBox="0 0 24 24">
+  <svg class={style.icon} viewBox="0 0 24 24">
     <path fill={fill} d={icons[icon]} />
   </svg>
 )

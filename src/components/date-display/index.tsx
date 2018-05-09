@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { formatDate } from '../../utils'
 import Icon from '../icon'
-import { date as dateClass } from './style.sss'
+import style from './style.sss'
 
 interface DateDisplayProps {
   date: Date | undefined
@@ -9,7 +9,7 @@ interface DateDisplayProps {
 
 const DateDisplay = ({ date }: DateDisplayProps) => {
   return (
-    <span class={dateClass}>
+    <span class={style.date}>
       <Icon icon="calendar" />
       {date ? formatDate(date) : 'Loading...'}
     </span>

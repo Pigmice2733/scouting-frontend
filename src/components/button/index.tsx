@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { button } from './style.sss'
+import style from './style.sss'
 
 interface ButtonProps {
   children?: JSX.Element[]
@@ -21,7 +21,7 @@ const Button = ({
   class: className
 }: ButtonProps) =>
   h(href ? 'a' : 'button', {
-    class: `${button} ${className || ''}`,
+    class: `${style.button} ${className || ''}`,
     children,
     href,
     type,

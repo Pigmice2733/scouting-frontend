@@ -18,17 +18,7 @@ import {
   hasValidJWT,
   sortEvents
 } from '../../utils'
-import { home } from './style.sss'
-import {
-  cmp,
-  dcmp,
-  headerContents,
-  info as infoClass,
-  navigationDrawerButton,
-  navigationDrawerButtonContainer,
-  off,
-  pre
-} from './style.sss'
+import style from './style.sss'
 
 interface HomeProps {
   events: FRCEvent[]
@@ -41,12 +31,12 @@ interface HomeState {
 }
 
 const eventTypeClassMap = new Map<number, string>([
-  [5, dcmp],
-  [2, dcmp],
-  [3, cmp],
-  [4, cmp],
-  [99, off],
-  [100, pre]
+  [5, style.dcmp],
+  [2, style.dcmp],
+  [3, style.cmp],
+  [4, style.cmp],
+  [99, style.off],
+  [100, style.pre]
 ])
 
 export default () => (
@@ -92,12 +82,12 @@ export default () => (
           const sortedEvents = sortEvents(matchingEvents, coords)
 
           return (
-            <div class={home}>
+            <div class={style.home}>
               <Header
                 contents={
-                  <div class={headerContents}>
-                    <span class={navigationDrawerButtonContainer}>
-                      <a class={navigationDrawerButton} href="/leaderboard">
+                  <div class={style.headerContents}>
+                    <span class={style.navigationDrawerButtonContainer}>
+                      <a class={style.navigationDrawerButton} href="/leaderboard">
                         <Icon fill="#FFF" icon="trophy" />
                       </a>
                     </span>
@@ -124,7 +114,7 @@ export default () => (
                     <li key={e.key}>
                       <a href={`/events/${e.key}`}>
                         {e.shortName || e.name}
-                        <div class={infoClass}>
+                        <div class={style.info}>
                           {eventTypeName(e.eventType) ? (
                             <span class={this.eventTypeClass(e.eventType)}>
                               {eventTypeName(e.eventType)}

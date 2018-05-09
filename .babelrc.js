@@ -4,7 +4,7 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          browsers: ['last 2 versions']
+          browsers: ['>10%']
         },
         exclude: ['transform-regenerator'],
         modules: false
@@ -19,6 +19,6 @@ module.exports = {
       }
     ],
     '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-transform-typescript'
+    ['@babel/plugin-transform-typescript', { jsxPragma: 'h' }]
   ]
 }

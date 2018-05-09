@@ -3,9 +3,9 @@ import { h, render } from 'preact'
 import { queryAPI, Req } from './api'
 import App from './components/app'
 
-const rootNode = document.getElementById('app')
+const rootNode = document.getElementById('app') as HTMLDivElement
 
-render(<App />, rootNode, rootNode.lastElementChild)
+render(<App />, rootNode, rootNode.lastElementChild as HTMLDivElement)
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(console.error)
@@ -21,14 +21,4 @@ const syncRequests = async () => {
 
 if (navigator.onLine) {
   syncRequests()
-}
-
-declare const module: {
-  hot: {
-    accept: () => void
-  }
-}
-
-if (module.hot) {
-  module.hot.accept()
 }

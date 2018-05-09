@@ -1,7 +1,6 @@
-import { hiya } from 'preact'
-/*
+import { h } from 'preact'
 import { Route, Router } from 'preact-router'
-import { app } from './style.sss'
+import style from './style.sss'
 
 import Error404 from '../../routes/404'
 import Admin from '../../routes/admin'
@@ -18,9 +17,16 @@ import Print from '../../routes/print'
 import Scout from '../../routes/scout'
 
 const App = () => (
-  <div id={app}>
+  <div id={style.app}>
     <Router>
       <Route path="/" component={Home} />
+    </Router>
+  </div>
+)
+
+export default App
+
+/*
       <Route path="/leaderboard" component={Leaderboard} />
       <Route path="/login" component={Login} />
       <Route path="/admin" component={Admin} />
@@ -39,13 +45,4 @@ const App = () => (
         component={Compare}
       />
       <Route default component={Error404} />
-    </Router>
-  </div>
-)
-
-export default App
 */
-
-const App = () => <h1>Hi</h1>
-
-export default App

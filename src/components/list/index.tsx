@@ -1,10 +1,10 @@
 import { h } from 'preact'
-import { list } from './style.sss'
+import style from './style.sss'
 
 interface ListProps {
   children?: JSX.Element[]
 }
 
-const List = ({ children }: ListProps) => <ul class={list}>{children}</ul>
+const List = ({ children }: ListProps) => <ul class={style.list}>{children}</ul>
 
 export default List

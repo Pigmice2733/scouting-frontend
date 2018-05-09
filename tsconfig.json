@@ -14,5 +14,6 @@
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "files": ["./src/index.tsx", "./src/sw.ts"]
+  "files": ["./src/index.tsx", "./src/sw.ts"],
+  "include": ["types.d.ts"]
 }

@@ -20,6 +20,8 @@ const App = () => (
   <div id={style.app}>
     <Router>
       <Route path="/" component={Home} />
+      <Route path="/events/:eventId" component={Event} />
+      <Route path="/events/:eventId/:matchId" component={Match} />
     </Router>
   </div>
 )
@@ -30,10 +32,8 @@ export default App
       <Route path="/leaderboard" component={Leaderboard} />
       <Route path="/login" component={Login} />
       <Route path="/admin" component={Admin} />
-      <Route path="/events/:eventId" component={Event} />
       <Route path="/events/:eventId/analysis" component={EventAnalysis} />
       <Route path="/events/:eventId/team/:team" component={TeamAnalysis} />
-      <Route path="/events/:eventId/:matchId" component={Match} />
       <Route path="/events/:eventId/:matchId/print" component={Print} />
       <Route
         path="/events/:eventId/:matchId/alliance/:color"

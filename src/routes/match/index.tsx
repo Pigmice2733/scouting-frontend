@@ -13,18 +13,7 @@ import {
   formatTime,
   parseMatchKey
 } from '../../utils'
-import {
-  alliance as allianceClass,
-  blue as blueClass,
-  icons,
-  match as matchClass,
-  matchName as matchNameClass,
-  matchTime as matchTimeClass,
-  navbar,
-  navigation as navigationClass,
-  red as redClass,
-  score as scoreClass
-} from './style.sss'
+import style from './style.sss'
 
 interface AllianceProps {
   baseUrl: string
@@ -37,12 +26,12 @@ const Alliance = ({ baseUrl, color, alliance, score }: AllianceProps) => (
   <a
     href={`${baseUrl}/alliance/${color}`}
     key={color}
-    class={`${allianceClass} ${color === 'red' ? redClass : blueClass}`}
+    class={`${style.alliance} ${color === 'red' ? style.red : style.blue}`}
   >
     {alliance.map(team => (
       <RobotImage team={formatTeamNumber(team)} color={color} />
     ))}
-    <div class={scoreClass}>
+    <div class={style.score}>
       <h2>Score</h2>
       <span>{score}</span>
     </div>
@@ -65,15 +54,15 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
       const previousMatch = matches && matches[currentMatchIndex - 1]
       const nextMatch = matches && matches[currentMatchIndex + 1]
       return (
-        <div class={matchClass}>
+        <div class={style.match}>
           <Header
             title={`${matchId.toUpperCase()} - ${eventName}`}
             back={`/events/${eventId}`}
           />
-          <div class={matchNameClass}>
+          <div class={style.matchName}>
             <h2>{formatMatchKey(matchId)}</h2>
           </div>
-          <div class={matchTimeClass}>
+          <div class={style.matchTime}>
             <h2>
               {match
                 ? formatTime(new Date(match.actualTime || match.predictedTime))
@@ -98,9 +87,9 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             />
           )}
           {!match && <Spinner />}
-          <div class={navbar}>
+          <div class={style.navbar}>
             <a
-              class={navigationClass}
+              class={style.navigation}
               href={
                 previousMatch &&
                 `/events/${eventId}/${
@@ -110,7 +99,7 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             >
               <Icon icon="left" />
             </a>
-            <div class={icons}>
+            <div class={style.icons}>
               <a target="_blank" href={`/events/${eventId}/${matchId}/print`}>
                 <Icon icon="print" />
               </a>
@@ -127,7 +116,7 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
               ) : null}
             </div>
             <a
-              class={navigationClass}
+              class={style.navigation}
               href={
                 nextMatch &&
                 `/events/${eventId}/${parseMatchKey(nextMatch.key).matchKey}`

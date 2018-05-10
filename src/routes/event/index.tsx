@@ -14,13 +14,13 @@ import {
   formatTime,
   parseMatchKey
 } from '../../utils'
-import { event as eventClass, match as matchClass } from './style.sss'
+import style from './style.sss'
 
 const Event = ({ eventId }: { eventId: string }) => (
   <Resolver
     data={{ event: getEvent(eventId) }}
     render={({ event }) => (
-      <div class={eventClass}>
+      <div class={style.event}>
         <Header
           title={(event && event.shortName) || `Event ${eventId}`}
           back="/"
@@ -48,7 +48,7 @@ const Event = ({ eventId }: { eventId: string }) => (
                 return (
                   <li key={m.key}>
                     <a
-                      class={matchClass}
+                      class={style.match}
                       href={`/events/${event.key}/${matchKey}`}
                     >
                       <div>

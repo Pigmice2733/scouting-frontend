@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { blue, red, robotImage } from './style.sss'
+import style from './style.sss'
 
 interface RobotImageProps {
   team: string
@@ -9,7 +9,9 @@ interface RobotImageProps {
 
 const RobotImage = ({ className, team, color = 'blue' }: RobotImageProps) => (
   <div
-    class={`${className} ${robotImage} ${color === 'blue' ? blue : red}`}
+    class={`${className} ${style.robotImage} ${
+      color === 'blue' ? style.blue : style.red
+    }`}
     style={{
       backgroundImage: `url(https://api.pigmice.ga/photo/frc${team}), url(/assets/imgs/robot.jpg)`
     }}

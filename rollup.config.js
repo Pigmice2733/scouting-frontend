@@ -4,14 +4,22 @@ import postcss from 'rollup-plugin-postcss'
 import commonjs from 'rollup-plugin-commonjs'
 import copy from 'rollup-plugin-copy-assets'
 
+const babelConfig = require('./.babelrc')
+
 const development = process.env.NODE_ENV === 'development'
 
 const jsPlugins = [
-  babel(),
   resolve({
-    extensions: ['.js', '.ts', '.tsx']
+    extensions: ['.js', '.ts', '.tsx', '.mjs'],
+    modules: true,
+    jsnext: false,
+    main: false
   }),
-  commonjs()
+  commonjs(),
+  babel({
+    babelrc: false,
+    ...babelConfig
+  })
 ]
 
 if (!development) {
@@ -58,4 +66,4 @@ if (development) {
   )
 }
 
-export default [swConfig, config]
+export default [config, swConfig]

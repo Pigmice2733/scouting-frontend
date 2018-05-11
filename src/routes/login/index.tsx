@@ -5,7 +5,7 @@ import { authenticate, registerUser } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
 import TextInput from '../../components/text-input'
-import { buttons, err as errClass, login, register } from './style.sss'
+import style from './style.sss'
 
 interface LoginState {
   username: string
@@ -39,10 +39,10 @@ class Login extends Component<{}, LoginState> {
 
   render({}, state: LoginState) {
     return (
-      <div class={login}>
+      <div class={style.login}>
         <Header title="Login" back="/" />
         <div>
-          {state.error ? <p class={errClass}>{state.error}</p> : null}
+          {state.error ? <p class={style.err}>{state.error}</p> : null}
           <form onSubmit={this.handleLogin}>
             <TextInput
               placeholder="Username"
@@ -55,9 +55,9 @@ class Login extends Component<{}, LoginState> {
               onInput={linkState(this, 'password')}
               value={state.password}
             />
-            <div class={buttons}>
+            <div class={style.buttons}>
               <Button
-                class={register}
+                class={style.register}
                 type="button"
                 onClick={this.handleRegister}
               >

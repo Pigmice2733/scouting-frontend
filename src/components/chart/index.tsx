@@ -7,7 +7,7 @@ import {
   lerp,
   lerper
 } from '../../utils'
-import { chart as chartClass, tooltip } from './style.sss'
+import style from './style.sss'
 
 interface ChartProps {
   reports: Report[]
@@ -48,7 +48,7 @@ const Chart = ({
   const textSize = lerp(640 / allReports.length, 100, 34, 10, 8)
 
   return (
-    <svg class={chartClass} viewBox="0 0 640 480">
+    <svg class={style.chart} viewBox="0 0 640 480">
       {allReports.map(report => (
         <text
           text-anchor="middle"
@@ -99,7 +99,7 @@ const Chart = ({
                   />
                 </a>
                 <text
-                  class={tooltip}
+                  class={style.tooltip}
                   font-size={textSize}
                   x={lerpX(allReports.indexOf(report))}
                   y={lerpY(getNumber(report.stats[stat])) - 7.5}

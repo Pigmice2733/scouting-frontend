@@ -4,10 +4,7 @@ import Header from '../../components/header'
 import Spinner from '../../components/spinner'
 import Resolver from '../../resolver'
 import { sortReporterStats } from '../../utils'
-import {
-  emoji as emojiClass,
-  leaderboard as leaderboardClass
-} from './style.sss'
+import style from './style.sss'
 
 const Leaderboard = () => (
   <Resolver
@@ -15,7 +12,7 @@ const Leaderboard = () => (
     render={({ stats }) => {
       const sortedStats = sortReporterStats(stats) || []
       return (
-        <div class={leaderboardClass}>
+        <div class={style.leaderboard}>
           <Header title="Leaderboard" back="/" />
           {!sortedStats ? (
             <Spinner />
@@ -28,7 +25,7 @@ const Leaderboard = () => (
               </tr>
               {sortedStats.map((stat, i) => (
                 <tr key={stat.reporter}>
-                  <td class={emojiClass}>
+                  <td class={style.emoji}>
                     {i === 0 ? '👑' : ''}
                     {i === stats.length - 1 && stats.length !== 1 ? '🙁' : ''}
                   </td>

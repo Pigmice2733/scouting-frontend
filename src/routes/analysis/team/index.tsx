@@ -7,7 +7,7 @@ import Spinner from '../../../components/spinner'
 import Table from '../../../components/table'
 import Resolver from '../../../resolver'
 import { camelToTitle, compareMatchKey, getNumber } from '../../../utils'
-import { teamAnalysis } from './style.sss'
+import style from './style.sss'
 
 const TeamAnalysis = ({
   eventId,
@@ -31,7 +31,7 @@ const TeamAnalysis = ({
           : teamStats.sort((a, b) => compareMatchKey(a.matchKey, b.matchKey))
 
       return (
-        <div class={teamAnalysis}>
+        <div class={style.teamAnalysis}>
           <Header
             title={`${team} - ${(event && event.shortName) || eventId}`}
             back={back}

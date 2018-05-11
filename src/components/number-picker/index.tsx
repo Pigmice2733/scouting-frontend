@@ -1,6 +1,6 @@
 import { Component, h } from 'preact'
 import TextInput from '../text-input'
-import { numberPicker } from './style.sss'
+import style from './style.sss'
 
 interface NumberProps {
   id: string
@@ -40,7 +40,7 @@ class NumberPicker extends Component<NumberProps, NumberState> {
 
   render({ id, onChange }: NumberProps, { num }: NumberState) {
     return (
-      <div class={numberPicker}>
+      <div class={style.numberPicker}>
         <button onClick={this.decrement}>-</button>
         <TextInput type="number" onInput={this.onInput} value={String(num)} />
         <button onClick={this.increment}>+</button>

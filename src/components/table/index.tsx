@@ -9,12 +9,7 @@ import {
   toPercentage,
   toPrettyNumber
 } from '../../utils'
-import {
-  note,
-  selectedTeam as selectedTeamClass,
-  statColumn,
-  table
-} from './style.sss'
+import style from './style.sss'
 
 interface TableProps {
   analyses: Analysis[]
@@ -50,7 +45,7 @@ class Table extends Component<TableProps, TableState> {
     { sortBy, reversed, selectedTeam }: TableState
   ) {
     return (
-      <div class={table}>
+      <div class={style.table}>
         <table>
           <tr>
             <th key="teamNumber" onClick={this.sortBy('teamNumber')}>
@@ -94,7 +89,7 @@ class Table extends Component<TableProps, TableState> {
             .map(analysis => (
               <tr
                 key={analysis.team}
-                class={analysis.team === selectedTeam ? selectedTeamClass : ''}
+                class={analysis.team === selectedTeam ? style.selectedTeam : ''}
                 onClick={() => this.setState({ selectedTeam: analysis.team })}
               >
                 <td key="teamNumber">
@@ -121,7 +116,7 @@ class Table extends Component<TableProps, TableState> {
                   {Object.keys(analysis.notes).map(
                     key =>
                       analysis.notes[key] ? (
-                        <span class={note}>
+                        <span class={style.note}>
                           {formatMatchKey(key)}: {analysis.notes[key]}
                         </span>
                       ) : null

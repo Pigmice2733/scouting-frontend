@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { input } from './style.sss'
+import style from './style.sss'
 
 interface TextInputEventTarget extends EventTarget {
   value: string
@@ -27,7 +27,7 @@ const TextInput = ({
   className
 }: TextInputProps) => (
   <input
-    class={`${input} ${className}`}
+    class={`${style.input} ${className}`}
     {...{ placeholder, type, value, onInput }}
   />
 )

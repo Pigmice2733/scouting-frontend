@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { toggle } from './style.sss'
+import style from './style.sss'
 
 const Toggle = ({
   onChange,
@@ -10,7 +10,7 @@ const Toggle = ({
   id: string
   checked?: boolean
 }) => (
-  <div class={toggle}>
+  <div class={style.toggle}>
     <input id={id} type="checkbox" onChange={onChange} checked={checked} />
     <label for={id} />
   </div>

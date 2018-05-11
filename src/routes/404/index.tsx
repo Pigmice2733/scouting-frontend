@@ -1,8 +1,8 @@
 import { h } from 'preact'
-import { main404 } from './style.sss'
+import style from './style.sss'
 
 const Error404 = () => (
-  <div class={main404}>
+  <div class={style.main404}>
     <h1>ERROR 404</h1>
     <p>The requested file could not be found.</p>
     <video

@@ -16,15 +16,7 @@ import Toggle from '../../components/toggle'
 import { User } from '../../models/user'
 import Resolver from '../../resolver'
 import { getUserInfo, hasValidJWT } from '../../utils'
-import {
-  admin as adminClass,
-  adminInner as adminPanelInnerClass,
-  adminPanel as adminPanelClass,
-  del as deleteClass,
-  failed,
-  save as saveClass,
-  success
-} from './style.sss'
+import style from './style.sss'
 
 class EditableUser {
   username: string
@@ -69,12 +61,12 @@ class AdminPanel extends Component<{}, AdminPanelState> {
     return !userInfo.isAdmin ? (
       <p>You are not an admin.</p>
     ) : (
-      <div class={adminPanelClass}>
+      <div class={style.adminPanel}>
         <Header title={`Admin Panel: ${userInfo.username}`} back="/" />
         {!users ? (
           <Spinner />
         ) : (
-          <div class={adminPanelInnerClass}>
+          <div class={style.adminInner}>
             <table>
               <tr>
                 <th>Username</th>
@@ -111,7 +103,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                         }
                       />
                     </td>
-                    <td class={adminClass}>
+                    <td class={style.admin}>
                       <Toggle
                         id={`toggle-admin-${i}`}
                         checked={user.edit.isAdmin}
@@ -125,7 +117,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                         }
                       />
                     </td>
-                    <td class={adminClass}>
+                    <td class={style.admin}>
                       <Toggle
                         id={`toggle-verified-${i}`}
                         checked={user.edit.isVerified}
@@ -139,12 +131,16 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                         }
                       />
                     </td>
-                    <td class={saveClass}>
+                    <td class={style.save}>
                       <Button
                         onClick={() => {
                           const elem = document.getElementById(id)
                           setTimeout(
-                            () => elem.classList.remove(failed, success),
+                            () =>
+                              elem.classList.remove(
+                                style.failed,
+                                style.success
+                              ),
                             1200
                           )
 
@@ -153,7 +149,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                             !user.edit.username ||
                             re.exec(user.edit.username)
                           ) {
-                            elem.classList.add(failed)
+                            elem.classList.add(style.failed)
                             return
                           }
 
@@ -169,16 +165,16 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                               createUser(user.edit)
                               user.username = user.edit.username
                             }
-                            elem.classList.add(success)
+                            elem.classList.add(style.success)
                           } catch (ex) {
-                            elem.classList.add(failed)
+                            elem.classList.add(style.failed)
                           }
                         }}
                       >
                         Save
                       </Button>
                     </td>
-                    <td class={deleteClass}>
+                    <td class={style.delete}>
                       <Button
                         onClick={() => {
                           if (user.username) {

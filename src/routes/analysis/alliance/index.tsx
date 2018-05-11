@@ -6,7 +6,7 @@ import Table from '../../../components/table'
 import Analysis from '../../../models/analysis'
 import Resolver from '../../../resolver'
 import { camelToTitle } from '../../../utils'
-import { allianceAnalysis } from './style.sss'
+import style from './style.sss'
 
 const AllianceAnalysis = ({
   eventId,
@@ -24,7 +24,7 @@ const AllianceAnalysis = ({
     }}
     render={({ data, schema }) => {
       return (
-        <div class={allianceAnalysis}>
+        <div class={style.allianceAnalysis}>
           <Header
             title={`${matchId.toUpperCase()} - ${camelToTitle(color)} Alliance`}
             back={`/events/${eventId}/${matchId}/`}

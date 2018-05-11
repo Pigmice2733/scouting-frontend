@@ -6,7 +6,7 @@ import Resolver from '../../../resolver'
 import Header from '../../../components/header'
 import Table from '../../../components/table'
 
-import { eventAnalysis as eventAnalysisClass } from './style.sss'
+import style from './style.sss'
 
 const EventAnalysis = ({ eventId }: { eventId: string }) => (
   <Resolver
@@ -16,7 +16,7 @@ const EventAnalysis = ({ eventId }: { eventId: string }) => (
       schema: getSchema()
     }}
     render={({ event, eventAnalysis, schema }) => (
-      <div class={eventAnalysisClass}>
+      <div class={style.eventAnalysis}>
         <Header
           title={`Analysis - ${(event && event.shortName) || eventId}`}
           back={`/events/${eventId}`}

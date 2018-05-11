@@ -2,7 +2,7 @@ import babel from 'rollup-plugin-babel'
 import resolve from 'rollup-plugin-node-resolve'
 import postcss from 'rollup-plugin-postcss'
 import commonjs from 'rollup-plugin-commonjs'
-import htmlTemplate from 'rollup-plugin-generate-html-template'
+import copy from 'rollup-plugin-copy-assets'
 
 const development = process.env.NODE_ENV === 'development'
 
@@ -25,16 +25,20 @@ const config = {
     resolve({
       extensions: ['.js', '.ts', '.tsx']
     }),
-    commonjs(),
-    htmlTemplate({
-      template: 'src/index.html',
-      target: 'index.html'
-    })
+    copy({
+      assets: ['./src/index.html']
+    }),
+    commonjs()
   ]
 }
 
 if (development) {
-  config.plugins.push(require('rollup-plugin-serve')('dist'))
+  config.plugins.push(
+    require('rollup-plugin-serve')({
+      historyApiFallback: true,
+      contentBase: 'dist'
+    })
+  )
 } else {
   config.plugins.push(
     require('rollup-plugin-uglify')({ compress: { passes: 2 } })

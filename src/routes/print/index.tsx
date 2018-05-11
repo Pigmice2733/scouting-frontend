@@ -10,10 +10,7 @@ import {
   toPercentage,
   toPrettyNumber
 } from '../../utils'
-import {
-  alliance as allianceClass,
-  alliances as alliancesClass
-} from './style.sss'
+import style from './style.sss'
 
 interface PrintProps {
   eventId: string
@@ -35,7 +32,7 @@ interface AllianceProps {
 declare const print: () => void
 
 const Alliance = ({ data, name, schema }: AllianceProps) => (
-  <div class={allianceClass}>
+  <div class={style.alliance}>
     <h2>{name}</h2>
     <table>
       <thead>
@@ -79,7 +76,7 @@ export default ({ eventId, matchId }: PrintProps) => (
         }
         render({ redAlliance, blueAlliance, schema }: Props) {
           return (
-            <div class={alliancesClass}>
+            <div class={style.alliances}>
               <h1>{formatMatchKey(matchId)}</h1>
               {redAlliance !== undefined ? (
                 <Alliance name="Red" data={redAlliance} schema={schema} />

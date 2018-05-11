@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { formatTeamNumber } from '../../utils'
-import { teamPicker } from './style.sss'
+import style from './style.sss'
 
 interface TeamPickerProps {
   onChange: (team: string) => any
@@ -15,7 +15,7 @@ const TeamPicker = ({
   blueAlliance,
   inputRef
 }: TeamPickerProps) => (
-  <label class={teamPicker}>
+  <label class={style.teamPicker}>
     <span>Team</span>
     <select
       ref={inputRef}

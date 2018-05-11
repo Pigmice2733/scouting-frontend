@@ -13,14 +13,7 @@ import {
   compareTeams,
   formatTeamNumber
 } from '../../utils'
-import {
-  chart,
-  chooser,
-  compare,
-  err,
-  robotImage,
-  team as teamClass
-} from './style.sss'
+import style from './style.sss'
 
 interface CompareProps {
   teams: string[]
@@ -79,11 +72,11 @@ const Compare = ({
             back={back}
           />
           {teams === null ? (
-            <p class={err}>No teams have been scouted for this event</p>
+            <p class={style.err}>No teams have been scouted for this event</p>
           ) : (
-            <div class={compare}>
-              <div class={chooser}>
-                <div class={teamClass}>
+            <div class={style.compare}>
+              <div class={style.chooser}>
+                <div class={style.team}>
                   <select
                     value={team1}
                     onChange={e =>
@@ -101,13 +94,13 @@ const Compare = ({
                     ))}
                   </select>
                   <RobotImage
-                    className={robotImage}
+                    className={style.robotImage}
                     team={team1}
                     color="blue"
                   />
                 </div>
 
-                <div class={teamClass}>
+                <div class={style.team}>
                   <select
                     value={team2}
                     onChange={e =>
@@ -125,12 +118,16 @@ const Compare = ({
                     ))}
                   </select>
 
-                  <RobotImage className={robotImage} team={team2} color="red" />
+                  <RobotImage
+                    className={style.robotImage}
+                    team={team2}
+                    color="red"
+                  />
                 </div>
               </div>
 
               {Object.keys(schema).map(key => (
-                <div class={chart}>
+                <div class={style.chart}>
                   <h1>{camelToTitle(key)}</h1>
                   <Chart
                     reports={sortedTeamStats}

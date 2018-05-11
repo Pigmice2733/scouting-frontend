@@ -23,7 +23,7 @@ import TeamPicker from '../../components/team-picker'
 import TextInput from '../../components/text-input'
 import Toggle from '../../components/toggle'
 
-import { fields, notes, scout, scoutMain } from './style.sss'
+import style from './style.sss'
 
 interface ScoutProps {
   event: FRCEvent
@@ -121,13 +121,13 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
 
             const sortedKeys = sortSchemaKeys(Object.keys(schema || []))
             return (
-              <div class={scout}>
+              <div class={style.scout}>
                 <Header
                   title={`Scout - ${matchId.toUpperCase()} - ${eventName}`}
                   back={`/events/${eventId}/${matchId}`}
                   verify
                 />
-                <div class={scoutMain}>
+                <div class={style.scoutMain}>
                   {match && (
                     <TeamPicker
                       onChange={this.changeTeam}
@@ -137,7 +137,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                     />
                   )}
                   {['auto', 'teleop', 'general'].map(sectionName => (
-                    <div class={fields}>
+                    <div class={style.fields}>
                       <h2>{capitalize(sectionName)}</h2>
                       {sortedKeys[sectionName].map(fieldName => (
                         <Field
@@ -157,7 +157,7 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                         return state
                       })
                     }
-                    className={notes}
+                    className={style.notes}
                   />
                   <Button onClick={this.submit}>Submit Report</Button>
                 </div>

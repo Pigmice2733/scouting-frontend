@@ -19,6 +19,8 @@ module.exports = {
       }
     ],
     '@babel/plugin-proposal-class-properties',
+    // use the + operator to join strings instead of string.concat()
+    ['@babel/plugin-transform-template-literals', { loose: true }],
     ['module:calebeby-babel-plugin-transform-typescript', { jsxPragma: 'h' }]
   ]
 }

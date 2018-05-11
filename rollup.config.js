@@ -6,6 +6,27 @@ import copy from 'rollup-plugin-copy-assets'
 
 const development = process.env.NODE_ENV === 'development'
 
+const jsPlugins = [
+  babel(),
+  resolve({
+    extensions: ['.js', '.ts', '.tsx']
+  }),
+  commonjs()
+]
+
+if (!development) {
+  jsPlugins.push(require('rollup-plugin-uglify')({ compress: { passes: 2 } }))
+}
+
+const swConfig = {
+  input: './src/sw.ts',
+  output: {
+    file: 'dist/sw.js',
+    format: 'iife'
+  },
+  plugins: jsPlugins
+}
+
 const config = {
   input: './src/index.tsx',
   output: {
@@ -21,14 +42,10 @@ const config = {
           : '[hash:base64:3]'
       }
     }),
-    babel(),
-    resolve({
-      extensions: ['.js', '.ts', '.tsx']
-    }),
     copy({
       assets: ['./src/index.html']
     }),
-    commonjs()
+    ...jsPlugins
   ]
 }
 
@@ -39,10 +56,6 @@ if (development) {
       contentBase: 'dist'
     })
   )
-} else {
-  config.plugins.push(
-    require('rollup-plugin-uglify')({ compress: { passes: 2 } })
-  )
 }
 
-export default config
+export default [swConfig, config]

@@ -19,6 +19,6 @@ module.exports = {
       }
     ],
     '@babel/plugin-proposal-class-properties',
-    ['@babel/plugin-transform-typescript', { jsxPragma: 'h' }]
+    ['module:calebeby-babel-plugin-transform-typescript', { jsxPragma: 'h' }]
   ]
 }

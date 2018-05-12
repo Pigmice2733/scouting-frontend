@@ -1,3 +1,9 @@
 /*
 	Link: </index.css>; rel=preload; as=style
 	Link: </index.js>; rel=preload; as=script
+
+/
+	Link: <https://api.pigmice.ga/events>; rel=preload; as=fetch; crossorigin
+
+/events/:placeholder
+	Link: <https://api.pigmice.ga/events/:placeholder>; rel=preload; as=fetch; crossorigin

@@ -51,7 +51,14 @@ const config = {
       }
     }),
     copy({
-      assets: ['./src/index.html']
+      assets: [
+        './src/index.html',
+        './src/assets',
+        './src/_redirects',
+        './src/_headers',
+        './src/browserconfig.xml',
+        './src/manifest.json'
+      ]
     }),
     ...jsPlugins
   ]

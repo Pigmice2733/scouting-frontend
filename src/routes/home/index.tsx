@@ -87,7 +87,10 @@ export default () => (
                 contents={
                   <div class={style.headerContents}>
                     <span class={style.navigationDrawerButtonContainer}>
-                      <a class={style.navigationDrawerButton} href="/leaderboard">
+                      <a
+                        class={style.navigationDrawerButton}
+                        href="/leaderboard"
+                      >
                         <Icon fill="#FFF" icon="trophy" />
                       </a>
                     </span>

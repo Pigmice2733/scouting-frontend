@@ -3,9 +3,9 @@ import { h, render } from 'preact'
 import { queryAPI, Req } from './api'
 import App from './components/app'
 
-const rootNode = document.getElementById('app') as HTMLDivElement
+const rootNode = document.getElementById('app')
 
-render(<App />, rootNode, rootNode.lastElementChild as HTMLDivElement)
+render(<App />, rootNode, rootNode.lastElementChild)
 
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(console.error)

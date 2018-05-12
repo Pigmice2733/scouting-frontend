@@ -20,7 +20,15 @@ const jsPlugins = [
 ]
 
 if (!development) {
-  jsPlugins.push(require('rollup-plugin-uglify')({ compress: { passes: 2 } }))
+  jsPlugins.push(
+    require('rollup-plugin-uglify')({
+      compress: {
+        passes: 2,
+        unsafe_comps: true,
+        unsafe_math: true
+      }
+    })
+  )
 }
 
 const swConfig = {

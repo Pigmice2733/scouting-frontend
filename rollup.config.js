@@ -10,10 +10,7 @@ const development = process.env.NODE_ENV === 'development'
 
 const jsPlugins = [
   resolve({
-    extensions: ['.js', '.ts', '.tsx', '.mjs'],
-    modules: true,
-    jsnext: false,
-    main: false
+    extensions: ['.js', '.ts', '.tsx', '.mjs']
   }),
   commonjs(),
   babel({

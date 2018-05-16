@@ -11,9 +11,9 @@ import Spinner from '../../components/spinner'
 import FRCEvent from '../../models/frc-event'
 import Resolver from '../../resolver'
 import {
-  abbreviate,
   eventTypeName,
   getCoords,
+  getJWT,
   getUserInfo,
   hasValidJWT,
   sortEvents
@@ -52,7 +52,7 @@ export default () => (
         }
 
         componentWillMount() {
-          this.setState({ loggedIn: hasValidJWT() })
+          this.setState({ loggedIn: hasValidJWT(getJWT()) })
 
           if ('geolocation' in navigator) {
             getCoords((coords: { lat: number; long: number }) => {

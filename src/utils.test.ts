@@ -1,15 +1,60 @@
 import {
   capitalize,
   compareMatchKey,
-  parseMatchKey,
   formatMatchKey,
   lerp,
-  lerper
+  lerper,
+  parseMatchKey,
+  hasValidJWT,
+  formatTime,
+  formatDate,
+  formatTeamNumber,
+  parseTeamNumber,
+  compareTeams,
+  sortSchemaKeys,
+  toRadians,
+  distanceBetween,
+  camelToTitle,
+  toPercentage,
+  toPrettyNumber,
+  getNumber
 } from './utils'
+
+test('hasValidJWT', () => {
+  expect(hasValidJWT('aslfj')).toEqual(false)
+  expect(hasValidJWT(null)).toEqual(false)
+  expect(hasValidJWT('foo.eyJleHAiOiAxMjMxMjQwMDIwMjM0MTM0fQ==.baz')).toEqual(
+    true
+  )
+})
 
 test('capitalize', () => {
   expect(capitalize('hello')).toEqual('Hello')
   expect(capitalize('HELLO')).toEqual('HELLO')
+})
+
+test('formatTime', () => {
+  expect(formatTime(new Date('10:30 AM 05/12/2018'))).toEqual('10:30 AM')
+  expect(formatTime(new Date('20:30 05/12/2018'))).toEqual('8:30 PM')
+})
+
+test('formatDate', () => {
+  expect(formatDate(new Date('Dec. 11 2010'))).toEqual('10-12-11')
+})
+
+test('formatTeamNumber', () => {
+  expect(formatTeamNumber('frc2344a')).toEqual('2344a')
+  expect(formatTeamNumber('frc2733')).toEqual('2733')
+})
+
+test('parseTeamNumber', () => {
+  expect(parseTeamNumber('frc2912a')).toEqual({ letter: 'a', num: 2912 })
+})
+
+test('compareTeams', () => {
+  expect(compareTeams('frc2345a', 'frc823')).toBeGreaterThan(0)
+  expect(compareTeams('frc823', 'frc2345a')).toBeLessThan(0)
+  expect(compareTeams('frc8234a', 'frc2345')).toBeGreaterThan(0)
 })
 
 const matchKeys = [
@@ -92,4 +137,62 @@ test('formatMatchKey', () => {
   expect(formatMatchKey('2018orwil_sf4m1')).toEqual('SF4 M1')
   expect(formatMatchKey('sf4m1')).toEqual('SF4 M1')
   expect(formatMatchKey('qm1')).toEqual('Qual 1')
+})
+
+test('sortSchemaKeys', () => {
+  expect(
+    sortSchemaKeys([
+      'teleopFooBar',
+      'teleopFoo',
+      'autoFooBar',
+      'askjdfalskdfsaf',
+      'autoBarBaz'
+    ])
+  ).toMatchSnapshot()
+  expect(
+    sortSchemaKeys([
+      'sldkfaskldfasd',
+      'teleopFoo',
+      'autoFooBar',
+      'askjdfalskdfsaf',
+      'autoBarBaz'
+    ])
+  ).toMatchSnapshot()
+})
+
+test('toRadians', () => {
+  expect(toRadians(360)).toEqual(2 * Math.PI)
+  expect(toRadians(0)).toEqual(0)
+  expect(toRadians(180)).toEqual(Math.PI)
+})
+
+test('distanceBetween', () => {
+  expect(
+    distanceBetween(45.4984831, -122.6407657, 45.6122938, -122.4003979)
+  ).toBeCloseTo(22.59)
+})
+
+test('camelToTitle', () => {
+  expect(camelToTitle('thisIsATitle')).toEqual('This Is A Title')
+})
+
+test('toPercentage', () => {
+  expect(toPercentage(100)).toEqual('10000%')
+  expect(toPercentage(1)).toEqual('100%')
+  expect(toPercentage(1.246)).toEqual('125%')
+  expect(toPercentage(0.03)).toEqual('3%')
+  expect(toPercentage(0)).toEqual('0%')
+  expect(toPercentage(0.001)).toEqual('0%')
+})
+
+test('toPrettyNumber', () => {
+  expect(toPrettyNumber(100)).toEqual(100)
+  expect(toPrettyNumber(30.15312)).toEqual(30.2)
+  expect(toPrettyNumber(Math.PI)).toEqual(3.1)
+})
+
+test('getNumber', () => {
+  expect(getNumber(5)).toEqual(5)
+  expect(getNumber(false)).toEqual(0)
+  expect(getNumber(true)).toEqual(1)
 })

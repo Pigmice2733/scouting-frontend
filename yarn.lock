@@ -275,6 +275,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.47"
 
+"@babel/plugin-syntax-typescript@7.0.0-beta.47":
+  version "7.0.0-beta.47"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-7.0.0-beta.47.tgz#108d4c83ff48ddcb8f0532252a9892e805ddc64c"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.47"
+
 "@babel/plugin-transform-arrow-functions@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-arrow-functions/-/plugin-transform-arrow-functions-7.0.0-beta.47.tgz#d6eecda4c652b909e3088f0983ebaf8ec292984b"
@@ -463,6 +469,13 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.47"
 
+"@babel/plugin-transform-typescript@^7.0.0-beta.47":
+  version "7.0.0-beta.47"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-typescript/-/plugin-transform-typescript-7.0.0-beta.47.tgz#f6f46bd4dd22edef4ae42d9d3770044eddb84dfa"
+  dependencies:
+    "@babel/helper-plugin-utils" "7.0.0-beta.47"
+    "@babel/plugin-syntax-typescript" "7.0.0-beta.47"
+
 "@babel/plugin-transform-unicode-regex@7.0.0-beta.47":
   version "7.0.0-beta.47"
   resolved "https://registry.yarnpkg.com/@babel/plugin-transform-unicode-regex/-/plugin-transform-unicode-regex-7.0.0-beta.47.tgz#efed0b2f1dfbf28283502234a95b4be88f7fdcb6"
@@ -555,9 +568,9 @@
     lodash "^4.17.5"
     to-fast-properties "^2.0.0"
 
-"@types/estree@0.0.38":
-  version "0.0.38"
-  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.38.tgz#c1be40aa933723c608820a99a373a16d215a1ca2"
+"@types/estree@0.0.39":
+  version "0.0.39"
+  resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
 
 "@types/jest@^22.2.3":
   version "22.2.3"
@@ -2103,6 +2116,10 @@ har-validator@~5.0.3:
     ajv "^5.1.0"
     har-schema "^2.0.0"
 
+harmony-reflect@^1.4.6:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/harmony-reflect/-/harmony-reflect-1.6.0.tgz#9c28a77386ec225f7b5d370f9861ba09c4eea58f"
+
 has-ansi@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/has-ansi/-/has-ansi-2.0.0.tgz#34f5049ce1ecdf2b0649af3ef24e45ed35416d91"
@@ -2231,6 +2248,12 @@ icss-replace-symbols@1.1.0, icss-replace-symbols@^1.1.0:
 idb-keyval@^3.0.4:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-3.0.4.tgz#b0912f1b2d1c13a702087f9510e57b875a4eaf6e"
+
+identity-obj-proxy@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz#94d2bda96084453ef36fbc5aaec37e0f79f1fc14"
+  dependencies:
+    harmony-reflect "^1.4.6"
 
 ignore-walk@^3.0.1:
   version "3.0.1"
@@ -4521,11 +4544,11 @@ rollup-pluginutils@^2.0.1:
     micromatch "^3.1.10"
     tosource "^1.0.0"
 
-rollup@^0.58.2:
-  version "0.58.2"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.58.2.tgz#2feddea8c0c022f3e74b35c48e3c21b3433803ce"
+rollup@^0.59.0:
+  version "0.59.0"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.59.0.tgz#f91a59ae655f1d2ee9fd795d85621eea3dee21ff"
   dependencies:
-    "@types/estree" "0.0.38"
+    "@types/estree" "0.0.39"
     "@types/node" "*"
 
 rsvp@^3.3.3:

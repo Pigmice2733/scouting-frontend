@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`uses an \`a\` for \`href\` 1`] = `
+<a
+  class="button "
+  href="google.com"
+>
+  Hello
+</a>
+`;
+
+exports[`uses an \`button\` otherwise 1`] = `
+<button
+  class="button "
+  disabled=""
+  type="foo"
+  value="hello"
+>
+  Hello
+</button>
+`;

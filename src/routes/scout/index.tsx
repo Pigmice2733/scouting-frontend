@@ -10,6 +10,7 @@ import { getEvent, getMatch, getSchema, submitReport } from '../../api'
 import {
   camelToTitle,
   capitalize,
+  getJWT,
   hasValidJWT,
   sortSchemaKeys
 } from '../../utils'
@@ -70,7 +71,7 @@ const Field = ({
 )
 
 const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
-  if (!hasValidJWT()) {
+  if (!hasValidJWT(getJWT())) {
     route(`/login`, true)
     return
   }

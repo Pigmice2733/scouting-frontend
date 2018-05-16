@@ -6,7 +6,7 @@ declare module '*.sss' {
 }
 
 declare module 'preact-router' {
-  import * as preact from 'preact'
+  import preact from 'preact'
 
   export function route(url: string, replace?: boolean): boolean
   export function route(options: { url: string; replace?: boolean }): boolean

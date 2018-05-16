@@ -15,7 +15,7 @@ const Header = ({ title, back, contents, verify }: HeaderProps) => (
     {back && (
       <a
         class={style.back}
-        onClick={e => {
+        onClick={(e: Event) => {
           if (verify === true) {
             e.stopImmediatePropagation()
             e.preventDefault()

@@ -15,7 +15,7 @@ import TextInput from '../../components/text-input'
 import Toggle from '../../components/toggle'
 import { User } from '../../models/user'
 import Resolver from '../../resolver'
-import { getUserInfo, hasValidJWT } from '../../utils'
+import { getJWT, getUserInfo, hasValidJWT } from '../../utils'
 import style from './style.sss'
 
 class EditableUser {
@@ -52,7 +52,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
   }
 
   render({}, { users }: AdminPanelState) {
-    if (!hasValidJWT()) {
+    if (!hasValidJWT(getJWT())) {
       route('/login')
       return null
     }
@@ -95,9 +95,10 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                         value={user.edit.password}
                         type="password"
                         placeholder="Password"
-                        onInput={evt =>
+                        onInput={(evt: Event) =>
                           this.setState((state: AdminPanelState) => {
-                            state.users[i].edit.password = evt.target.value
+                            const { value } = evt.target as HTMLInputElement
+                            state.users[i].edit.password = value
                             return state
                           })
                         }
@@ -107,7 +108,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                       <Toggle
                         id={`toggle-admin-${i}`}
                         checked={user.edit.isAdmin}
-                        onChange={evt =>
+                        onChange={(evt: Event) =>
                           this.setState((state: AdminPanelState) => {
                             state.users[
                               i
@@ -121,7 +122,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                       <Toggle
                         id={`toggle-verified-${i}`}
                         checked={user.edit.isVerified}
-                        onChange={evt =>
+                        onChange={(evt: Event) =>
                           this.setState((state: AdminPanelState) => {
                             state.users[
                               i

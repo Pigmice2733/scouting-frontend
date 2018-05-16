@@ -19,7 +19,7 @@ const TeamPicker = ({
     <span>Team</span>
     <select
       ref={inputRef}
-      onChange={e => onChange((e.target as HTMLSelectElement).value)}
+      onChange={(e: Event) => onChange((e.target as HTMLSelectElement).value)}
     >
       {redAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}
       {blueAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}

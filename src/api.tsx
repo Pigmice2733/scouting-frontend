@@ -34,7 +34,7 @@ const queryAPI = (
   fetch(`${endpoint}/${path}`, {
     method,
     body: JSON.stringify(body),
-    headers: hasValidJWT()
+    headers: hasValidJWT(getJWT())
       ? new Headers({ Authentication: `Bearer ${getJWT()}` })
       : undefined
   }).catch(async (err: Error) => {

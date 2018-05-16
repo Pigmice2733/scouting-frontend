@@ -57,7 +57,12 @@ const Event = ({ eventId }: { eventId: string }) => (
                       </div>
                     </a>
                     {m.youtubeURL !== '' ? (
-                      <a href={m.youtubeURL} target="_blank">
+                      <a
+                        href={m.youtubeURL}
+                        target="_blank"
+                        rel="noopener"
+                        aria-label="Watch on YouTube"
+                      >
                         <Icon icon="youtube" fill="red" />
                       </a>
                     ) : (

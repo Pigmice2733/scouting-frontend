@@ -15,6 +15,7 @@ const Header = ({ title, back, contents, verify }: HeaderProps) => (
     {back && (
       <a
         class={style.back}
+        aria-label="Back"
         onClick={(e: Event) => {
           if (verify === true) {
             e.stopImmediatePropagation()

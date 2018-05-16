@@ -1,6 +1,6 @@
-/*
-	Link: </index.css>; rel=preload; as=style; crossorigin
-	Link: </index.js>; rel=preload; as=script; crossorigin
+/*.html
+	Link: </index.css>; rel=preload; as=style
+	Link: </index.js>; rel=preload; as=script
 
 /
 	Link: <https://api.pigmice.ga/events>; rel=preload; as=fetch; crossorigin

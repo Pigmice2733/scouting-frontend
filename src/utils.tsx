@@ -12,7 +12,7 @@ const hasValidJWT = (): boolean => {
     return false
   }
 
-  return JSON.parse(atob(parts[1])).exp > Number(new Date()) / 1000
+  return JSON.parse(atob(parts[1])).exp > new Date().getTime() / 1000
 }
 
 const getJWT = (): string => {
@@ -120,7 +120,7 @@ const getCoords = (cb: (pos: { lat: number; long: number }) => any) => {
   })
 }
 
-const today = Number(new Date())
+const today = new Date().getTime()
 
 const sortEvents = (
   events: FRCEvent[],

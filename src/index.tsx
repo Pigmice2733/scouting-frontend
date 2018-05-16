@@ -7,9 +7,9 @@ const rootNode = document.getElementById('app')
 
 render(<App />, rootNode, rootNode.lastElementChild)
 
-// if ('serviceWorker' in navigator) {
-//   navigator.serviceWorker.register('/sw.js').catch(console.error)
-// }
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').catch(console.error)
+}
 
 const syncRequests = async () => {
   const requests = await get<Req[]>('cachedRequests')

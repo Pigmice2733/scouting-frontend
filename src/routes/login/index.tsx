@@ -1,6 +1,5 @@
 import linkState from 'linkstate'
 import { Component, h } from 'preact'
-import { route } from 'preact-router'
 import { authenticate, registerUser } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
@@ -14,21 +13,20 @@ interface LoginState {
 }
 
 class Login extends Component<{}, LoginState> {
-  handleLogin = (e: Event) => {
+  handleLogin = async (e: Event) => {
     e.preventDefault()
-    authenticate(this.state)
-      .then((jwt: string) => {
-        localStorage.setItem('jwt', jwt)
-        window.history.back()
+    try {
+      const jwt = await authenticate(this.state)
+      localStorage.setItem('jwt', jwt)
+      window.history.back()
+    } catch (err) {
+      this.setState({
+        error:
+          Number(err.message) === 401
+            ? 'Incorrect username or password.'
+            : err.message
       })
-      .catch(err =>
-        this.setState({
-          error:
-            Number(err.message) === 401
-              ? 'Incorrect username or password.'
-              : err.message
-        })
-      )
+    }
   }
 
   handleRegister = () => {
@@ -37,7 +35,7 @@ class Login extends Component<{}, LoginState> {
       .catch((err: Error) => this.setState({ error: err.message }))
   }
 
-  render({}, state: LoginState) {
+  render(_: {}, state: LoginState) {
     return (
       <div class={style.login}>
         <Header title="Login" back="/" />

@@ -51,66 +51,65 @@ const Chart = ({
     <svg class={style.chart} viewBox="0 0 640 480">
       {allReports.map(report => (
         <text
-          text-anchor="middle"
+          textAnchor="middle"
           x="10"
           y={lerpY(getNumber(report.stats[stat]))}
+          key={report.eventKey}
         >
           {getNumber(report.stats[stat])}
         </text>
-      ))}}}
-      <line x1="20" x2="20" y1="0" y2="475" stroke-width="3" />
-      <line x1="20" x2="640" y1="475" y2="475" stroke-width="3" />
-      {Array.from(Object.entries(groupedTeamStats)).map(([key, reports]) => {
-        return (
-          <g>
-            <polyline
-              stroke-width="2"
-              stroke={
-                colorKey !== undefined
-                  ? colorKey[formatTeamNumber(key)]
-                  : 'purple'
-              }
-              points={reports
-                .map(
-                  report =>
-                    `${lerpX(allReports.indexOf(report))},${lerpY(
-                      getNumber(report.stats[stat])
-                    )}`
-                )
-                .join(' ')}
-            />
-            {reports.map((report, i) => (
-              <g>
-                <a
-                  href={`/events/${report.eventKey}/${report.matchKey.slice(
-                    report.eventKey.length + 1
-                  )}`}
-                >
-                  <circle
-                    r="4"
-                    fill={
-                      colorKey !== undefined
-                        ? colorKey[formatTeamNumber(key)]
-                        : 'purple'
-                    }
-                    stroke="0.2"
-                    cx={lerpX(allReports.indexOf(report))}
-                    cy={lerpY(getNumber(report.stats[stat]))}
-                  />
-                </a>
-                <text
-                  class={style.tooltip}
-                  font-size={textSize}
-                  x={lerpX(allReports.indexOf(report))}
-                  y={lerpY(getNumber(report.stats[stat])) - 7.5}
-                >
-                  {formatMatchKey(report.matchKey)}
-                </text>
-              </g>
-            ))}
-          </g>
-        )
-      })}
+      ))}
+      <line x1="20" x2="20" y1="0" y2="475" strokeWidth="3" />
+      <line x1="20" x2="640" y1="475" y2="475" strokeWidth="3" />
+      {Array.from(Object.entries(groupedTeamStats), ([key, reports]) => (
+        <g key={key}>
+          <polyline
+            strokeWidth="2"
+            stroke={
+              colorKey !== undefined
+                ? colorKey[formatTeamNumber(key)]
+                : 'purple'
+            }
+            points={reports
+              .map(
+                report =>
+                  `${lerpX(allReports.indexOf(report))},${lerpY(
+                    getNumber(report.stats[stat])
+                  )}`
+              )
+              .join(' ')}
+          />
+          {reports.map(report => (
+            <g key={report.eventKey}>
+              <a
+                href={`/events/${report.eventKey}/${report.matchKey.slice(
+                  report.eventKey.length + 1
+                )}`}
+              >
+                <circle
+                  r="4"
+                  fill={
+                    colorKey !== undefined
+                      ? colorKey[formatTeamNumber(key)]
+                      : 'purple'
+                  }
+                  stroke="0.2"
+                  cx={lerpX(allReports.indexOf(report))}
+                  cy={lerpY(getNumber(report.stats[stat]))}
+                />
+              </a>
+              <text
+                class={style.tooltip}
+                fontSize={textSize}
+                x={lerpX(allReports.indexOf(report))}
+                y={lerpY(getNumber(report.stats[stat])) - 7.5}
+              >
+                {formatMatchKey(report.matchKey)}
+              </text>
+            </g>
+          ))}
+        </g>
+      ))}
     </svg>
   )
 }

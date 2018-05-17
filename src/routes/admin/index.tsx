@@ -1,12 +1,6 @@
 import { Component, h } from 'preact'
 import { route } from 'preact-router'
-import {
-  createUser,
-  deleteUser,
-  getEvents,
-  getUsers,
-  updateUser
-} from '../../api'
+import { createUser, deleteUser, getUsers, updateUser } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
 import Icon from '../../components/icon'
@@ -14,7 +8,6 @@ import Spinner from '../../components/spinner'
 import TextInput from '../../components/text-input'
 import Toggle from '../../components/toggle'
 import { User } from '../../models/user'
-import Resolver from '../../resolver'
 import { getUserInfo, hasValidJWT } from '../../utils'
 import style from './style.sss'
 
@@ -51,7 +44,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
     )
   }
 
-  render({}, { users }: AdminPanelState) {
+  render(_: {}, { users }: AdminPanelState) {
     if (!hasValidJWT()) {
       route('/login')
       return null
@@ -77,7 +70,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
               {users.map((user, i) => {
                 const id = `user-${i}`
                 return (
-                  <tr id={id}>
+                  <tr key={user.username} id={id}>
                     <td>
                       <TextInput
                         placeholder="Username"

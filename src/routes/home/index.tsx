@@ -1,5 +1,4 @@
 import { Component, h } from 'preact'
-import { route } from 'preact-router'
 import { getEvents } from '../../api'
 import Button from '../../components/button'
 import DateDisplay from '../../components/date-display'
@@ -10,14 +9,7 @@ import SearchInput, { SearchInputEvent } from '../../components/search-input'
 import Spinner from '../../components/spinner'
 import FRCEvent from '../../models/frc-event'
 import Resolver from '../../resolver'
-import {
-  abbreviate,
-  eventTypeName,
-  getCoords,
-  getUserInfo,
-  hasValidJWT,
-  sortEvents
-} from '../../utils'
+import { eventTypeName, getCoords, hasValidJWT, sortEvents } from '../../utils'
 import style from './style.sss'
 
 interface HomeProps {

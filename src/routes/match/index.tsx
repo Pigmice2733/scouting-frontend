@@ -1,11 +1,10 @@
-import { h, render } from 'preact'
+import { h } from 'preact'
 import { getEvent, getMatch } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
 import Icon from '../../components/icon'
 import RobotImage from '../../components/robot-image'
 import Spinner from '../../components/spinner'
-import FRCEvent from '../../models/frc-event'
 import Resolver from '../../resolver'
 import {
   formatMatchKey,
@@ -29,7 +28,7 @@ const Alliance = ({ baseUrl, color, alliance, score }: AllianceProps) => (
     class={`${style.alliance} ${color === 'red' ? style.red : style.blue}`}
   >
     {alliance.map(team => (
-      <RobotImage team={formatTeamNumber(team)} color={color} />
+      <RobotImage key={team} team={formatTeamNumber(team)} color={color} />
     ))}
     <div class={style.score}>
       <h2>Score</h2>

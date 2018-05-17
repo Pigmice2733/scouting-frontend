@@ -1,5 +1,3 @@
-const vars = require('postcss-css-variables')
-
 module.exports = {
   parser: 'sugarss',
   plugins: {

@@ -45,7 +45,7 @@ const formatDate = (date: Date): string =>
 const formatTeamNumber = (teamId: string) => teamId.replace('frc', '')
 
 const parseTeamNumber = (teamId: string) => {
-  const [, num, letter] = formatTeamNumber(teamId).match(/([0-9]*)(.*)/)
+  const [, num, letter] = formatTeamNumber(teamId).match(/(\d*)(.*)/)
   return { num: Number(num), letter }
 }
 

@@ -46,6 +46,7 @@ const Field = ({
 }: {
   fieldType: string
   fieldName: string
+  key?: string
   self: any
 }) => (
   <label for={fieldName}>
@@ -59,10 +60,7 @@ const Field = ({
         id={fieldName}
       />
     ) : fieldType === 'number' ? (
-      <NumberPicker
-        onChange={linkState(self, `report.${fieldName}`)}
-        id={fieldName}
-      />
+      <NumberPicker onChange={linkState(self, `report.${fieldName}`)} />
     ) : (
       <div>Unrecognized Field Type for {fieldName}</div>
     )}
@@ -93,14 +91,15 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
               notes: ''
             }
           }
-          submit = () => {
-            submitReport(
+          submit = async () => {
+            await submitReport(
               this.state.team || this.teamPicker.value,
               eventId,
               matchId,
               this.state.report,
               this.state.notes !== '' ? this.state.notes : undefined
-            ).then(() => route(`/events/${eventId}/${matchId}`))
+            )
+            route(`/events/${eventId}/${matchId}`)
           }
           changeTeam = (team: string) => {
             this.setState({ team })
@@ -137,10 +136,11 @@ const Scout = ({ eventId, matchId }: { eventId: string; matchId: string }) => {
                     />
                   )}
                   {['auto', 'teleop', 'general'].map(sectionName => (
-                    <div class={style.fields}>
+                    <div class={style.fields} key={sectionName}>
                       <h2>{capitalize(sectionName)}</h2>
                       {sortedKeys[sectionName].map(fieldName => (
                         <Field
+                          key={fieldName}
                           fieldName={fieldName}
                           fieldType={schema[fieldName]}
                           self={this}

@@ -1,10 +1,4 @@
-import {
-  Component,
-  ComponentConstructor,
-  ComponentProps,
-  FunctionalComponent,
-  h
-} from 'preact'
+import { Component, ComponentConstructor, FunctionalComponent, h } from 'preact'
 import style from './error.sss'
 
 interface ResolverProps<T> {

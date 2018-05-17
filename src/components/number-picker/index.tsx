@@ -3,9 +3,7 @@ import TextInput from '../text-input'
 import style from './style.sss'
 
 interface NumberProps {
-  id: string
   onChange: (v: number) => any
-  value?: number
 }
 
 interface NumberState {
@@ -38,7 +36,7 @@ class NumberPicker extends Component<NumberProps, NumberState> {
     })
   }
 
-  render({ id, onChange }: NumberProps, { num }: NumberState) {
+  render(_: {}, { num }: NumberState) {
     return (
       <div class={style.numberPicker}>
         <button onClick={this.decrement}>-</button>

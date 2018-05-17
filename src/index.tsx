@@ -8,7 +8,7 @@ const rootNode = document.getElementById('app')
 render(<App />, rootNode, rootNode.lastElementChild)
 
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').catch(console.error)
+  navigator.serviceWorker.register('/sw.js')
 }
 
 const syncRequests = async () => {

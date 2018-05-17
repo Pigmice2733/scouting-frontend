@@ -4,7 +4,7 @@ import FRCEvent from './models/frc-event'
 import Match from './models/match'
 import Report from './models/report'
 import Schema from './models/schema'
-import { User, UserInfo } from './models/user'
+import { User } from './models/user'
 
 import { getJWT, hasValidJWT } from './utils'
 
@@ -39,12 +39,12 @@ const queryAPI = (
       : undefined
   }).catch(async (err: Error) => {
     if (method !== 'GET') {
-      const numRequests = await addRequestToIdb({ path, method, body })
+      await addRequestToIdb({ path, method, body })
     }
     throw err
   })
 
-const get = <T extends {}>(url: string) => async (
+const get = <T extends {}>(url: string) => (
   cb: (err: Error | null, data: T | null) => any
 ) => {
   let gotten = false

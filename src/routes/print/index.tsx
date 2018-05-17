@@ -37,17 +37,23 @@ const Alliance = ({ data, name, schema }: AllianceProps) => (
     <table>
       <thead>
         <td />
-        {data.map(team => <td>{formatTeamNumber(team.team)}</td>)}
+        {data.map(team => (
+          <td key={team.team}>{formatTeamNumber(team.team)}</td>
+        ))}
       </thead>
 
       {Object.keys(schema).map(stat => {
         const isNumber = schema[stat] === 'number'
         return (
-          <tr>
+          <tr key={stat}>
             <td>{camelToTitle(stat)}</td>
             {data.map(team => {
               const s = team.stats[stat]
-              return <td>{isNumber ? toPrettyNumber(s) : toPercentage(s)}</td>
+              return (
+                <td key={team}>
+                  {isNumber ? toPrettyNumber(s) : toPercentage(s)}
+                </td>
+              )
             })}
           </tr>
         )

@@ -1,4 +1,4 @@
-import { Component, h } from 'preact'
+import { h } from 'preact'
 import { route } from 'preact-router'
 import { getSchema, getTeamsAtEvent, getTeamStats } from '../../api'
 import Chart from '../../components/chart'
@@ -88,7 +88,7 @@ const Compare = ({
                     }
                   >
                     {sortedTeams.map(team => (
-                      <option value={formatTeamNumber(team)}>
+                      <option key={team} value={formatTeamNumber(team)}>
                         {formatTeamNumber(team)}
                       </option>
                     ))}
@@ -112,7 +112,7 @@ const Compare = ({
                     }
                   >
                     {sortedTeams.map(team => (
-                      <option value={formatTeamNumber(team)}>
+                      <option key={team} value={formatTeamNumber(team)}>
                         {formatTeamNumber(team)}
                       </option>
                     ))}
@@ -127,7 +127,7 @@ const Compare = ({
               </div>
 
               {Object.keys(schema).map(key => (
-                <div class={style.chart}>
+                <div key={key} class={style.chart}>
                   <h1>{camelToTitle(key)}</h1>
                   <Chart
                     reports={sortedTeamStats}

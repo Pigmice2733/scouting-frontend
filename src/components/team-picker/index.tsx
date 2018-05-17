@@ -21,8 +21,16 @@ const TeamPicker = ({
       ref={inputRef}
       onChange={e => onChange((e.target as HTMLSelectElement).value)}
     >
-      {redAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}
-      {blueAlliance.map(t => <option value={t}>{formatTeamNumber(t)}</option>)}
+      {redAlliance.map(t => (
+        <option value={t} key={t}>
+          {formatTeamNumber(t)}
+        </option>
+      ))}
+      {blueAlliance.map(t => (
+        <option value={t} key={t}>
+          {formatTeamNumber(t)}
+        </option>
+      ))}
     </select>
   </label>
 )

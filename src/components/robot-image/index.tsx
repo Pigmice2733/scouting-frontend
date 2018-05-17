@@ -5,6 +5,7 @@ interface RobotImageProps {
   team: string
   color: string
   className?: string
+  key?: string
 }
 
 const RobotImage = ({ className, team, color = 'blue' }: RobotImageProps) => (

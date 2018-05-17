@@ -9,7 +9,13 @@ import SearchInput, { SearchInputEvent } from '../../components/search-input'
 import Spinner from '../../components/spinner'
 import FRCEvent from '../../models/frc-event'
 import Resolver from '../../resolver'
-import { eventTypeName, getCoords, hasValidJWT, sortEvents } from '../../utils'
+import {
+  eventTypeName,
+  getCoords,
+  getJWT,
+  hasValidJWT,
+  sortEvents
+} from '../../utils'
 import style from './style.sss'
 
 interface HomeProps {
@@ -44,7 +50,7 @@ export default () => (
         }
 
         componentWillMount() {
-          this.setState({ loggedIn: hasValidJWT() })
+          this.setState({ loggedIn: hasValidJWT(getJWT()) })
 
           if ('geolocation' in navigator) {
             getCoords((coords: { lat: number; long: number }) => {

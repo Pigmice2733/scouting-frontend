@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`sortSchemaKeys 1`] = `
+Object {
+  "auto": Array [
+    "autoFooBar",
+    "autoBarBaz",
+  ],
+  "general": Array [
+    "askjdfalskdfsaf",
+  ],
+  "teleop": Array [
+    "teleopFooBar",
+    "teleopFoo",
+  ],
+}
+`;
+
+exports[`sortSchemaKeys 2`] = `
+Object {
+  "auto": Array [
+    "autoFooBar",
+    "autoBarBaz",
+  ],
+  "general": Array [
+    "sldkfaskldfasd",
+    "askjdfalskdfsaf",
+  ],
+  "teleop": Array [
+    "teleopFoo",
+  ],
+}
+`;

@@ -3,6 +3,7 @@ import resolve from 'rollup-plugin-node-resolve'
 import postcss from 'rollup-plugin-postcss'
 import commonjs from 'rollup-plugin-commonjs'
 import copy from 'rollup-plugin-copy-assets'
+import { terser } from 'rollup-plugin-terser'
 
 const babelConfig = require('./.babelrc')
 
@@ -21,7 +22,7 @@ const jsPlugins = [
 
 if (!development) {
   jsPlugins.push(
-    require('rollup-plugin-uglify')({
+    terser({
       compress: {
         passes: 2,
         unsafe_comps: true,

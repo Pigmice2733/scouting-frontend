@@ -3,9 +3,6 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        targets: {
-          browsers: ['last 2 versions']
-        },
         exclude: ['transform-regenerator'],
         modules: false,
         loose: true

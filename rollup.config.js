@@ -20,6 +20,8 @@ const jsPlugins = [
   })
 ]
 
+const sourcemap = development
+
 if (!development) {
   jsPlugins.push(
     terser({
@@ -36,7 +38,8 @@ const swConfig = {
   input: './src/sw.ts',
   output: {
     file: 'dist/sw.js',
-    format: 'iife'
+    format: 'iife',
+    sourcemap
   },
   plugins: jsPlugins
 }
@@ -45,11 +48,13 @@ const config = {
   input: './src/index.tsx',
   output: {
     file: 'dist/index.js',
-    format: 'iife'
+    format: 'iife',
+    sourcemap
   },
   plugins: [
     postcss({
       extract: true,
+      minimize: true,
       modules: {
         generateScopedName: development
           ? '[local]-[hash:base64:3]'

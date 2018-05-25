@@ -99,5 +99,8 @@
     "fix": "prettier --write 'src/**.ts*' && yarn lint --fix",
     "test": "jest",
     "test:watch": "jest --watch"
-  }
+  },
+  "browserslist": [
+    "last 2 versions"
+  ]
 }

@@ -18,7 +18,11 @@ interface SearchInputProps {
 }
 
 const SearchInput = ({ placeholder, value, onInput }: SearchInputProps) => (
-  <input class={style.input} type="search" {...{ placeholder, value, onInput }} />
+  <input
+    class={style.input}
+    type="search"
+    {...{ placeholder, value, onInput }}
+  />
 )
 
 export default SearchInput

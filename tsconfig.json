@@ -3,7 +3,7 @@
     "noImplicitAny": true,
     "jsx": "react",
     "jsxFactory": "h",
-    "lib": ["ESNext", "DOM"],
+    "lib": ["esnext", "dom"],
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
     "checkJs": true,

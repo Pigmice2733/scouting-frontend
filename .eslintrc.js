@@ -19,7 +19,7 @@ const unicornRules = {
 const importRules = {
   'import/first': 'error',
   'import/no-duplicates': 'error',
-  'import/no-namespace': 'error',
+  // 'import/no-namespace': 'error', // needed in node (rollup config). TODO: switch to separate configs for web/node
   // 'import/order': 'error' // broken for now, copies file contents over and over
   'import/newline-after-import': 'error',
   'import/no-named-default': 'error'

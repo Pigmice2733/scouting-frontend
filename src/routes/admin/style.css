@@ -1,9 +1,9 @@
 .adminPanel {
-  max-width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 100%;
+  height: 100%;
 
   @media screen and (width < 800px) {
     & .admin {
@@ -17,17 +17,17 @@
     }
 
     & tr {
-      margin-bottom: 40px;
       display: grid;
-      grid-template-columns: 1fr auto;
       align-items: stretch;
+      margin-bottom: 40px;
+      grid-template-columns: 1fr auto;
     }
 
     & table td {
       display: flex;
       flex-direction: column;
-      grid-column: 1 / -1;
       padding: 0.4em 0;
+      grid-column: 1 / -1;
     }
 
     & table {
@@ -35,13 +35,13 @@
     }
 
     & td.save {
-      grid-column: 1 / 2;
       margin-right: 0.5em;
+      grid-column: 1 / 2;
     }
 
     & td.del {
-      grid-column: 2 / -1;
       align-self: stretch;
+      grid-column: 2 / -1;
 
       & button {
         height: 100%;
@@ -75,10 +75,10 @@
 }
 
 .del button {
-  background: #ff4e4e;
-  padding: 0;
   width: 2em;
   height: 2em;
+  padding: 0;
+  background: #ff4e4e;
 }
 
 @keyframes flash {
@@ -104,11 +104,11 @@
 }
 
 .adminInner {
-  width: 100%;
-  height: 100%;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  height: 100%;
   padding-bottom: 2em;
+  overflow-y: auto;
 }

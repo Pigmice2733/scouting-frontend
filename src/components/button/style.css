@@ -1,20 +1,20 @@
 .button {
-  border-radius: 3px;
-  background: #800080;
+  flex-shrink: 0;
   padding: 10px 12px;
   color: white;
-  text-decoration: none;
   font-weight: 500;
   font-size: 1em;
+  font-family: inherit;
   text-align: center;
-  cursor: pointer;
+  text-decoration: none;
+  background: #800080;
+  border: 0;
+  border-radius: 3px;
+  outline: none;
   box-shadow: 1px 1px 4px gray(0, 71%);
+  cursor: pointer;
   transition: all 0.3s ease;
   appearance: none;
-  border: 0;
-  flex-shrink: 0;
-  font-family: inherit;
-  outline: none;
 
   &:hover {
     box-shadow: 1px 1px 6px gray(0, 75%);
@@ -25,8 +25,8 @@
   }
 
   &[disabled] {
+    color: gray(0, 50%);
     background: gray(0, 10%);
     box-shadow: unset;
-    color: gray(0, 50%);
   }
 }

@@ -3,8 +3,8 @@
 }
 
 .alliances {
-  font-size: 8px;
   margin: 0 18px;
+  font-size: 8px;
 
   & table {
     margin: 0 auto;

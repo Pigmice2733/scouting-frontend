@@ -1,15 +1,15 @@
 .table {
-  width: 100%;
-  text-align: center;
   flex-grow: 1;
-  overflow-x: auto;
+  width: 100%;
   height: 100%;
+  overflow-x: auto;
+  text-align: center;
 
   & table {
-    border-collapse: collapse;
-    table-layout: fixed;
-    margin: 0 auto;
     min-width: 100%;
+    margin: 0 auto;
+    table-layout: fixed;
+    border-collapse: collapse;
   }
 
   & td {
@@ -21,23 +21,23 @@
     user-select: none;
 
     & > div {
-      padding: 15px;
-      min-width: 50px;
       width: 100%;
+      min-width: 50px;
+      padding: 15px;
     }
 
     & span {
-      padding: 15px;
       height: 10em;
       margin-right: auto;
+      padding: 15px;
 
       @media screen and (max-width: 700px) {
-        writing-mode: vertical-rl;
-        transform: rotate(-180deg);
+        height: 15em;
+        overflow: hidden;
         text-align: left;
         text-overflow: ellipsis;
-        overflow: hidden;
-        height: 15em;
+        transform: rotate(-180deg);
+        writing-mode: vertical-rl;
       }
     }
   }
@@ -53,17 +53,17 @@
 }
 
 .statColumn {
-  font-size: 12px;
   width: 150px;
   min-width: 150px;
   font-weight: bold;
+  font-size: 12px;
   text-align: left;
 }
 
 .note {
   display: block;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 .selectedTeam {

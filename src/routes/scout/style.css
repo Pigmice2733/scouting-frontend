@@ -9,23 +9,23 @@
 }
 
 .scoutMain {
-  overflow: auto;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  overflow: auto;
 }
 
 .fields {
-  max-width: 400px;
   width: 100%;
+  max-width: 400px;
 
   & > label {
     display: flex;
-    padding: 12px 20px;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    padding: 12px 20px;
 
     & :last-child {
       margin-right: 0;
@@ -34,7 +34,7 @@
 }
 
 .notes {
-  max-width: 360px;
   width: 100%;
+  max-width: 360px;
   margin: 12px 20px;
 }

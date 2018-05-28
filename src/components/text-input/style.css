@@ -1,14 +1,14 @@
 .input {
-  appearance: textfield;
-  border: 0;
-  padding-bottom: 4px;
-  border-bottom: 2px solid gray(50%);
-  transition: border-bottom-color 0.2s ease;
   display: block;
   margin: 4px;
-  border-radius: 0;
+  padding-bottom: 4px;
   font-size: 1rem;
   background: transparent;
+  border: 0;
+  border-bottom: 2px solid gray(50%);
+  border-radius: 0;
+  transition: border-bottom-color 0.2s ease;
+  appearance: textfield;
 
   &:focus {
     border-bottom-color: purple;

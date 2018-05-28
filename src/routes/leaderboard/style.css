@@ -6,9 +6,9 @@
 .leaderboard table {
   margin: 1em auto;
   font-size: 1.3em;
+  table-layout: fixed;
 
   border-collapse: collapse;
-  table-layout: fixed;
 
   & th,
   & td {

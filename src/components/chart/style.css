@@ -1,7 +1,7 @@
 .chart {
-  max-width: 100%;
-  width: 640px;
   display: block;
+  width: 640px;
+  max-width: 100%;
   margin-bottom: 1em;
 
   & line,
@@ -10,8 +10,8 @@
   }
 
   & text {
-    stroke: #555;
     fill: #555;
+    stroke: #555;
   }
 
   & circle:hover {

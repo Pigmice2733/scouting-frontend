@@ -1,10 +1,10 @@
 .err {
-  background: red;
-  color: white;
   width: 100%;
+  padding: 0.7em;
+  color: white;
   font-size: 0.8em;
   text-align: center;
-  padding: 0.7em;
+  background: red;
 }
 
 .wrapper,

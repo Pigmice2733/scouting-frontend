@@ -52,6 +52,7 @@
     "rucksack-css": "^1.0.2",
     "stylelint": "^9.2.1",
     "stylelint-config-prettier": "^3.2.0",
+    "stylelint-config-rational-order": "^0.0.2",
     "stylelint-config-recommended": "^2.1.0",
     "sugarss": "^1.0.1",
     "ts-jest": "^22.4.4",
@@ -98,7 +99,7 @@
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
     "type": "tsc --noEmit --pretty",
     "type:watch": "tsc --noEmit --pretty --watch",
-    "lint": "eslint_d . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty && stylelint '**/*.css'",
+    "lint": "eslint_d . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty && stylelint 'src/**/*.css'",
     "fix": "prettier --write 'src/**.ts*' 'src/**.css' && yarn lint --fix",
     "test": "jest",
     "test:watch": "jest --watch"

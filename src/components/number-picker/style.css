@@ -1,13 +1,13 @@
 .numberPicker {
   & input {
-    width: 34px;
-    appearance: textfield;
     display: inline;
-    border: 0;
+    width: 34px;
     padding-bottom: 4px;
+    text-align: right;
+    border: 0;
     border-bottom: 2px solid gray(50%);
     transition: border-bottom-color 0.2s ease;
-    text-align: right;
+    appearance: textfield;
 
     &:focus {
       border-bottom-color: purple;
@@ -21,19 +21,19 @@
 
     &::-webkit-inner-spin-button,
     &::-webkit-outer-spin-button {
-      -webkit-appearance: none;
       margin: 0;
+      -webkit-appearance: none;
     }
   }
 
   & button {
-    border: 0;
-    padding: 4px 9px;
     margin: 5px;
-    border-radius: 3px;
+    padding: 4px 9px;
     background: gray(0, 05%);
-    transition: background-color 0.2s ease;
+    border: 0;
+    border-radius: 3px;
     cursor: pointer;
+    transition: background-color 0.2s ease;
 
     &::-moz-focus-inner {
       border: 0;
@@ -41,8 +41,8 @@
 
     &:focus,
     &:active {
-      background: purple;
       color: white;
+      background: purple;
       outline: none;
     }
   }

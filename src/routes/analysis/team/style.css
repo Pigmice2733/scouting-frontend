@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow: auto;
-  height: 100%;
   width: 100%;
+  height: 100%;
   padding: 0em 0.5em;
   padding-bottom: 4em;
+  overflow: auto;
 
   & > div {
     width: 640px;

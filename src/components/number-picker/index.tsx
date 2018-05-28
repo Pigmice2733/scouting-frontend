@@ -1,6 +1,6 @@
 import { Component, h } from 'preact'
 import TextInput from '../text-input'
-import style from './style.sss'
+import style from './style.css'
 
 interface NumberProps {
   onChange: (v: number) => any

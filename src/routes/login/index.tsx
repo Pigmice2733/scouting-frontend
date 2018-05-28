@@ -4,7 +4,7 @@ import { authenticate, registerUser } from '../../api'
 import Button from '../../components/button'
 import Header from '../../components/header'
 import TextInput from '../../components/text-input'
-import style from './style.sss'
+import style from './style.css'
 
 interface LoginState {
   username: string

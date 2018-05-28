@@ -1,4 +1,4 @@
-declare module '*.sss' {
+declare module '*.css' {
   const locals: {
     [key: string]: string
   }

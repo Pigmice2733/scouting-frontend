@@ -1,5 +1,5 @@
 import { Component, ComponentConstructor, FunctionalComponent, h } from 'preact'
-import style from './error.sss'
+import style from './error.css'
 
 interface ResolverProps<T> {
   data: {

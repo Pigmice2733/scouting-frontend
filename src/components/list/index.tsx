@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import style from './style.sss'
+import style from './style.css'
 
 interface ListProps {
   children?: JSX.Element[]

@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import { selectClass } from './style.sss'
+import { selectClass } from './style.css'
 
 interface SelectProps {
   options: any[]

@@ -7,7 +7,7 @@ import {
   lerp,
   lerper
 } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 interface ChartProps {
   reports: Report[]

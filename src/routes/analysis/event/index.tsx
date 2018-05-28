@@ -6,7 +6,7 @@ import Resolver from '../../../resolver'
 import Header from '../../../components/header'
 import Table from '../../../components/table'
 
-import style from './style.sss'
+import style from './style.css'
 
 const EventAnalysis = ({ eventId }: { eventId: string }) => (
   <Resolver

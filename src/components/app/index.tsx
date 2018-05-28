@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { Route, Router } from 'preact-router'
-import style from './style.sss'
+import style from './style.css'
 
 import Error404 from '../../routes/404'
 import Admin from '../../routes/admin'

@@ -16,7 +16,7 @@ import {
   hasValidJWT,
   sortEvents
 } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 interface HomeProps {
   events: FRCEvent[]

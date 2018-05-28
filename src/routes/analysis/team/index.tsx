@@ -6,7 +6,7 @@ import Header from '../../../components/header'
 import Spinner from '../../../components/spinner'
 import Resolver from '../../../resolver'
 import { camelToTitle } from '../../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 const TeamAnalysis = ({
   eventId,

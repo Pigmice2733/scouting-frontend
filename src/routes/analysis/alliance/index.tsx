@@ -5,7 +5,7 @@ import Spinner from '../../../components/spinner'
 import Table from '../../../components/table'
 import Resolver from '../../../resolver'
 import { camelToTitle } from '../../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 const AllianceAnalysis = ({
   eventId,

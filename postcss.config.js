@@ -1,5 +1,4 @@
 module.exports = {
-  parser: 'sugarss',
   plugins: {
     'postcss-media-minmax': {},
     'postcss-nesting': {},

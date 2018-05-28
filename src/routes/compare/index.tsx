@@ -13,7 +13,7 @@ import {
   compareTeams,
   formatTeamNumber
 } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 interface CompareProps {
   teams: string[]

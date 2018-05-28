@@ -1,6 +1,6 @@
 import { h } from 'preact'
 import { formatTeamNumber } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 interface TeamPickerProps {
   onChange: (team: string) => any

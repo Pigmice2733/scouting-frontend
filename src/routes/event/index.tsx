@@ -12,7 +12,7 @@ import {
   formatTime,
   parseMatchKey
 } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 const Event = ({ eventId }: { eventId: string }) => (
   <Resolver

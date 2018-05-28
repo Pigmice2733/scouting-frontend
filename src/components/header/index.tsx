@@ -1,7 +1,7 @@
 import { h } from 'preact'
 import { route } from 'preact-router'
 import Icon from '../icon'
-import style from './style.sss'
+import style from './style.css'
 
 interface HeaderProps {
   title?: string

@@ -1,5 +1,5 @@
 import { h } from 'preact'
-import style from './style.sss'
+import style from './style.css'
 
 const icons: { [key: string]: string } = {
   left:

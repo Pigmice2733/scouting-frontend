@@ -9,7 +9,7 @@ import TextInput from '../../components/text-input'
 import Toggle from '../../components/toggle'
 import { User } from '../../models/user'
 import { getJWT, getUserInfo, hasValidJWT } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 class EditableUser {
   username: string

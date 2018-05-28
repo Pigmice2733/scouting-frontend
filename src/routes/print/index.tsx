@@ -10,7 +10,7 @@ import {
   toPercentage,
   toPrettyNumber
 } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 interface PrintProps {
   eventId: string

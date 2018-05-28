@@ -63,31 +63,22 @@
   "private": true,
   "jest": {
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleDirectories": [
-      "node_modules",
-      "src"
-    ],
+    "moduleDirectories": ["node_modules", "src"],
     "transform": {
       "^.+\\.tsx$": "ts-jest",
       "^.+\\.ts$": "ts-jest",
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json",
-      "node"
-    ],
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
     "moduleNameMapper": {
       "\\.sss$": "identity-obj-proxy"
     }
   },
   "husky": {
     "hooks": {
-      "pre-commit": "eslint_d . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty"
+      "pre-commit":
+        "eslint_d . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty"
     }
   },
   "scripts": {
@@ -95,12 +86,11 @@
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
     "type": "tsc --noEmit --pretty",
     "type:watch": "tsc --noEmit --pretty --watch",
-    "lint": "eslint_d . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty",
-    "fix": "prettier --write 'src/**.ts*' && yarn lint --fix",
+    "lint":
+      "eslint_d . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty && stylelint .",
+    "fix": "prettier --write 'src/**.ts*' 'src/**.css' && yarn lint --fix",
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "browserslist": [
-    "last 2 versions"
-  ]
+  "browserslist": ["last 2 versions"]
 }

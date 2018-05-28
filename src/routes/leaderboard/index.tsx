@@ -4,7 +4,7 @@ import Header from '../../components/header'
 import Spinner from '../../components/spinner'
 import Resolver from '../../resolver'
 import { sortReporterStats } from '../../utils'
-import style from './style.sss'
+import style from './style.css'
 
 const Leaderboard = () => (
   <Resolver

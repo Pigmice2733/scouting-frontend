@@ -24,7 +24,7 @@ import TeamPicker from '../../components/team-picker'
 import TextInput from '../../components/text-input'
 import Toggle from '../../components/toggle'
 
-import style from './style.sss'
+import style from './style.css'
 
 interface ScoutProps {
   event: FRCEvent

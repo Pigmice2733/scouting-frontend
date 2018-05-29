@@ -5,7 +5,7 @@
     "idb-keyval": "3.0.4",
     "linkstate": "1.1.1",
     "preact": "8.2.9",
-    "preact-router": "2.6.0"
+    "preact-router": "2.6.1"
   },
   "devDependencies": {
     "@babel/core": "7.0.0-beta.47",

@@ -71,11 +71,11 @@ module.exports = {
     'array-func'
     // 'jsx-a11y'
   ],
-  rules: {
-    ...reactRules,
-    ...tsRules,
-    ...unicornRules,
-    ...importRules,
-    ...promiseRules
-  }
+  rules: Object.assign(
+    reactRules,
+    tsRules,
+    unicornRules,
+    importRules,
+    promiseRules
+  )
 }

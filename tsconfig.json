@@ -8,12 +8,12 @@
     "allowJs": true,
     "checkJs": true,
     "moduleResolution": "node",
-    "target": "ESNext",
+    "target": "es5",
     "sourceMap": true,
     "baseUrl": "./src",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true
   },
-  "files": ["./src/index.tsx", "./src/sw.ts"],
+  "files": ["./src/index.tsx", "./src/sw.ts", "./dangerfile.ts"],
   "include": ["types.d.ts", "./src/**/*.test.tsx"]
 }

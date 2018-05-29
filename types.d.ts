@@ -5,6 +5,10 @@ declare module '*.css' {
   export default locals
 }
 
+declare module 'danger-plugin-eslint' {
+  export default () => any
+}
+
 declare module 'preact-router' {
   import preact from 'preact'
 

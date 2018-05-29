@@ -18,6 +18,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+      - run: yarn danger ci
       - run: yarn type
       - run: yarn test
       - run: yarn build

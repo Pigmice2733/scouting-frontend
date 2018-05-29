@@ -2,6 +2,7 @@ import { get, set } from 'idb-keyval'
 import { h, render } from 'preact'
 import { queryAPI, Req } from './api'
 import App from './components/app'
+import foo from './components/select/style.css'
 
 const rootNode = document.getElementById('app')
 

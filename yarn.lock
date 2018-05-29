@@ -5181,7 +5181,7 @@ preserve@^0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
 
-prettier-eslint-cli@^4.7.1:
+prettier-eslint-cli@4.7.1:
   version "4.7.1"
   resolved "https://registry.yarnpkg.com/prettier-eslint-cli/-/prettier-eslint-cli-4.7.1.tgz#3d103c494baa4e80b99ad53e2b9db7620101859f"
   dependencies:
@@ -6221,19 +6221,19 @@ style-search@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/style-search/-/style-search-0.1.0.tgz#7958c793e47e32e07d2b5cafe5c0bf8e12e77902"
 
-stylelint-config-prettier@^3.2.0:
+stylelint-config-prettier@3.2.0:
   version "3.2.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-prettier/-/stylelint-config-prettier-3.2.0.tgz#af32b7845adeeddbf0a0bd642ace4ca1e68958e2"
   dependencies:
     stylelint "^9.1.1"
 
-stylelint-config-rational-order@^0.0.2:
+stylelint-config-rational-order@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/stylelint-config-rational-order/-/stylelint-config-rational-order-0.0.2.tgz#19cff04c8233dd8320e483c8653c14c8965e22f4"
   dependencies:
     stylelint-order "^0.8.0"
 
-stylelint-config-recommended@^2.1.0:
+stylelint-config-recommended@2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/stylelint-config-recommended/-/stylelint-config-recommended-2.1.0.tgz#f526d5c771c6811186d9eaedbed02195fee30858"
 
@@ -6245,7 +6245,7 @@ stylelint-order@^0.8.0:
     postcss "^6.0.14"
     postcss-sorting "^3.1.0"
 
-stylelint@^9.1.1, stylelint@^9.2.1:
+stylelint@9.2.1, stylelint@^9.1.1:
   version "9.2.1"
   resolved "https://registry.yarnpkg.com/stylelint/-/stylelint-9.2.1.tgz#fe63c169f6cd3bc81e77f0e3c6443df3267ec211"
   dependencies:

@@ -89,6 +89,7 @@ export default () => (
                         class={style.navigationDrawerButton}
                         href="/leaderboard"
                         aria-label="Leaderboard"
+                        blah="no"
                       >
                         <Icon fill="#FFF" icon="trophy" />
                       </a>

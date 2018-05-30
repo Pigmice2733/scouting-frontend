@@ -5,7 +5,7 @@
     "idb-keyval": "3.0.4",
     "linkstate": "1.1.1",
     "preact": "8.2.9",
-    "preact-router": "2.6.0"
+    "preact-router": "2.6.1"
   },
   "devDependencies": {
     "@babel/core": "7.0.0-beta.47",
@@ -33,7 +33,7 @@
     "eslint-plugin-typescript": "0.12.0",
     "eslint-plugin-unicorn": "4.0.3",
     "identity-obj-proxy": "3.0.0",
-    "jest": "22.4.3",
+    "jest": "23.0.1",
     "koa-connect": "2.0.1",
     "postcss-calc": "6.0.1",
     "postcss-color-function": "4.0.1",
@@ -42,11 +42,11 @@
     "postcss-media-minmax": "3.0.0",
     "postcss-nesting": "5.0.0",
     "prettier-eslint-cli": "4.7.1",
-    "rollup": "0.59.0",
+    "rollup": "0.59.4",
     "rollup-plugin-babel": "4.0.0-beta.4",
     "rollup-plugin-copy-assets": "1.0.0",
     "rollup-plugin-node-resolve": "3.3.0",
-    "rollup-plugin-postcss": "1.6.1",
+    "rollup-plugin-postcss": "1.6.2",
     "rollup-plugin-serve": "0.4.2",
     "rollup-plugin-terser": "1.0.1",
     "rucksack-css": "1.0.2",
@@ -55,7 +55,7 @@
     "stylelint-config-rational-order": "0.0.2",
     "stylelint-config-recommended": "2.1.0",
     "sugarss": "1.0.1",
-    "ts-jest": "22.4.5",
+    "ts-jest": "22.4.6",
     "typescript": "2.8.3",
     "typescript-eslint-parser": "15.0.0"
   },

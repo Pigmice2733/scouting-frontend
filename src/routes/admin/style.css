@@ -1,9 +1,9 @@
 .adminPanel {
   display: flex;
+  flex-direction: column;
   align-items: center;
   max-width: 100%;
   height: 100%;
-  flex-direction: column;
 
   @media screen and (width < 800px) {
     & .admin {
@@ -13,7 +13,7 @@
 
       &::before {
         content: 'Admin';
-        fake-rule: no
+        fake-rule: no;
       }
     }
 

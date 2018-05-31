@@ -5,6 +5,65 @@ declare module '*.css' {
   export default locals
 }
 
+declare module 'stylelint' {
+  export type FormatterType = 'json' | 'string' | 'verbose'
+  export type SyntaxType = 'scss' | 'less' | 'sugarss'
+  export interface Config {
+    extends: string | string[]
+    rules: {
+      [key: string]: any
+    }
+  }
+  export interface LinterOptions {
+    code?: string
+    codeFilename?: string
+    config?: Config
+    configBasedir?: string
+    configFile?: string
+    configOverrides?: Config
+    cache?: boolean
+    cacheLocation?: string
+    files?: string | string[]
+    fix?: boolean
+    formatter?: FormatterType
+    ignoreDisables?: boolean
+    reportNeedlessDisables?: boolean
+    ignorePath?: boolean
+    syntax?: SyntaxType
+    customSyntax?: string
+  }
+
+  export interface LinterResult {
+    errored: boolean
+    output: string
+    postcssResults: any[]
+    results: LintResult[]
+  }
+  export interface Warning {
+    line: number
+    column: number
+    rule: string
+    severity: 'error' | 'warning'
+    text: string
+  }
+  export interface LintResult {
+    source: string
+    errored: boolean | undefined
+    ignored: boolean | undefined
+    warnings: Warning[]
+    deprecations: string[]
+    invalidOptionWarnings: any[]
+  }
+
+  export namespace formatters {
+    function json(results: LintResult[]): string
+    function string(results: LintResult[]): string
+    function verbose(results: LintResult[]): string
+  }
+
+  export function lint(options?: LinterOptions): Promise<LinterResult>
+}
+
 declare module 'danger-plugin-eslint' {
   export default () => any
 }

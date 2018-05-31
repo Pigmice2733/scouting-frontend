@@ -39,3 +39,9 @@ filesToCheck.filter(isCssFile).forEach(async f => {
     }
   })
 })
+
+if (filesToCheck.includes('package.json')) {
+  if (!filesToCheck.includes('yarn.lock')) {
+    fail('')
+  }
+}

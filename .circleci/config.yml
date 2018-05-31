@@ -1,25 +1,68 @@
 version: 2
+
 jobs:
-  build:
+
+  lint:
     docker:
       - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
-
-    working_directory: ~/repo
-
     steps:
       - checkout
       - restore_cache:
           keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
+          - v1-dependencies-{{ checksum "yarn.lock" }}
           - v1-dependencies-
       - run: yarn install
       - save_cache:
           paths:
             - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn danger ci
-      - run: yarn type
-      - run: yarn test
-      - run: yarn build
+      - run: yarn lint
 
+  type:
+    docker:
+      - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn type
+
+  test:
+    docker:
+      - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn test
+    
+  build:
+    docker:
+      - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "yarn.lock" }}
+          - v1-dependencies-
+      - run: yarn install
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+      - run: yarn build

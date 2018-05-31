@@ -79,8 +79,6 @@ export default () => (
 
           const sortedEvents = sortEvents(matchingEvents, coords)
 
-          console.log('hi')
-
           return (
             <div class={style.home}>
               <Header

@@ -4,7 +4,7 @@ jobs:
 
   lint:
     docker:
-      - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
+      - image: circleci/node:9
     steps:
       - checkout
       - restore_cache:
@@ -21,7 +21,7 @@ jobs:
 
   type:
     docker:
-      - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
+      - image: circleci/node:9
     steps:
       - checkout
       - restore_cache:
@@ -37,7 +37,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
+      - image: circleci/node:9
     steps:
       - checkout
       - restore_cache:
@@ -53,7 +53,7 @@ jobs:
     
   build:
     docker:
-      - image: circleci/node:9@sha256:01ced0abe8b143d0583aec4f8d23eec5fed57279ff251521fc310483f3b0bd13
+      - image: circleci/node:9
     steps:
       - checkout
       - restore_cache:

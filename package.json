@@ -57,7 +57,7 @@
     "sugarss": "1.0.1",
     "ts-jest": "22.4.6",
     "typescript": "2.9.1",
-    "typescript-eslint-parser": "15.0.1"
+    "typescript-eslint-parser": "16.0.0"
   },
   "license": "MIT",
   "prettier": {

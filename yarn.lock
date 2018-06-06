@@ -3230,9 +3230,9 @@ icss-replace-symbols@1.1.0, icss-replace-symbols@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/icss-replace-symbols/-/icss-replace-symbols-1.1.0.tgz#06ea6f83679a7749e386cfe1fe812ae5db223ded"
 
-idb-keyval@3.0.4:
-  version "3.0.4"
-  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-3.0.4.tgz#b0912f1b2d1c13a702087f9510e57b875a4eaf6e"
+idb-keyval@3.0.5:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/idb-keyval/-/idb-keyval-3.0.5.tgz#f3e9b87bd4e71732f0367729be5ba648714da842"
 
 identity-obj-proxy@3.0.0:
   version "3.0.0"

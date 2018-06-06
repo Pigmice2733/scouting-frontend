@@ -101,20 +101,24 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
             <div class={style.icons}>
               <a
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 href={`/events/${eventId}/${matchId}/print`}
               >
                 <Icon icon="print" />
               </a>
               <a
                 target="_blank"
-                rel="noopener"
+                rel="noopener noreferrer"
                 href={`https://www.thebluealliance.com/match/${matchId}`}
               >
                 <Icon icon="tba" />
               </a>
               {match && match.youtubeURL !== '' ? (
-                <a href={match.youtubeURL} target="_blank" rel="noopener">
+                <a
+                  href={match.youtubeURL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <Icon icon="youtube" />
                 </a>
               ) : null}

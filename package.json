@@ -12,7 +12,7 @@
     "@babel/plugin-proposal-class-properties": "7.0.0-beta.51",
     "@babel/plugin-transform-react-jsx": "7.0.0-beta.51",
     "@babel/preset-env": "7.0.0-beta.51",
-    "@babel/preset-typescript": "^7.0.0-beta.51",
+    "@babel/preset-typescript": "7.0.0-beta.51",
     "@types/eslint": "4.16.2",
     "@types/jest": "23.0.2",
     "autoprefixer": "8.6.2",

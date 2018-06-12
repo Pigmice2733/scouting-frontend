@@ -6,7 +6,8 @@ export const presets = [
       modules: false,
       loose: true
     }
-  ]
+  ],
+  ['@babel/preset-typescript', { jsxPragma: 'h', isJSX: true }]
 ]
 export const plugins = [
   [
@@ -15,8 +16,5 @@ export const plugins = [
       pragma: 'h'
     }
   ],
-  '@babel/plugin-proposal-class-properties',
-  [
-    '@babel/plugin-transform-typescript',
-    { jsxPragma: 'h', isJSX: true, allExtensions: true }]
+  '@babel/plugin-proposal-class-properties'
 ]

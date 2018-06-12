@@ -16,5 +16,5 @@ export const plugins = [
     }
   ],
   '@babel/plugin-proposal-class-properties',
-  ['@babel/plugin-transform-typescript', { jsxPragma: 'h' }]
+  ['@babel/plugin-transform-typescript', { jsxPragma: 'h', isJSX: true }]
 ]

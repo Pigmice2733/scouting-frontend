@@ -39,7 +39,7 @@
     "postcss-color-gray": "4.1.0",
     "postcss-css-variables": "0.8.1",
     "postcss-media-minmax": "3.0.0",
-    "postcss-nesting": "5.0.0",
+    "postcss-nesting": "6.0.0",
     "prettier-eslint-cli": "4.7.1",
     "rollup": "0.60.4",
     "rollup-plugin-babel": "4.0.0-beta.5",

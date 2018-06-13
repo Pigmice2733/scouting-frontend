@@ -96,6 +96,4 @@ if (development) {
   )
 }
 
-console.log(JSON.stringify(config, null, 2))
-
 export default [...config, ...swConfig]

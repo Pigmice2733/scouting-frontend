@@ -63,15 +63,15 @@ const createConfig = ({
       input: format === 'es' ? [input] : input,
       plugins: p.concat(format === 'es' ? plugins.babelModule : plugins.babel),
       experimentalCodeSplitting: true,
-      experimentalDynamicImport: true,
       output: {
-        file:
-          format !== 'es' &&
-          path.join(
-            'dist',
-            path.basename(input).replace(/\.[^/.]+$/, '') + '.nomodule.js'
-          ),
-        dir: 'dist',
+        ...(format !== 'es'
+          ? {
+              file: path.join(
+                'dist',
+                path.basename(input).replace(/\.[^/.]+$/, '') + '.nomodule.js'
+              )
+            }
+          : { dir: 'dist' }),
         format,
         sourcemap: development
       }
@@ -95,5 +95,7 @@ if (development) {
     serve({ historyApiFallback: true, contentBase: 'dist' })
   )
 }
+
+console.log(JSON.stringify(config, null, 2))
 
 export default [...config, ...swConfig]

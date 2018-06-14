@@ -6264,9 +6264,9 @@ rollup-pluginutils@^2.0.1:
     micromatch "^3.1.10"
     tosource "^1.0.0"
 
-rollup@0.60.4:
-  version "0.60.4"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.60.4.tgz#facbe8f675f679b005e6ca2911e772aacc0fecd1"
+rollup@0.60.6:
+  version "0.60.6"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-0.60.6.tgz#ecf7035055b0bd079247cb0de27cff8d0f020987"
   dependencies:
     "@types/estree" "0.0.39"
     "@types/node" "*"

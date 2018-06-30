@@ -37,7 +37,7 @@
     "postcss-calc": "6.0.1",
     "postcss-color-function": "4.0.1",
     "postcss-color-gray": "4.1.0",
-    "postcss-css-variables": "0.8.1",
+    "postcss-css-variables": "0.9.0",
     "postcss-media-minmax": "3.0.0",
     "postcss-nesting": "5.0.0",
     "prettier-eslint-cli": "4.7.1",

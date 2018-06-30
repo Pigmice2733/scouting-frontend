@@ -13,7 +13,7 @@
     "@babel/plugin-transform-react-jsx": "7.0.0-beta.51",
     "@babel/preset-env": "7.0.0-beta.51",
     "@babel/preset-typescript": "7.0.0-beta.51",
-    "@types/eslint": "4.16.2",
+    "@types/eslint": "4.16.3",
     "@types/jest": "23.1.1",
     "autoprefixer": "8.6.3",
     "connect-history-api-fallback": "1.5.0",

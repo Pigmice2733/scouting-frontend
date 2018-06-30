@@ -634,9 +634,9 @@
     node-fetch "^2.1.1"
     url-template "^2.0.8"
 
-"@types/eslint@4.16.2":
-  version "4.16.2"
-  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-4.16.2.tgz#30f4f026019eb78a6ef12f276b75cd16ea2afb27"
+"@types/eslint@4.16.3":
+  version "4.16.3"
+  resolved "https://registry.yarnpkg.com/@types/eslint/-/eslint-4.16.3.tgz#6ed2a9c68f73162fa57ba84582d63dcd8ee2d473"
   dependencies:
     "@types/estree" "*"
     "@types/json-schema" "*"

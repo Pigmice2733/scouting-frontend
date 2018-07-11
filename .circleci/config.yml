@@ -67,9 +67,9 @@ jobs:
           key: v1-dependencies-{{ checksum "yarn.lock" }}
       - run: yarn build
       - store_artifacts:
-        path: dist/index.js
+          path: dist/index.js
       - store_artifacts:
-        path: dist/index.nomodule.js
+          path: dist/index.nomodule.js
 
 workflows:
   version: 2

@@ -71,12 +71,12 @@ workflows:
   version: 2
   build:
     jobs:
-      - install
-      - lint
+      - "install"
+      - "lint"
           requires: install
-      - type
+      - "type"
           requires: install
-      - test
+      - "test"
           requires: install
-      - build
+      - "build"
           requires: install

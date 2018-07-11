@@ -3,6 +3,8 @@ import { route } from 'preact-router'
 import Icon from '../icon'
 import style from './style.css'
 
+const name = 'caleb'
+
 interface HeaderProps {
   title?: string
   back?: string

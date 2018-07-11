@@ -79,11 +79,11 @@
     "@babel/helper-explode-assignable-expression" "7.0.0-beta.52"
     "@babel/types" "7.0.0-beta.52"
 
-"@babel/helper-builder-react-jsx@7.0.0-beta.53":
-  version "7.0.0-beta.53"
-  resolved "https://registry.yarnpkg.com/@babel/helper-builder-react-jsx/-/helper-builder-react-jsx-7.0.0-beta.53.tgz#7bd7e7e35f4439fd3735f002e61232186bf9cecf"
+"@babel/helper-builder-react-jsx@7.0.0-beta.52":
+  version "7.0.0-beta.52"
+  resolved "https://registry.yarnpkg.com/@babel/helper-builder-react-jsx/-/helper-builder-react-jsx-7.0.0-beta.52.tgz#64f6a9148807747c2ef408f044bdfa16155faf57"
   dependencies:
-    "@babel/types" "7.0.0-beta.53"
+    "@babel/types" "7.0.0-beta.52"
     esutils "^2.0.0"
 
 "@babel/helper-call-delegate@7.0.0-beta.52":
@@ -364,11 +364,11 @@
   dependencies:
     "@babel/helper-plugin-utils" "7.0.0-beta.53"
 
-"@babel/plugin-syntax-jsx@7.0.0-beta.53":
-  version "7.0.0-beta.53"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-jsx/-/plugin-syntax-jsx-7.0.0-beta.53.tgz#223cc897723339cb220aa8216c655086feb45398"
+"@babel/plugin-syntax-jsx@7.0.0-beta.52":
+  version "7.0.0-beta.52"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-jsx/-/plugin-syntax-jsx-7.0.0-beta.52.tgz#ed57b2ca5ab5bcf931c419b111e8df0318f8f65e"
   dependencies:
-    "@babel/helper-plugin-utils" "7.0.0-beta.53"
+    "@babel/helper-plugin-utils" "7.0.0-beta.52"
 
 "@babel/plugin-syntax-object-rest-spread@7.0.0-beta.52":
   version "7.0.0-beta.52"
@@ -530,13 +530,13 @@
     "@babel/helper-get-function-arity" "7.0.0-beta.52"
     "@babel/helper-plugin-utils" "7.0.0-beta.52"
 
-"@babel/plugin-transform-react-jsx@7.0.0-beta.53":
-  version "7.0.0-beta.53"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.0.0-beta.53.tgz#6580b7bf6665f14c8582b9fc266ca01f00e0a047"
+"@babel/plugin-transform-react-jsx@7.0.0-beta.52":
+  version "7.0.0-beta.52"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-transform-react-jsx/-/plugin-transform-react-jsx-7.0.0-beta.52.tgz#658e49cb6f8fa35ed7391fae155c842c7a12555b"
   dependencies:
-    "@babel/helper-builder-react-jsx" "7.0.0-beta.53"
-    "@babel/helper-plugin-utils" "7.0.0-beta.53"
-    "@babel/plugin-syntax-jsx" "7.0.0-beta.53"
+    "@babel/helper-builder-react-jsx" "7.0.0-beta.52"
+    "@babel/helper-plugin-utils" "7.0.0-beta.52"
+    "@babel/plugin-syntax-jsx" "7.0.0-beta.52"
 
 "@babel/plugin-transform-regenerator@7.0.0-beta.52":
   version "7.0.0-beta.52"

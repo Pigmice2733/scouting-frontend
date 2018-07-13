@@ -34,7 +34,7 @@
     "identity-obj-proxy": "3.0.0",
     "jest": "23.4.0",
     "koa-connect": "2.0.1",
-    "lighthouse-ci": "https://github.com/ebidel/lighthouse-ci",
+    "lighthouse": "^3.0.2",
     "postcss-calc": "6.0.1",
     "postcss-color-function": "4.0.1",
     "postcss-color-gray": "4.1.0",
@@ -97,8 +97,7 @@
     "fix:js": "prettier-eslint --write 'src/**/*.ts' 'src/**/*.tsx'",
     "fix": "yarn fix:js && yarn lint:css",
     "test": "jest",
-    "test:watch": "jest --watch",
-    "lighthouse": "lighthouse-ci"
+    "test:watch": "jest --watch"
   },
   "browserslist": ["last 2 versions"]
 }

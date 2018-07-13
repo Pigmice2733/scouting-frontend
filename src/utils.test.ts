@@ -38,10 +38,6 @@ test('formatTime', () => {
   expect(formatTime(new Date('20:30 05/12/2018'))).toEqual('8:30 PM')
 })
 
-test('formatDate', () => {
-  expect(formatDate(new Date('Dec. 11 2010'))).toEqual('10-12-11')
-})
-
 test('formatTeamNumber', () => {
   expect(formatTeamNumber('frc2344a')).toEqual('2344a')
   expect(formatTeamNumber('frc2733')).toEqual('2733')

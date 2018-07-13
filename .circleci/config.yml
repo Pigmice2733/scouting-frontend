@@ -68,7 +68,7 @@ jobs:
   lighthouse:
     <<: *defaults
     docker:
-      - image: circleci/node-jessie-browsers
+      - image: circleci/node-browsers:latest
     steps:
       - *attach_workspace
       - run:

@@ -7,7 +7,6 @@ import {
   parseMatchKey,
   hasValidJWT,
   formatTime,
-  formatDate,
   formatTeamNumber,
   parseTeamNumber,
   compareTeams,

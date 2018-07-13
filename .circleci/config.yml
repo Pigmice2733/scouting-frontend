@@ -66,6 +66,12 @@ jobs:
           path: dist/index.js
       - store_artifacts:
           path: dist/index.nomodule.js
+    
+  lighthouse:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - run: yarn lighthouse --score=99 deploy-preview-$CIRCLE_PR_NUMBER--scouting.netlify.com
 
 workflows:
   version: 2
@@ -84,3 +90,7 @@ workflows:
       - build:
           requires:
             - install
+
+      - lighthouse:
+          requires:
+            - build

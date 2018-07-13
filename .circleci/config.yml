@@ -71,7 +71,10 @@ jobs:
     <<: *defaults
     steps:
       - *attach_workspace
-      - run: yarn lighthouse --score=99 deploy-preview-$CIRCLE_PR_NUMBER--scouting.netlify.com
+      - run:
+          name: Run Lighthouse tests against deploy preview
+          command: |
+            yarn lighthouse --score=99 deploy-preview-${CI_PULL_REQUEST##*/}--scouting.netlify.com
 
 workflows:
   version: 2

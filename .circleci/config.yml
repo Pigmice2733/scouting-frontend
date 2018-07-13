@@ -78,7 +78,7 @@ jobs:
             export TRAVIS_PULL_REQUEST_SHA=$CIRCLE_SHA1
             export TRAVIS_PULL_REQUEST_SLUG=$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME
             export TRAVIS_EVENT_TYPE="pull_request"
-            yarn lighthouse --score=99 --runner=wpt deploy-preview-${CI_PULL_REQUEST##*/}--scouting.netlify.com
+            yarn lighthouse --score=99 deploy-preview-${CI_PULL_REQUEST##*/}--scouting.netlify.com
 
 workflows:
   version: 2

@@ -74,9 +74,9 @@ jobs:
       - run:
           name: Running Lighthouse tests against deploy preview
           command: |
-            yarn lighthouse --score=99 https://deploy-preview-${CI_PULL_REQUEST##*/}--scouting.netlify.com
+            yarn lighthouse --output-path report.html --score=99 https://deploy-preview-${CI_PULL_REQUEST##*/}--scouting.netlify.com
       - store_test_results:
-          path: '*.report.html'
+          path: 'report.html'
 
 workflows:
   version: 2

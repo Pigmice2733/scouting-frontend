@@ -73,8 +73,7 @@ jobs:
       - *attach_workspace
       - run:
           name: Running Lighthouse tests against deploy preview
-          command: |
-            yarn lighthouse --output-path report.html --score=99 https://deploy-preview-${CI_PULL_REQUEST##*/}--scouting.netlify.com
+          command: ./run-lighthouse.js
       - store_test_results:
           path: 'report.html'
 

@@ -16,6 +16,7 @@
     "@types/eslint": "4.16.3",
     "@types/jest": "23.1.5",
     "autoprefixer": "8.6.5",
+    "chalk": "^2.4.1",
     "connect-history-api-fallback": "1.5.0",
     "cross-env": "5.2.0",
     "danger": "3.7.20",
@@ -67,14 +68,24 @@
   "private": true,
   "jest": {
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-    "moduleDirectories": ["node_modules", "src"],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
     "transform": {
       "^.+\\.tsx$": "ts-jest",
       "^.+\\.ts$": "ts-jest",
       "^.+\\.jsx$": "ts-jest",
       "^.+\\.js$": "ts-jest"
     },
-    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"],
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json",
+      "node"
+    ],
     "moduleNameMapper": {
       "\\.css$": "identity-obj-proxy"
     }
@@ -89,15 +100,15 @@
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
     "type": "tsc --noEmit --pretty",
     "type:watch": "tsc --noEmit --pretty --watch",
-    "lint:js":
-      "eslint . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty --fix",
-    "lint:css":
-      "prettier --write 'src/**.css' && stylelint 'src/**/*.css' --fix",
+    "lint:js": "eslint . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty --fix",
+    "lint:css": "prettier --write 'src/**.css' && stylelint 'src/**/*.css' --fix",
     "lint": "yarn lint:js && yarn lint:css",
     "fix:js": "prettier-eslint --write 'src/**/*.ts' 'src/**/*.tsx'",
     "fix": "yarn fix:js && yarn lint:css",
     "test": "jest",
     "test:watch": "jest --watch"
   },
-  "browserslist": ["last 2 versions"]
+  "browserslist": [
+    "last 2 versions"
+  ]
 }

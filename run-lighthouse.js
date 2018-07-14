@@ -28,6 +28,7 @@ const run = async cmd =>
       stdout += d
     })
     child.stderr.on('data', d => {
+      console.error(d)
       stderr += d
     })
   })

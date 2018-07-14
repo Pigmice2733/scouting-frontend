@@ -5,11 +5,13 @@
 const { exec } = require('child_process')
 const chalk = require('chalk')
 
+const prNum = process.env.CI_PULL_REQUEST
+  ? process.env.CI_PULL_REQUEST.split('/').pop()
+  : undefined
+
 const url =
   'https://' +
-  (process.env.CI_PULL_REQUEST
-    ? `deploy-preview-${process.env.CI_PULL_REQUEST}--scouting.netlify.com`
-    : 'pigmice.ga')
+  (prNum ? `deploy-preview-${prNum}--scouting.netlify.com` : 'pigmice.ga')
 
 const command = `./node_modules/.bin/lighthouse --output json --chrome-flags="--no-sandbox --headless" ${url}`
 

@@ -73,13 +73,17 @@ const main = async () => {
   }, true)
 }
 
-main().then(passed => {
-  if (passed) {
-    console.log('\n' + chalk.green('✨ All good ✔'))
-  } else {
-    console.log('\n' + chalk.red('😢 Lighthouse did not pass ✖'))
-    process.exit(1)
-  }
-})
+main()
+  .then(passed => {
+    if (passed) {
+      console.log('\n' + chalk.green('✨ All good ✔'))
+    } else {
+      console.log('\n' + chalk.red('😢 Lighthouse did not pass ✖'))
+      process.exit(1)
+    }
+  })
+  .catch(err => {
+    throw err
+  })
 
 /* eslint-enable no-console */

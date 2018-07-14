@@ -36,7 +36,7 @@ const run = async cmd =>
   })
 
 const minimums = {
-  seo: 0.8,
+  seo: prNum ? 0.7 : 0.8,
   'best-practices': 0.96,
   accessibility: 0.62,
   pwa: 1,

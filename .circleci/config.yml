@@ -74,8 +74,6 @@ jobs:
       - run:
           name: Running Lighthouse tests against deploy preview
           command: ./run-lighthouse.js
-      - store_test_results:
-          path: 'report.html'
 
 workflows:
   version: 2

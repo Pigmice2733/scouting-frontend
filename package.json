@@ -8,9 +8,9 @@
     "preact-router": "2.6.1"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-beta.53",
-    "@babel/plugin-proposal-class-properties": "7.0.0-beta.53",
-    "@babel/plugin-transform-react-jsx": "7.0.0-beta.53",
+    "@babel/core": "7.0.0-beta.54",
+    "@babel/plugin-proposal-class-properties": "7.0.0-beta.54",
+    "@babel/plugin-transform-react-jsx": "7.0.0-beta.54",
     "@babel/preset-env": "7.0.0-beta.53",
     "@babel/preset-typescript": "7.0.0-beta.53",
     "@types/eslint": "4.16.3",

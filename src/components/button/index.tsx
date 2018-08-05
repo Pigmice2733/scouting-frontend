@@ -1,8 +1,8 @@
-import { h } from 'preact'
+import { h, ComponentChildren } from 'preact'
 import style from './style.css'
 
 interface ButtonProps {
-  children?: JSX.Element[]
+  children?: ComponentChildren
   href?: string
   type?: string
   value?: string

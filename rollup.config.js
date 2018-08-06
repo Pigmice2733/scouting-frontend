@@ -3,9 +3,10 @@ import resolve from 'rollup-plugin-node-resolve'
 import postcss from 'rollup-plugin-postcss'
 import copy from 'rollup-plugin-copy-assets'
 import { terser } from 'rollup-plugin-terser'
-import * as babelConfig from './.babelrc'
 import * as path from 'path'
 import serve from 'rollup-plugin-serve'
+
+const babelConfig = require('./.babelrc.js')
 
 const development = process.env.NODE_ENV === 'development'
 

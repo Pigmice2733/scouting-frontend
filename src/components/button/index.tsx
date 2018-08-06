@@ -11,23 +11,9 @@ interface ButtonProps {
   class?: string
 }
 
-const Button = ({
-  children,
-  href,
-  type,
-  value,
-  onClick,
-  disabled,
-  class: className
-}: ButtonProps) =>
-  h(href ? 'a' : 'button', {
-    class: `${style.button} ${className || ''}`,
-    children,
-    href,
-    type,
-    value,
-    onClick,
-    disabled
-  })
+const Button = (props: ButtonProps) => {
+  const El = props.href ? 'a' : 'button'
+  return <El class={`${style.button} ${props.class || ''}`} {...props} />
+}
 
 export default Button

@@ -20,7 +20,7 @@
   dependencies:
     "@babel/highlight" "7.0.0-beta.47"
 
-"@babel/core@^7.0.0-beta.56":
+"@babel/core@7.0.0-beta.56":
   version "7.0.0-beta.56"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.0.0-beta.56.tgz#cc03ffbb62564fef58fd1cefcbb3e32011c21df9"
   dependencies:
@@ -1046,7 +1046,7 @@ babel-core@^6.0.0, babel-core@^6.26.0:
     slash "^1.0.0"
     source-map "^0.5.7"
 
-babel-core@^7.0.0-0:
+babel-core@^7.0.0-bridge.0:
   version "7.0.0-bridge.0"
   resolved "https://registry.yarnpkg.com/babel-core/-/babel-core-7.0.0-bridge.0.tgz#95a492ddd90f9b4e9a4a1da14eb335b87b634ece"
 
@@ -1070,7 +1070,7 @@ babel-helpers@^6.24.1:
     babel-runtime "^6.22.0"
     babel-template "^6.24.1"
 
-babel-jest@^23.4.2:
+babel-jest@23.4.2, babel-jest@^23.4.2:
   version "23.4.2"
   resolved "https://registry.yarnpkg.com/babel-jest/-/babel-jest-23.4.2.tgz#f276de67798a5d68f2d6e87ff518c2f6e1609877"
   dependencies:

@@ -54,7 +54,7 @@
     "rollup-plugin-terser": "1.0.1",
     "rucksack-css": "1.0.2",
     "stylelint": "9.4.0",
-    "stylelint-config-prettier": "3.3.0",
+    "stylelint-config-prettier": "4.0.0",
     "stylelint-config-rational-order": "0.0.2",
     "stylelint-config-recommended": "2.1.0",
     "sugarss": "1.0.1",

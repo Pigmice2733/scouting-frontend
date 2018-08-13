@@ -619,9 +619,9 @@
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.0.tgz#50c1e2260ac0ed9439a181de3725a0168d59c48a"
 
-"@octokit/rest@^15.5.0":
-  version "15.8.0"
-  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-15.8.0.tgz#b5c2d1b3f1a4e13f4ecdfb9a55fb542f9f5b1484"
+"@octokit/rest@^15.9.5":
+  version "15.9.5"
+  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-15.9.5.tgz#e356d202bd0b517e381f705ad77d98ccb84e0c65"
   dependencies:
     before-after-hook "^1.1.0"
     btoa-lite "^1.0.0"
@@ -1960,11 +1960,11 @@ damerau-levenshtein@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
 
-danger@3.8.4:
-  version "3.8.4"
-  resolved "https://registry.yarnpkg.com/danger/-/danger-3.8.4.tgz#e84b8398a3b7dd5707d7628a833f529efa4d1354"
+danger@3.8.6:
+  version "3.8.6"
+  resolved "https://registry.yarnpkg.com/danger/-/danger-3.8.6.tgz#6760e17a191e0b0e5a255cc9389a0f303033950d"
   dependencies:
-    "@octokit/rest" "^15.5.0"
+    "@octokit/rest" "^15.9.5"
     babel-polyfill "^6.23.0"
     chalk "^2.3.0"
     commander "^2.13.0"

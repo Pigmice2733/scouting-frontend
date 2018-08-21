@@ -8,11 +8,11 @@
     "preact-router": "2.6.1"
   },
   "devDependencies": {
-    "@babel/core": "7.0.0-rc.1",
-    "@babel/plugin-proposal-class-properties": "7.0.0-rc.1",
-    "@babel/plugin-transform-react-jsx": "7.0.0-rc.1",
-    "@babel/preset-env": "7.0.0-rc.1",
-    "@babel/preset-typescript": "7.0.0-rc.1",
+    "@babel/core": "7.0.0-rc.2",
+    "@babel/plugin-proposal-class-properties": "7.0.0-rc.2",
+    "@babel/plugin-transform-react-jsx": "7.0.0-rc.2",
+    "@babel/preset-env": "7.0.0-rc.2",
+    "@babel/preset-typescript": "7.0.0-rc.2",
     "@types/eslint": "4.16.3",
     "@types/jest": "23.3.1",
     "autoprefixer": "9.1.2",

@@ -160,7 +160,7 @@ class AdminPanel extends Component<{}, AdminPanelState> {
                               user.username = user.edit.username
                             }
                             elem.classList.add(style.success)
-                          } catch (ex) {
+                          } catch (error) {
                             elem.classList.add(style.failed)
                           }
                         }}

@@ -37,11 +37,11 @@ const queryAPI = (
     headers: hasValidJWT(getJWT())
       ? new Headers({ Authentication: `Bearer ${getJWT()}` })
       : undefined
-  }).catch(async (err: Error) => {
+  }).catch(async (error: Error) => {
     if (method !== 'GET') {
       await addRequestToIdb({ path, method, body })
     }
-    throw err
+    throw error
   })
 
 const get = <T extends {}>(url: string) => (
@@ -61,8 +61,8 @@ const get = <T extends {}>(url: string) => (
         idbSet(url, data)
         gotten = true
       })
-  } catch (ex) {
-    cb(ex, undefined)
+  } catch (error) {
+    cb(error, undefined)
   }
 }
 

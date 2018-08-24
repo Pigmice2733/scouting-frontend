@@ -19,12 +19,12 @@ class Login extends Component<{}, LoginState> {
       const jwt = await authenticate(this.state)
       localStorage.setItem('jwt', jwt)
       window.history.back()
-    } catch (err) {
+    } catch (error) {
       this.setState({
         error:
-          Number(err.message) === 401
+          Number(error.message) === 401
             ? 'Incorrect username or password.'
-            : err.message
+            : error.message
       })
     }
   }
@@ -32,7 +32,7 @@ class Login extends Component<{}, LoginState> {
   handleRegister = () => {
     registerUser(this.state)
       .then(() => alert('Success! Awaiting admin approval.'))
-      .catch((err: Error) => this.setState({ error: err.message }))
+      .catch((error: Error) => this.setState({ error: error.message }))
   }
 
   render(_: {}, state: LoginState) {

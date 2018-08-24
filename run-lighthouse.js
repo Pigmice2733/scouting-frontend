@@ -85,8 +85,8 @@ main()
       process.exit(1)
     }
   })
-  .catch(err => {
-    throw err
+  .catch(error => {
+    throw error
   })
 
 /* eslint-enable no-console */

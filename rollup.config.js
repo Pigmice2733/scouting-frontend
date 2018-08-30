@@ -16,9 +16,11 @@ const createBabelConfig = (modules = false) => {
   return babelConfigModule
 }
 
+const extensions = ['.js', '.ts', '.tsx', '.mjs', '.sss']
+
 const plugins = {
-  resolve: resolve({ extensions: ['.js', '.ts', '.tsx', '.mjs', '.sss'] }),
-  babel: babel({ babelrc: false, ...createBabelConfig(false) }),
+  resolve: resolve({ extensions }),
+  babel: babel({ babelrc: false, extensions, ...createBabelConfig(false) }),
   babelModule: babel({ babelrc: false, ...createBabelConfig(true) }),
   terser: terser({
     module: true,

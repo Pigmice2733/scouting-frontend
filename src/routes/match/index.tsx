@@ -109,7 +109,7 @@ const Match = ({ eventId, matchId }: { eventId: string; matchId: string }) => (
               <a
                 target="_blank"
                 rel="noopener noreferrer"
-                href={`https://www.thebluealliance.com/match/${matchId}`}
+                href={`https://www.thebluealliance.com/match/${eventId}_${matchId}`}
               >
                 <Icon icon="tba" />
               </a>

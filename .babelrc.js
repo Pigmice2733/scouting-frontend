@@ -1,7 +1,5 @@
 module.exports = {
-  presets: [
-    ['@babel/preset-typescript', { jsxPragma: 'h', isJSX: true }]
-  ],
+  presets: [['@babel/preset-typescript', { jsxPragma: 'h', isJSX: true }]],
   plugins: [
     [
       '@babel/plugin-transform-react-jsx',

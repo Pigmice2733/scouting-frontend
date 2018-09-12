@@ -79,7 +79,7 @@ const Compare = ({
                 <div class={style.team}>
                   <select
                     value={team1}
-                    onChange={(e: Event) =>
+                    onBlur={(e: Event) =>
                       route(
                         `/events/${eventId}/compare/${
                           (e.target as HTMLSelectElement).value
@@ -103,7 +103,7 @@ const Compare = ({
                 <div class={style.team}>
                   <select
                     value={team2}
-                    onChange={(e: Event) =>
+                    onBlur={(e: Event) =>
                       route(
                         `/events/${eventId}/compare/${team1}/${
                           (e.target as HTMLSelectElement).value

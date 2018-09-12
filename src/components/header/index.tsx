@@ -17,12 +17,11 @@ const Header = ({ title, back, contents, verify }: HeaderProps) => (
         class={style.back}
         aria-label="Back"
         onClick={(e: Event) => {
-          if (verify === true) {
-            e.stopImmediatePropagation()
-            e.preventDefault()
-            if (confirm('Are you sure you want to leave?')) {
-              route(back)
-            }
+          if (verify === false) return
+          e.stopImmediatePropagation()
+          e.preventDefault()
+          if (confirm('Are you sure you want to leave?')) {
+            route(back)
           }
         }}
         href={back}

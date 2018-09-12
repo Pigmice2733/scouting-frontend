@@ -235,7 +235,7 @@ export const lerp = (
   maxIn: number,
   minOut: number,
   maxOut: number
-): number => (val - minIn) / (maxIn - minIn) * (maxOut - minOut) + minOut
+): number => ((val - minIn) / (maxIn - minIn)) * (maxOut - minOut) + minOut
 
 export const compareMatchKey = (a: string, b: string) => {
   if (a === b) {

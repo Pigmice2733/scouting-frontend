@@ -37,7 +37,7 @@ const eventTypeClassMap = new Map<number, string>([
   [100, style.pre]
 ])
 
-export default () => (
+const Home = () => (
   <Resolver
     data={{
       events: getEvents()
@@ -136,3 +136,4 @@ export default () => (
     }
   />
 )
+export default Home

@@ -25,13 +25,10 @@ interface TableState {
 }
 
 class Table extends Component<TableProps, TableState> {
-  constructor() {
-    super()
-    this.state = {
-      sortBy: 'teamNumber',
-      reversed: false,
-      selectedTeam: ''
-    }
+  state = {
+    sortBy: 'teamNumber',
+    reversed: false,
+    selectedTeam: ''
   }
 
   sortBy = (stat: string) => () =>
@@ -51,7 +48,8 @@ class Table extends Component<TableProps, TableState> {
             <th key="teamNumber" onClick={this.sortBy('teamNumber')}>
               <div>
                 <span>
-                  {sortBy === 'teamNumber' && (reversed ? ' ▲' : ' ▼')}Team
+                  {sortBy === 'teamNumber' && (reversed ? ' ▲' : ' ▼')}
+                  Team
                 </span>
               </div>
             </th>

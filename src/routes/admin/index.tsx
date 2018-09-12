@@ -26,10 +26,6 @@ interface AdminPanelState {
 }
 
 class AdminPanel extends Component<{}, AdminPanelState> {
-  constructor() {
-    super()
-  }
-
   componentWillMount() {
     getUsers()(
       (err, users) =>

@@ -64,6 +64,7 @@ const Event = ({ eventId }: { eventId: string }) => (
                         <Icon icon="youtube" fill="red" />
                       </a>
                     ) : (
+                      // eslint-disable-next-line caleb/jsx-a11y/anchor-is-valid
                       <a>
                         <Icon icon="youtube" fill="grey" />
                       </a>

@@ -17,7 +17,7 @@ interface ResolverState {
 
 const Resolver = <T extends {}>(props: ResolverProps<T>) =>
   h(
-    class extends Component<ResolverProps<T>, ResolverState> {
+    class InnerResolver extends Component<ResolverProps<T>, ResolverState> {
       constructor(p: ResolverProps<T>) {
         super()
         this.state = { data: {}, error: null }

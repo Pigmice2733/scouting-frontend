@@ -7,7 +7,7 @@ interface SelectProps {
 }
 
 const Select = ({ options, onChange }: SelectProps) => (
-  <select class={selectClass} onChange={onChange}>
+  <select class={selectClass} onBlur={onChange}>
     {options}
   </select>
 )

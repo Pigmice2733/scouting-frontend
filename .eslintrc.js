@@ -1,81 +1,15 @@
-const tsRules = {
-  'typescript/no-unused-vars': 'error',
-  'no-undef': 'off' // ts handles this
-}
-
-const reactRules = {
-  'react/react-in-jsx-scope': 'off',
-  'react/no-unknown-property': ['error', { ignore: ['class', 'for'] }],
-  'no-unused-vars': ['error', { varsIgnorePattern: '^h$' }],
-  'react/display-name': 'off', // annoying
-  'react/require-render-return': 'off', // buggy, doens't work with render props
-  'react/no-deprecated': 'off' // preact !== react
-}
-
-const unicornRules = {
-  'unicorn/prefer-spread': 'off'
-}
-
-const importRules = {
-  'import/first': 'error',
-  'import/no-duplicates': 'error',
-  // 'import/no-namespace': 'error', // needed in node (rollup config). TODO: switch to separate configs for web/node
-  // 'import/order': 'error' // broken for now, copies file contents over and over
-  'import/newline-after-import': 'error',
-  'import/no-named-default': 'error'
-}
-
-const promiseRules = {
-  'promise/no-return-wrap': 'error',
-  'promise/param-names': 'error',
-  'promise/no-nesting': 'error',
-  'promise/no-new-statics': 'error',
-  'promise/no-return-in-finally': 'error',
-  'promise/valid-params': 'error'
-  // 'promise/prefer-await-to-then': 'error'
-}
-
 module.exports = {
-  env: {
-    browser: true,
-    es6: true
-  },
-  parser: 'typescript-eslint-parser',
-  parserOptions: {
-    sourceType: 'module'
-  },
-  settings: {
-    react: {
-      pramga: 'h'
-    },
-    'import/resolver': {
-      node: true,
-      'eslint-import-resolver-typescript': true
-    }
-  },
   extends: [
-    'eslint:recommended',
-    'plugin:jest/recommended',
-    'plugin:react/recommended',
-    'plugin:unicorn/recommended',
-    'plugin:array-func/recommended'
-    // 'plugin:jsx-a11y/recommended'
+    'plugin:caleb/recommended',
+    'plugin:caleb/jest',
+    'plugin:caleb/preact'
   ],
-  plugins: [
-    'react',
-    'jest',
-    'typescript',
-    'unicorn',
-    'import',
-    'promise',
-    'array-func'
-    // 'jsx-a11y'
-  ],
-  rules: Object.assign(
-    reactRules,
-    tsRules,
-    unicornRules,
-    importRules,
-    promiseRules
-  )
+  rules: {
+    'no-negated-condition': 'off',
+    'no-process-exit': 'off',
+    'no-alert': 'off',
+    'handle-callback-err': 'off',
+    'caleb/react/jsx-no-bind': 'off',
+    'caleb/jsx-a11y/media-has-caption': 'off'
+  }
 }

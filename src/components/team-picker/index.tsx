@@ -19,7 +19,7 @@ const TeamPicker = ({
     <span>Team</span>
     <select
       ref={inputRef}
-      onChange={(e: Event) => onChange((e.target as HTMLSelectElement).value)}
+      onBlur={(e: Event) => onChange((e.target as HTMLSelectElement).value)}
     >
       {redAlliance.map(t => (
         <option value={t} key={t}>

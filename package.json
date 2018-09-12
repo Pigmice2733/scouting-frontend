@@ -22,18 +22,8 @@
     "connect-history-api-fallback": "1.5.0",
     "cross-env": "5.2.0",
     "danger": "3.9.0",
+    "eslint-plugin-caleb": "1.2.1",
     "eslint": "5.5.0",
-    "eslint-formatter-pretty": "1.3.0",
-    "eslint-import-resolver-typescript": "1.0.2",
-    "eslint-plugin-array-func": "3.0.0",
-    "eslint-plugin-import": "2.14.0",
-    "eslint-plugin-jest": "21.22.0",
-    "eslint-plugin-jsx-a11y": "6.1.1",
-    "eslint-plugin-promise": "4.0.1",
-    "eslint-plugin-react": "7.11.1",
-    "eslint-plugin-security": "1.4.0",
-    "eslint-plugin-typescript": "0.12.0",
-    "eslint-plugin-unicorn": "6.0.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "23.6.0",
     "koa-connect": "2.0.1",
@@ -45,21 +35,20 @@
     "postcss-media-minmax": "3.0.0",
     "postcss-nesting": "5.0.0",
     "prettier-eslint-cli": "4.7.1",
-    "rollup": "0.65.2",
     "rollup-plugin-babel": "4.0.3",
     "rollup-plugin-copy-assets": "1.0.0",
     "rollup-plugin-node-resolve": "3.4.0",
     "rollup-plugin-postcss": "1.6.2",
     "rollup-plugin-serve": "0.4.2",
     "rollup-plugin-terser": "2.0.2",
+    "rollup": "0.65.2",
     "rucksack-css": "1.0.2",
-    "stylelint": "9.5.0",
     "stylelint-config-prettier": "4.0.0",
     "stylelint-config-rational-order": "0.0.2",
     "stylelint-config-recommended": "2.1.0",
+    "stylelint": "9.5.0",
     "sugarss": "2.0.0",
-    "typescript": "3.0.3",
-    "typescript-eslint-parser": "18.0.0"
+    "typescript": "3.0.3"
   },
   "license": "MIT",
   "prettier": {
@@ -89,23 +78,15 @@
       "\\.css$": "identity-obj-proxy"
     }
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint"
-    }
-  },
   "scripts": {
-    "start": "cross-env NODE_ENV=development rollup -w -c rollup.config.js",
     "build": "cross-env NODE_ENV=production rollup -c rollup.config.js",
-    "type": "tsc --noEmit --pretty",
-    "type:watch": "tsc --noEmit --pretty --watch",
-    "lint:js": "eslint . --ignore-path .gitignore --ext .js,.ts,.tsx --format=pretty --fix",
-    "lint:css": "prettier --write 'src/**.css' && stylelint 'src/**/*.css' --fix",
-    "lint": "yarn lint:js && yarn lint:css",
-    "fix:js": "prettier-eslint --write 'src/**/*.ts' 'src/**/*.tsx'",
-    "fix": "yarn fix:js && yarn lint:css",
+    "check-lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx . && prettier --list-different --ignore-path .gitignore '**/*.{j,t}s{x}'",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx --fix . && prettier --write --ignore-path .gitignore '**/*.{j,t}s{x,}'",
+    "start": "cross-env NODE_ENV=development rollup -w -c rollup.config.js",
+    "test:watch": "jest --watch",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "type:watch": "tsc --noEmit --pretty --watch",
+    "type": "tsc --noEmit --pretty"
   },
   "browserslist": [
     "last 2 versions"

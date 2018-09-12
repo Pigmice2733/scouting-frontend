@@ -19,7 +19,7 @@ const command = `./node_modules/.bin/lighthouse --output json --chrome-flags="--
  * @param {string} cmd
  * @returns {Promise<{stdout: string, stderr: string}>}
  */
-const run = async cmd =>
+const run = cmd =>
   new Promise((resolve, reject) => {
     const child = exec(cmd)
     let stdout = ''

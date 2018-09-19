@@ -45,7 +45,7 @@
     "postcss-media-minmax": "4.0.0",
     "postcss-nesting": "7.0.0",
     "prettier-eslint-cli": "4.7.1",
-    "rollup": "0.66.0",
+    "rollup": "0.66.1",
     "rollup-plugin-babel": "4.0.3",
     "rollup-plugin-copy-assets": "1.0.0",
     "rollup-plugin-node-resolve": "3.4.0",

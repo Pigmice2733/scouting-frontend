@@ -4,12 +4,45 @@
   height: 100%;
   overflow-x: auto;
   text-align: center;
+  --border: #bbb;
 
   & table {
     min-width: 100%;
     margin: 0 auto;
     table-layout: fixed;
     border-collapse: collapse;
+  }
+
+  & tr:first-child th {
+    position: sticky;
+    top: 0;
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      border-bottom: 0.5px solid var(--border);
+    }
+
+    &:first-child {
+      z-index: 3;
+    }
+  }
+
+  & tr td:first-child,
+  & tr th:first-child {
+    position: sticky;
+    left: 0;
+
+    &::after {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+      content: '';
+      border-right: 0.5px solid var(--border);
+    }
   }
 
   & td {
@@ -45,10 +78,7 @@
   & td,
   & th {
     white-space: nowrap;
-
-    &:nth-child(even) {
-      background: gray(0, 04%);
-    }
+    background: #e5e5e5;
   }
 }
 

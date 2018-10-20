@@ -21,7 +21,6 @@ interface TableProps {
 interface TableState {
   sortBy: string
   reversed: boolean
-  selectedTeam: string
 }
 
 class Table extends Component<TableProps, TableState> {
@@ -29,8 +28,7 @@ class Table extends Component<TableProps, TableState> {
     super()
     this.state = {
       sortBy: 'teamNumber',
-      reversed: false,
-      selectedTeam: ''
+      reversed: false
     }
   }
 
@@ -42,7 +40,7 @@ class Table extends Component<TableProps, TableState> {
 
   render(
     { analyses, schema, eventKey, back }: TableProps,
-    { sortBy, reversed, selectedTeam }: TableState
+    { sortBy, reversed }: TableState
   ) {
     return (
       <div class={style.table}>
@@ -51,7 +49,8 @@ class Table extends Component<TableProps, TableState> {
             <th key="teamNumber" onClick={this.sortBy('teamNumber')}>
               <div>
                 <span>
-                  {sortBy === 'teamNumber' && (reversed ? ' ▲' : ' ▼')}Team
+                  {sortBy === 'teamNumber' && (reversed ? ' ▲' : ' ▼')}
+                  Team
                 </span>
               </div>
             </th>
@@ -87,11 +86,7 @@ class Table extends Component<TableProps, TableState> {
               return reversed ? -v : v
             })
             .map(analysis => (
-              <tr
-                key={analysis.team}
-                class={analysis.team === selectedTeam ? style.selectedTeam : ''}
-                onClick={() => this.setState({ selectedTeam: analysis.team })}
-              >
+              <tr key={analysis.team}>
                 <td key="teamNumber">
                   <a
                     href={`/events/${eventKey}/team/${formatTeamNumber(
